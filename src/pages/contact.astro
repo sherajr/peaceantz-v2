@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Contact — Peace Antz"
+  description="Write to Peace Antz — questions, collaborations, quote card stories, or just to say hello."
+>
+  <section class="section--tight" style="padding-top: 2.5rem">
+    <div class="container center">
+      <span class="kicker">Say hello</span>
+      <h1 style="font-size: clamp(2rem, 5vw, 2.9rem)">Contact</h1>
+      <p class="lead" style="margin-inline: auto">
+        Collaborations, questions, card stories, corrections — everything is
+        read by a person.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container" style="display: grid; justify-content: center">
+      <form class="form reveal" id="contact-form" method="post" action="/api/contact">
+        <label>
+          Your name
+          <input name="name" type="text" required maxlength="100" autocomplete="name" />
+        </label>
+        <label>
+          Email (so we can reply)
+          <input name="email" type="email" required maxlength="200" autocomplete="email" />
+        </label>
+        <label>
+          What’s on your mind?
+          <textarea name="message" rows="6" required maxlength="4000"></textarea>
+        </label>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" style="position: absolute; left: -9999px" aria-hidden="true" />
+        <button class="btn btn--gold" type="submit">Send</button>
+        <p class="form__note" id="form-status" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const status = document.getElementById('form-status')!;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Sending…';
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          body: new FormData(form),
+        });
+        if (res.ok) {
+          form.reset();
+          status.textContent = 'Thank you — your message is on its way.';
+        } else {
+          const data = await res.json().catch(() => null);
+          status.textContent =
+            (data && data.error) ||
+            'The message service isn’t connected yet — please try again later.';
+        }
+      } catch {
+        status.textContent =
+          'Could not reach the message service. Please try again later.';
+      }
+    });
+  </script>
+</Base>

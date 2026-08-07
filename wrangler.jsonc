@@ -1,0 +1,26 @@
+{
+  // Cloudflare Workers config: static Astro build + one Worker route.
+  // Deploy: npm run deploy   (first time: npx wrangler login)
+  // Secrets to set before the contact form goes live:
+  //   npx wrangler secret put RESEND_API_KEY
+  //   and set CONTACT_EMAIL_TO below (or as a secret).
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "peaceantz",
+  "main": "worker/index.ts",
+  "compatibility_date": "2025-07-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  // Powers POST /api/translate in the Quote Card Creator. Remove this binding
+  // and the creator falls back to letting people paste their own translation.
+  "ai": {
+    "binding": "AI"
+  },
+  "vars": {
+    // "CONTACT_EMAIL_TO": "you@example.com"
+    // "TRANSLATE_MODEL": "@cf/meta/llama-3.1-8b-instruct"
+  }
+}

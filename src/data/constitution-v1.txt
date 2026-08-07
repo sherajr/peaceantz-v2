@@ -1,0 +1,81 @@
+Preamble
+We, the members of the Peace Antz Decentralized Autonomous Organization (hereinafter referred to as the "Peace Antz DAO" or the "DAO"), in order to establish an organization that fosters collaboration, innovation, and social good within the decentralized world, promote the principles of peace, love, and grit, do hereby ordain and establish this Constitution for the Peace Antz DAO.
+Article I: Name and Purpose
+Section 1. Name
+The name of this organization shall be the Peace Antz Decentralized Autonomous Organization. This name shall represent the spirit of the organization. The name may be changed through community vote.
+Section 2. Purpose
+The high-level purpose of Peace Antz DAO is to be a digital hub that facilitates collaboration and innovation among its members, with the aim of promoting peace, love, and grit within its culture.
+To achieve these goals, Peace Antz DAO focuses on education through the Peace Antz Academy and content creation via Peace Antz Media. Peace Antz Academy offers a growing variety of courses/workshops on topics related to decentralized technologies and personal growth, while Peace Antz Media produces and disseminates educational, informative, and entertaining materials in various formats, such as articles, videos, podcasts, and social media campaigns. Both entities may cross-collaborate and support each other.
+Through these initiatives, the Peace Antz DAO seeks to inspire, educate, and empower individuals to contribute positively to the digital ecosystem and the world at large.
+Section 3. Slogan
+The official slogan of the Peace Antz DAO shall be "Be Kind. Be Relentless."
+Article II: The Peace Antz Movement
+Section 1. Collective Intelligence and Biomimicry
+The Peace Antz Movement is inspired by the cooperative behavior of ants and their ability to work together effectively. Emphasizing collective intelligence, we foster a culture of kindness and mutual support, where small individual contributions are valued and lead to significant change. We believe in aligning our actions with the principles of nature and natural law, ensuring a sustainable and thriving future for all.
+Section 2. Personal Growth and Community Engagement
+The Peace Antz Movement encourages personal growth and self-discovery while nurturing a sense of belonging and shared purpose within the community. We are committed to empowering our members by sharing knowledge, skills, and resources, and to creating engaging content that promotes our values and mission. The Movement strives to create spaces where everyone has room to grow, fostering a spirit of curiosity, creativity, and innovation. Taking initiative is strongly encouraged and our members understand how small actions can make a big difference.
+Section 3. Leveraging Technology for a Better Society
+The Peace Antz Movement embraces the potential of blockchain technology to facilitate trust, transparency, and decentralized decision-making. We also acknowledge the transformative power of artificial intelligence in enhancing human capabilities and automating mundane tasks, allowing individuals to focus on more meaningful pursuits. We advocate for the responsible development and deployment of these technologies to improve the human experience and promote social good.
+Section 4. Exploration and Development of New Frontiers
+With a vision of endless possibilities, the Peace Antz Movement supports the exploration and development of new frontiers, both physical and digital. We seek to be a beacon of inspiration and guidance, leaving a trail for others and teaching them to create a positive impact on the world. As we grow and evolve, our commitment to promoting peace, love, and grit remains at the core of our mission.
+Article III: Membership and Governance
+Section 1. Membership
+Membership in the Peace Antz DAO is open to all individuals who hold ANTZ tokens (matic: 0xc5A2237B0f4bB6A2E15FF0299eE49ac5c9acc1c0). These tokens are given out by any of the three DAO treasuries based on contribution to the DAO. Members are encouraged to actively participate in the Peace Antz community, contribute to its initiatives, and uphold its values and principles.
+1.1. Opt-in Member Roles
+Members can choose from various roles within the Peace Antz DAO community, reflecting their interests, strengths, and contributions:
+🛠️Worker Ant: These members are dedicated to the hard work of making the Peace Antz vision a reality. They rarely have time to spare, but are ready to roll up their sleeves and tackle any task that comes their way when the time is right.
+🩺Nurse Ant: These members are the caretakers of the community. They make sure everyone is feeling supported and assist new members in finding their place in the colony. They also help keep the group organized and running smoothly.
+🍬Forager Ant: If an Ant finds something sweet, these members are ready to follow and bring resources back to the colony. They are excitable workers who are eager to try out new ideas and follow scouts to the sugar!
+🔎Scout Ant: These members are the pioneers of the group. They are always exploring new territories and looking for ways to expand the reach of Peace Antz. They are not afraid to take risks and are always ready to blaze new trails.
+🎨Artisan Ant: These members are the creative masterminds behind the movement. They are the artists, musicians, writers, and other talented individuals who use their skills to bring the mission of Peace Antz to life. They are always coming up with new ways to inspire and engage the community.
+1.2. Elected Roles
+These members shall be elected into their positions every bitcoin halving. They may be voted out of their role or step down at any time. Queens manage the Gnosis treasury and soldiers are mods across the ecosystem.
+🛡️Soldier Ant: These members serve as moderators within the Peace Antz DAO, ensuring a safe, kind and respectful environment for all members. Any abuse of power shall be dealt with by the Queen(s). There is no official hardcap to the number of soldiers that may exist. Community can vote soldiers in or out at any time.
+👑Queen Ant: The Queen Ant has the most access to everything across the DAO, overseeing and guiding the overall direction and decision-making of the community. They are signers on the Gnosis Multisig for the DAO and may be signers on other safes as well. They can moderate but that is not their focus. The Queen's primary duty is to protect and grow the treasury. The number of Queens shall be no less than 2 and no greater than 9.
+Section 2. Governance
+Peace Antz DAO will be governed through its tokens and other potential voting strategies by utilizing other protocols, with proposals and votes conducted through platforms such as Snapshot, Colony, and DAOHaus. Voting power will be allocated by how many ANTZ tokens one has, along with other optional voting strategies that can be adjusted through voting. To encourage action, voting will be only done if there are disagreements with proposals or other issues. Votes that do not involve treasury expenditure or amendments may be done through Discord bots, Twitter polls or other means.
+2.1 Voting
+Official votes will last no less than 6 days and no more than 13 days. Official votes shall be made over any web3 protocol the community deems as valid and safe. Unofficial votes do not require any web3 tools and can be made on any platform. Official votes relate to the treasury and constitution while unofficial votes relate to more general social interactions.
+2.2 Justice System
+In the event that a justice system is required, the DAO shall hold fair and open trails. This shall be done through a moderated open debate where each side may be given time to voice their argument and then the attendees can vote on which side they agree with throughout the trial. At the end of the event a final tally will be made. An official vote can then be done to determine the consequences of the trial.
+Section 3. Token System
+The ANTZ token has a fixed supply on the Polygon blockchain. ANTZ tokens on other chains must be created with the same total fixed supply. ANTZ tokens that can be freshly minted with no total supply must be non-transferable. ANTZ tokens can be considered reputation tokens where contributors are rewarded based on a fixed token scale, as outlined here:
+1 ANTZ token = A warm virtual hug, symbolizing appreciation and encouragement within the community.
+10 ANTZ tokens = Providing constructive feedback on a project or idea, contributing to its improvement and success.
+50 ANTZ tokens = Crafting a tweet about Peace Antz to share the DAO's mission and projects with a broader audience.
+100 ANTZ tokens = Writing a concise article or blog post to raise awareness about the DAO's goals and initiatives.
+1,000 ANTZ tokens = 10 minutes of dedicated work on a specific task, such as design, development, or content creation.
+10,000 ANTZ tokens = Hosting a community event or workshop, sharing knowledge and skills with fellow DAO members and fostering collaboration.
+100,000 ANTZ tokens = Developing and executing a small project or campaign aimed at promoting peace, love, and/or grit within the DAO and beyond.
+1,000,000 ANTZ tokens = Leading a significant initiative, such as developing a groundbreaking solution, creating a viral campaign, or establishing a powerful partnership that greatly advances the DAO's mission and influence.
+Section 4. Amendments
+This Constitution may be amended through a snapshot proposal and vote process, with a supermajority required for any changes to be made. Votes to amend will last no less than 6 days and no more than 13 days.
+Section 5. Dissolution
+In the event of dissolution of the Peace Antz DAO, any remaining resources shall be distributed in accordance with its purpose and values to be determined by the community.
+Article IV: Distribution of Resources and Initiatives
+Section 1. Distribution of Resources
+The Peace Antz DAO will distribute its resources in a transparent and equitable manner, with a focus on supporting contributors, projects, and initiatives aligned with its purpose. The allocation of funds will be determined through a community-driven process that includes proposals and voting, ensuring that resources are directed towards activities that advance the goals of the DAO and its members.
+Section 2. Peace Antz Academy
+The Peace Antz DAO will develop and maintain the Peace Antz Academy, an educational platform that offers resources, courses, and workshops on topics related to decentralized technologies, social impact, and personal growth. The academy will be committed to fostering a learning environment that empowers individuals and promotes the values of the Peace Antz Movement.
+Section 3. Peace Antz Media
+The Peace Antz DAO will establish and support Peace Antz Media, a content production and dissemination platform focused on generating educational, informative, and entertaining materials that advance the DAO's mission and values. Peace Antz Media will create content in various formats, including articles, videos, podcasts, and social media campaigns, to engage a diverse audience and amplify the impact of the Peace Antz Movement. This may also be done as a service to deposit funds for the treasury.
+Section 4. Community Initiatives
+The Peace Antz DAO will encourage and support community-driven initiatives that align with its purpose and values. These may include projects, campaigns, and events aimed at promoting peace, love, and grit within the decentralized world and beyond. By empowering its members to take an active role in shaping the DAO's direction, the Peace Antz Movement will foster a culture of innovation and collaboration.
+Article V: Equal Opportunity
+Section 1. Inclusivity and Diversity
+The Peace Antz DAO is committed to fostering a diverse and inclusive community where members from all backgrounds, cultures, and perspectives can collaborate and contribute to the Movement. We believe that diversity enriches our collective intelligence and enhances our capacity for innovation and problem-solving. The DAO will actively work to ensure that its membership, initiatives, and resources are accessible to all and that all members are treated with respect and dignity.
+Section 2. Collaborative Culture
+The Peace Antz DAO embraces a culture of collaboration, recognizing that the collective efforts of its members are critical to achieving its goals. Members are encouraged to share their skills, knowledge, and experiences with one another and to collaborate on projects, initiatives, and events that advance the Movement. The DAO will strive to create an environment that supports and rewards teamwork, cooperation, and mutual support.
+Section 3. Conflict Resolution
+In the event of conflicts or disagreements within the Peace Antz DAO, members are expected to approach the situation with respect, empathy, and a willingness to seek a resolution that serves the best interests of the community. The DAO will establish guidelines and processes for conflict resolution and encourage open, transparent communication to address issues and maintain a positive, constructive environment. See Article II, Section 2.2 for trails.
+Section 4. Partnerships and Alliances
+The Peace Antz DAO recognizes the value of forging partnerships and alliances with other organizations, projects, and communities that share its values and objectives. By collaborating with external entities, the DAO can amplify its impact, share resources and expertise, and create a broader network of support for its initiatives. The Peace Antz DAO will actively seek opportunities to build strategic partnerships and alliances that align with its mission and values.
+Article VI: Implementation and Adoption
+Section 1. Implementation
+This Constitution shall be implemented and upheld by the members of the Peace Antz DAO in accordance with its provisions, principles, and values. All members are responsible for familiarizing themselves with the Constitution, adhering to its guidelines, and promoting a culture that supports the Peace Antz Movement.
+Section 2. Adoption
+Upon ratification, this Constitution shall be adopted by the Peace Antz DAO and serve as the guiding document for its operations, governance, and initiatives. The DAO shall make the Constitution publicly available and accessible to all members and potential members, as well as any interested parties.
+Section 3. Review and Updates
+The Peace Antz DAO shall periodically review and update the Constitution to ensure its continued relevance and effectiveness in guiding the organization. Any proposed amendments or revisions must be submitted through the appropriate channels and approved by the community as outlined in Article III, Section 4.
+Section 4. Outreach and Education
+The Peace Antz DAO shall prioritize outreach and education efforts to promote awareness and understanding of its Constitution, values, and initiatives. Through various channels, including the Peace Antz Academy and Peace Antz Media, the DAO will engage its members and the broader community in discussions and activities related to the Constitution and its principles.

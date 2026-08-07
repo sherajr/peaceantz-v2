@@ -1,0 +1,1078 @@
+---
+import Base from '../layouts/Base.astro';
+import artwork from '../data/artwork.json';
+import { LANGUAGES } from '../scripts/languages';
+---
+
+<Base
+  title="Quote Card Creator — Peace Antz"
+  description="Make printable Bahá’í-inspired quote and prayer cards — front and back, with a cut-out print sheet. Verified passages, always attributed. Free, no sign-up."
+>
+  <section class="section--tight" style="padding-top: 2.5rem">
+    <div class="container center">
+      <span class="kicker">Create</span>
+      <h1 style="font-size: clamp(2rem, 5vw, 2.9rem)">Quote Card Creator</h1>
+      <p class="lead" style="margin-inline: auto">
+        Choose a passage or a prayer, pick artwork, and get a two-sided card:
+        the writing on the front, a place to reflect on the back. Print a whole
+        sheet and cut them out. Free, no sign-up.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container creator">
+      <!-- ————— preview ————— -->
+      <div class="creator__preview">
+        <div class="faces">
+          <figure class="face">
+            <canvas id="front-canvas" width="1050" height="600"></canvas>
+            <figcaption>Front</figcaption>
+          </figure>
+          <figure class="face">
+            <canvas id="back-canvas" width="1050" height="600"></canvas>
+            <figcaption>Back — to write on</figcaption>
+          </figure>
+        </div>
+
+        <p class="warn" id="fit-warn" hidden>
+          This passage only fits at very small print. Try a shorter one, or
+          expect fine type on the printed card.
+        </p>
+
+        <div class="creator__actions">
+          <button class="btn btn--gold" id="add-btn">Add to print sheet</button>
+          <button class="btn btn--outline" id="png-btn">Download PNGs</button>
+          <button class="btn btn--outline" id="copy-btn">Copy text</button>
+        </div>
+        <p class="form__note center" id="status-note" role="status"></p>
+      </div>
+
+      <!-- ————— controls ————— -->
+      <div class="creator__controls">
+        <fieldset class="ctrl">
+          <legend>1 · Choose a passage</legend>
+          <div class="chips" id="kind-chips">
+            <button class="chip active" data-kind="all">All</button>
+            <button class="chip" data-kind="0">Writings</button>
+            <button class="chip" data-kind="1">Prayers</button>
+            <button class="chip" data-kind="ruhi">Ruhi Book 1</button>
+            <button class="chip" data-kind="feat">Featured</button>
+          </div>
+          <input class="search" id="search" type="search" placeholder="Search the writings and prayers…" />
+          <div class="chips chips--tags" id="tag-chips"></div>
+          <p class="result-count" id="result-count">Loading library…</p>
+          <div class="quote-list" id="quote-list"></div>
+          <details id="custom-quote">
+            <summary>…or write your own</summary>
+            <div class="form" style="margin-top: 0.8rem">
+              <label>
+                Your text
+                <textarea id="custom-text" rows="4" maxlength="600" placeholder="A favourite passage, a prayer, a kind word…"></textarea>
+              </label>
+              <label>
+                Attribution
+                <input id="custom-attrib" type="text" maxlength="90" placeholder="Author, Source" />
+              </label>
+            </div>
+          </details>
+        </fieldset>
+
+        <fieldset class="ctrl">
+          <legend>2 · Artwork</legend>
+          <div class="art-grid" id="art-grid">
+            <button class="art art--none active" data-art="" title="No artwork">Plain</button>
+            {artwork.map((a) => (
+              <button class="art" data-art={a.id} title={a.name}>
+                <img src={`/images/art/thumb/${a.id}.jpg`} alt={a.name} loading="lazy" width="168" height="96" />
+              </button>
+            ))}
+          </div>
+          <div class="upload">
+            <label class="btn btn--outline upload__btn">
+              Upload your own photo
+              <input type="file" id="photo-input" accept="image/*" hidden />
+            </label>
+            <p class="form__note" style="margin: 0.5rem 0 0">
+              Your photo stays on your device — it is never uploaded anywhere.
+            </p>
+          </div>
+          <label class="slider-label">
+            How much picture shows
+            <input type="range" id="space-slider" min="0" max="100" value="72" />
+            <span class="hint">Left: a wide band of picture around the words. Right: almost all cream.</span>
+          </label>
+          <label class="slider-label">
+            Edge softness
+            <input type="range" id="feather-slider" min="0" max="100" value="45" />
+            <span class="hint">How gradually the picture fades into the cream.</span>
+          </label>
+          <label class="slider-label">
+            Cream opacity
+            <input type="range" id="wash-slider" min="30" max="160" value="100" />
+            <span class="hint">How strongly the cream covers the picture behind the words.</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="ctrl">
+          <legend>3 · Language</legend>
+          <div class="chips" id="lang-chips">
+            {LANGUAGES.map((l, i) => (
+              <button class={`chip${i === 0 ? ' active' : ''}`} data-lang={l.code} lang={l.code}>
+                {l.nativeName}
+              </button>
+            ))}
+          </div>
+          <p class="form__note" style="margin: 0 0 0.7rem">
+            This sets the card’s own words — the reflection question, the
+            writing prompt and the share line. The passage itself stays in the
+            verified English unless you supply a translation below.
+          </p>
+          <div id="lang-review" class="warn warn--soft" hidden>
+            These wordings have not yet been checked by a native speaker — do
+            edit them under “The back”.
+          </div>
+          <details id="translation-box" hidden>
+            <summary>The passage in <span id="tl-name">this language</span></summary>
+            <div class="form" style="margin-top: 0.8rem">
+              <div class="tl-actions">
+                <button class="btn btn--outline" id="translate-btn" type="button">
+                  Translate with AI
+                </button>
+                <span class="form__note" id="translate-status"></span>
+              </div>
+              <label>
+                Translation of the passage
+                <textarea id="translation-text" rows="4" maxlength="600"
+                  placeholder="Translate with AI, or paste an authorised translation…"></textarea>
+              </label>
+              <label>
+                Attribution in this language <span class="opt">(optional)</span>
+                <input id="translation-cite" type="text" maxlength="120"
+                  placeholder="Leave blank to keep the English citation" />
+              </label>
+              <p class="form__note" style="margin: 0">
+                Cards printed with a translation carry a fixed
+                “<span id="tl-disclaimer"></span>” line. It is added by the
+                card itself and cannot be removed — a machine or unofficial
+                rendering of scripture should never look like an authorised
+                one.
+              </p>
+            </div>
+          </details>
+        </fieldset>
+
+        <fieldset class="ctrl">
+          <legend>4 · Style</legend>
+          <div class="chips" id="font-chips">
+            <button class="chip active" data-font="sans">Sans</button>
+            <button class="chip" data-font="serif">Serif</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="ctrl">
+          <legend>5 · The back</legend>
+          <label class="stack-label">
+            Reflection question
+            <input id="ref-question" type="text" maxlength="120" />
+          </label>
+          <label class="stack-label">
+            Writing prompt
+            <input id="ref-action" type="text" maxlength="90" />
+          </label>
+          <p class="form__note" style="margin: 0.6rem 0 0">
+            The share line at the foot of the card is fixed:
+            <em id="share-line"></em>
+          </p>
+        </fieldset>
+      </div>
+    </div>
+  </section>
+
+  <!-- ————— print sheet tray ————— -->
+  <section class="section--tight">
+    <div class="container">
+      <div class="tray" id="tray">
+        <div class="tray__head">
+          <div>
+            <h2>Your print sheet</h2>
+            <p class="form__note" id="tray-count" style="margin: 0">
+              Empty — add a card above. A US&nbsp;Letter sheet holds 8 cards.
+            </p>
+          </div>
+          <div class="tray__actions">
+            <label class="dup">
+              <input type="checkbox" id="duplex" />
+              Double-sided printer (long-edge flip)
+            </label>
+            <button class="btn btn--gold" id="sheet-btn" disabled>Download print sheet PDF</button>
+          </div>
+        </div>
+        <div class="tray__items" id="tray-items"></div>
+        <p class="form__note" id="sheet-note" role="status"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container center">
+      <p class="form__note" style="max-width: 44rem; margin-inline: auto">
+        Every passage in the library is quoted verbatim from the published
+        writings and carries its author and source; prayers are included only
+        where they fit a card whole, never trimmed to make them fit. Artwork is
+        AI-generated. Custom text is your own and appears exactly as you write
+        it. This creator grew out of the
+        <a href="/about/past-work">BahAI Workforce</a> project, which prints
+        cards under the same rules.
+      </p>
+    </div>
+  </section>
+
+  <script>
+    import {
+      renderFront, renderBack, renderFace, textOverflows,
+      type CardSpec, type Reflection,
+    } from '../scripts/card-render';
+    import { byCode, type LanguageDef } from '../scripts/languages';
+
+    interface LibraryItem {
+      t: string; s: number; g: number[]; k: 0 | 1;
+      l?: number; x?: 1; f?: 1; r?: 1;
+    }
+    interface Library {
+      sources: [string, string][];
+      links: string[];
+      tags: string[];
+      quoteTags: string[];
+      prayerTags: string[];
+      items: LibraryItem[];
+    }
+
+    const PRINT_W = 1050;
+    const PRINT_H = 600;
+    const SHEET_CAPACITY = 8;
+
+    const frontCanvas = document.getElementById('front-canvas') as HTMLCanvasElement;
+    const backCanvas = document.getElementById('back-canvas') as HTMLCanvasElement;
+    const note = document.getElementById('status-note')!;
+    const fitWarn = document.getElementById('fit-warn') as HTMLElement;
+
+    let library: Library | null = null;
+    let selected: LibraryItem | null = null;
+    let custom: { text: string; attrib: string } | null = null;
+    const artCache = new Map<string, HTMLImageElement>();
+
+    const state = {
+      artId: '',
+      art: null as HTMLImageElement | null,
+      font: 'sans' as 'sans' | 'serif',
+      wash: 1.0,
+      whiteSpace: 0.72,
+      feather: 0.45,
+      lang: byCode('en') as LanguageDef,
+      translation: '',
+      translationCite: '',
+      aiTranslated: false,
+      reflection: { ...byCode('en').quote } as Reflection,
+    };
+
+    /** Which set of card wordings this passage should use. */
+    const isPrayer = () => !custom && !!selected && selected.k === 1;
+
+    function refreshReflection() {
+      const set = isPrayer() ? state.lang.prayer : state.lang.quote;
+      state.reflection = { ...set };
+      syncReflectionInputs();
+    }
+
+    const citationFor = (it: LibraryItem): string => {
+      const [author, source] = library!.sources[it.s];
+      return it.k === 1 ? author : `${author}, ${source}`;
+    };
+
+    function spec(): CardSpec {
+      const source = custom ? custom.text : selected ? selected.t : '';
+      const citation = custom
+        ? custom.attrib
+        : selected
+          ? citationFor(selected)
+          : '';
+      // A translation only replaces the passage when one has actually been
+      // supplied for a non-English card.
+      const translated = state.lang.code !== 'en' && state.translation.trim().length > 0;
+      const text = translated ? state.translation.trim() : source;
+      const shown =
+        translated && state.translationCite.trim()
+          ? state.translationCite.trim()
+          : citation;
+      return {
+        text,
+        lang: state.lang,
+        translated,
+        aiTranslated: translated && state.aiTranslated,
+        citation: shown,
+        art: state.art,
+        reflection: state.reflection,
+        font: state.font,
+        wash: state.wash,
+        whiteSpace: state.whiteSpace,
+        feather: state.feather,
+      };
+    }
+
+    function draw() {
+      const s = spec();
+      renderFront(frontCanvas.getContext('2d')!, s, PRINT_W, PRINT_H);
+      renderBack(backCanvas.getContext('2d')!, s, PRINT_W, PRINT_H);
+      fitWarn.hidden = !s.text || !textOverflows(s, PRINT_W, PRINT_H);
+    }
+
+    // ——— artwork ———
+    function loadArt(id: string): Promise<HTMLImageElement | null> {
+      if (!id) return Promise.resolve(null);
+      const cached = artCache.get(id);
+      if (cached) return Promise.resolve(cached);
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          artCache.set(id, img);
+          resolve(img);
+        };
+        img.onerror = () => resolve(null);
+        img.src = `/images/art/${id}.jpg`;
+      });
+    }
+
+    const artGrid = document.getElementById('art-grid')!;
+    artGrid.addEventListener('click', async (e) => {
+      const btn = (e.target as HTMLElement).closest('.art') as HTMLElement | null;
+      if (!btn) return;
+      artGrid.querySelectorAll('.art').forEach((b) => b.classList.toggle('active', b === btn));
+      if (btn.dataset.art === '__upload') {
+        state.artId = '__upload';
+        state.art = uploaded;
+      } else {
+        state.artId = btn.dataset.art || '';
+        state.art = await loadArt(state.artId);
+      }
+      draw();
+    });
+
+    // ——— your own photo (stays in the browser; never uploaded) ———
+    let uploaded: HTMLImageElement | null = null;
+    let uploadedUrl = '';
+    const MAX_PHOTO_EDGE = 1600; // downscale huge camera files before use
+
+    document.getElementById('photo-input')!.addEventListener('change', (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (!file) return;
+      if (!file.type.startsWith('image/')) {
+        note.textContent = 'That file is not an image.';
+        return;
+      }
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = () => {
+        const scale = Math.min(1, MAX_PHOTO_EDGE / Math.max(img.naturalWidth, img.naturalHeight));
+        let finalImg = img;
+        if (scale < 1) {
+          const c = document.createElement('canvas');
+          c.width = Math.round(img.naturalWidth * scale);
+          c.height = Math.round(img.naturalHeight * scale);
+          c.getContext('2d')!.drawImage(img, 0, 0, c.width, c.height);
+          finalImg = new Image();
+          finalImg.src = c.toDataURL('image/jpeg', 0.9);
+        }
+        const use = () => {
+          if (uploadedUrl) URL.revokeObjectURL(uploadedUrl);
+          uploadedUrl = scale < 1 ? '' : url;
+          uploaded = finalImg;
+          state.artId = '__upload';
+          state.art = finalImg;
+          showUploadTile(finalImg);
+          draw();
+          note.textContent = 'Photo added — it stays on your device.';
+        };
+        if (finalImg === img || finalImg.complete) use();
+        else finalImg.onload = use;
+        if (scale < 1) URL.revokeObjectURL(url);
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(url);
+        note.textContent = 'That image could not be read.';
+      };
+      img.src = url;
+    });
+
+    function showUploadTile(img: HTMLImageElement) {
+      let tile = artGrid.querySelector('[data-art="__upload"]') as HTMLElement | null;
+      if (!tile) {
+        tile = document.createElement('button');
+        tile.className = 'art';
+        tile.dataset.art = '__upload';
+        tile.title = 'Your photo';
+        artGrid.insertBefore(tile, artGrid.children[1] || null);
+      }
+      tile.innerHTML = '';
+      const thumb = document.createElement('img');
+      thumb.src = img.src;
+      thumb.alt = 'Your uploaded photo';
+      tile.appendChild(thumb);
+      artGrid.querySelectorAll('.art').forEach((b) => b.classList.toggle('active', b === tile));
+    }
+
+    // ——— library ———
+    const listEl = document.getElementById('quote-list')!;
+    const tagChips = document.getElementById('tag-chips')!;
+    const countEl = document.getElementById('result-count')!;
+    const searchEl = document.getElementById('search') as HTMLInputElement;
+    let kindFilter: 'all' | '0' | '1' | 'feat' | 'ruhi' = 'all';
+    let tagFilter = '';
+    let query = '';
+
+    function activeTags(): string[] {
+      if (!library) return [];
+      if (kindFilter === '1') return library.prayerTags;
+      if (kindFilter === '0' || kindFilter === 'feat' || kindFilter === 'ruhi') {
+        return library.quoteTags;
+      }
+      return [...library.quoteTags, ...library.prayerTags];
+    }
+
+    function renderTagChips() {
+      if (!library) return;
+      const tags = activeTags();
+      tagChips.innerHTML = '';
+      const all = document.createElement('button');
+      all.className = 'chip' + (tagFilter === '' ? ' active' : '');
+      all.textContent = 'any theme';
+      all.dataset.tag = '';
+      tagChips.appendChild(all);
+      for (const t of tags) {
+        const b = document.createElement('button');
+        b.className = 'chip' + (tagFilter === t ? ' active' : '');
+        b.textContent = t;
+        b.dataset.tag = t;
+        tagChips.appendChild(b);
+      }
+    }
+
+    function filtered(): LibraryItem[] {
+      if (!library) return [];
+      const q = query.trim().toLowerCase();
+      return library.items.filter((it) => {
+        if (kindFilter === 'feat' && !it.f) return false;
+        if (kindFilter === 'ruhi' && !it.r) return false;
+        if ((kindFilter === '0' || kindFilter === '1') && String(it.k) !== kindFilter) return false;
+        if (tagFilter && !it.g.some((g) => library!.tags[g] === tagFilter)) return false;
+        if (q) {
+          const hay = it.t.toLowerCase() + ' ' + library!.sources[it.s].join(' ').toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+    }
+
+    const LIST_CAP = 80;
+
+    function renderList() {
+      if (!library) return;
+      const items = filtered();
+      countEl.textContent =
+        `${items.length} passage${items.length === 1 ? '' : 's'}` +
+        (items.length > LIST_CAP ? ` — showing first ${LIST_CAP}` : '');
+      listEl.innerHTML = '';
+      const frag = document.createDocumentFragment();
+      for (const it of items.slice(0, LIST_CAP)) {
+        const b = document.createElement('button');
+        b.className = 'quote-item' + (!custom && selected === it ? ' active' : '');
+        const [author, source] = library.sources[it.s];
+        const preview = it.t.length > 132 ? it.t.slice(0, 132) + '…' : it.t;
+        b.innerHTML =
+          `<span class="quote-item__text">${escapeHtml(preview)}</span>` +
+          `<span class="quote-item__meta">${escapeHtml(author)} · ${escapeHtml(
+            it.k === 1 ? 'prayer' : source
+          )}${it.r ? ' · Ruhi Book 1' : ''}${it.f ? ' · featured' : ''}</span>`;
+        b.addEventListener('click', () => {
+          selected = it;
+          custom = null;
+          (document.getElementById('custom-text') as HTMLTextAreaElement).value = '';
+          refreshReflection();
+          renderList();
+          draw();
+        });
+        frag.appendChild(b);
+      }
+      listEl.appendChild(frag);
+    }
+
+    function escapeHtml(s: string): string {
+      return s.replace(/[&<>"']/g, (c) =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!
+      );
+    }
+
+    document.getElementById('kind-chips')!.addEventListener('click', (e) => {
+      const t = (e.target as HTMLElement).closest('.chip') as HTMLElement | null;
+      if (!t) return;
+      kindFilter = t.dataset.kind as typeof kindFilter;
+      tagFilter = '';
+      document.querySelectorAll('#kind-chips .chip').forEach((c) => c.classList.toggle('active', c === t));
+      renderTagChips();
+      renderList();
+    });
+
+    tagChips.addEventListener('click', (e) => {
+      const t = (e.target as HTMLElement).closest('.chip') as HTMLElement | null;
+      if (!t) return;
+      tagFilter = t.dataset.tag || '';
+      tagChips.querySelectorAll('.chip').forEach((c) => c.classList.toggle('active', c === t));
+      renderList();
+    });
+
+    let searchTimer = 0;
+    searchEl.addEventListener('input', () => {
+      window.clearTimeout(searchTimer);
+      searchTimer = window.setTimeout(() => {
+        query = searchEl.value;
+        renderList();
+      }, 140);
+    });
+
+    // ——— custom text ———
+    const customText = document.getElementById('custom-text') as HTMLTextAreaElement;
+    const customAttrib = document.getElementById('custom-attrib') as HTMLInputElement;
+    function onCustom() {
+      const t = customText.value.trim();
+      const wasPrayer = isPrayer();
+      custom = t ? { text: t, attrib: customAttrib.value.trim() } : null;
+      if (wasPrayer !== isPrayer()) refreshReflection();
+      renderList();
+      draw();
+    }
+    customText.addEventListener('input', onCustom);
+    customAttrib.addEventListener('input', onCustom);
+
+    // ——— style + reflection ———
+    // ——— language ———
+    const translationBox = document.getElementById('translation-box') as HTMLDetailsElement;
+    const translationText = document.getElementById('translation-text') as HTMLTextAreaElement;
+    const langReview = document.getElementById('lang-review') as HTMLElement;
+
+    function syncLanguageUI() {
+      const l = state.lang;
+      const foreign = l.code !== 'en';
+      translationBox.hidden = !foreign;
+      // for a non-English card this is the main thing to do, so open it
+      if (foreign) translationBox.open = true;
+      langReview.hidden = l.reviewed;
+      document.getElementById('tl-name')!.textContent = l.nativeName;
+      document.getElementById('tl-disclaimer')!.textContent = l.aiDisclaimer;
+      // the passage field reads in its own script
+      for (const id of ['translation-text', 'translation-cite']) {
+        const el = document.getElementById(id)!;
+        el.setAttribute('lang', l.code);
+        el.setAttribute('dir', l.rtl ? 'rtl' : 'ltr');
+      }
+      for (const id of ['ref-question', 'ref-action']) {
+        const el = document.getElementById(id)!;
+        el.setAttribute('lang', l.code);
+        el.setAttribute('dir', l.rtl ? 'rtl' : 'ltr');
+      }
+    }
+
+    document.getElementById('lang-chips')!.addEventListener('click', (e) => {
+      const t = (e.target as HTMLElement).closest('.chip') as HTMLElement | null;
+      if (!t) return;
+      state.lang = byCode(t.dataset.lang!);
+      document.querySelectorAll('#lang-chips .chip').forEach((c) => c.classList.toggle('active', c === t));
+      // a translation belongs to the language it was made in
+      state.translation = '';
+      state.translationCite = '';
+      state.aiTranslated = false;
+      translationText.value = '';
+      (document.getElementById('translation-cite') as HTMLInputElement).value = '';
+      document.getElementById('translate-status')!.textContent = '';
+      syncLanguageUI();
+      refreshReflection();
+      draw();
+    });
+
+    translationText.addEventListener('input', () => {
+      state.translation = translationText.value;
+      // Once a person edits the text it is no longer purely the machine's, so
+      // the card falls back to the plain "unofficial translation" line.
+      state.aiTranslated = false;
+      draw();
+    });
+
+    // ——— AI translation ———
+    const translateBtn = document.getElementById('translate-btn') as HTMLButtonElement;
+    const translateStatus = document.getElementById('translate-status')!;
+    const tlCache = new Map<string, string>();
+
+    translateBtn.addEventListener('click', async () => {
+      // translate the ORIGINAL passage, not whatever is in the box already
+      const sourceText = custom ? custom.text : selected ? selected.t : '';
+      if (!sourceText) {
+        translateStatus.textContent = 'Choose a passage first.';
+        return;
+      }
+      const key = `${state.lang.code}:${sourceText}`;
+      const cached = tlCache.get(key);
+      if (cached) {
+        applyTranslation(cached);
+        translateStatus.textContent = 'Translated (from this session).';
+        return;
+      }
+      translateBtn.disabled = true;
+      translateStatus.textContent = 'Translating…';
+      try {
+        const res = await fetch('/api/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: sourceText, lang: state.lang.code }),
+        });
+        const data = await res.json().catch(() => null);
+        if (!res.ok || !data?.translation) {
+          translateStatus.textContent =
+            data?.error || 'The translator is not available — you can paste a translation instead.';
+          return;
+        }
+        const out = String(data.translation).trim();
+        const check = state.lang.scriptCheck;
+        if (check && !check.test(out)) {
+          translateStatus.textContent =
+            'That did not come back in the right script — please try again.';
+          return;
+        }
+        tlCache.set(key, out);
+        applyTranslation(out);
+        translateStatus.textContent = 'Translated. Please check it before printing.';
+      } catch {
+        translateStatus.textContent =
+          'Could not reach the translator — you can paste a translation instead.';
+      } finally {
+        translateBtn.disabled = false;
+      }
+    });
+
+    function applyTranslation(text: string) {
+      state.translation = text;
+      state.aiTranslated = true;
+      translationText.value = text;
+      draw();
+    }
+
+    const translationCite = document.getElementById('translation-cite') as HTMLInputElement;
+    translationCite.addEventListener('input', () => {
+      state.translationCite = translationCite.value;
+      draw();
+    });
+
+    document.getElementById('font-chips')!.addEventListener('click', (e) => {
+      const t = (e.target as HTMLElement).closest('.chip') as HTMLElement | null;
+      if (!t) return;
+      state.font = t.dataset.font as 'sans' | 'serif';
+      document.querySelectorAll('#font-chips .chip').forEach((c) => c.classList.toggle('active', c === t));
+      draw();
+    });
+
+    (document.getElementById('wash-slider') as HTMLInputElement).addEventListener('input', (e) => {
+      state.wash = Number((e.target as HTMLInputElement).value) / 100;
+      draw();
+    });
+
+    (document.getElementById('space-slider') as HTMLInputElement).addEventListener('input', (e) => {
+      state.whiteSpace = Number((e.target as HTMLInputElement).value) / 100;
+      draw();
+    });
+    (document.getElementById('feather-slider') as HTMLInputElement).addEventListener('input', (e) => {
+      state.feather = Number((e.target as HTMLInputElement).value) / 100;
+      draw();
+    });
+
+    const refQ = document.getElementById('ref-question') as HTMLInputElement;
+    const refA = document.getElementById('ref-action') as HTMLInputElement;
+    function syncReflectionInputs() {
+      refQ.value = state.reflection.question;
+      refA.value = state.reflection.action;
+      document.getElementById('share-line')!.textContent = state.reflection.share;
+    }
+    refQ.addEventListener('input', () => {
+      state.reflection = { ...state.reflection, question: refQ.value };
+      draw();
+    });
+    refA.addEventListener('input', () => {
+      state.reflection = { ...state.reflection, action: refA.value };
+      draw();
+    });
+
+    // ——— tray ———
+    interface TrayCard { spec: CardSpec; thumb: string }
+    const tray: TrayCard[] = [];
+    const trayItems = document.getElementById('tray-items')!;
+    const trayCount = document.getElementById('tray-count')!;
+    const sheetBtn = document.getElementById('sheet-btn') as HTMLButtonElement;
+
+    function renderTray() {
+      trayItems.innerHTML = '';
+      tray.forEach((card, i) => {
+        const el = document.createElement('div');
+        el.className = 'tray__card';
+        el.innerHTML =
+          `<img src="${card.thumb}" alt="Card ${i + 1}" />` +
+          `<button class="tray__remove" aria-label="Remove card ${i + 1}">×</button>`;
+        el.querySelector('button')!.addEventListener('click', () => {
+          tray.splice(i, 1);
+          renderTray();
+        });
+        trayItems.appendChild(el);
+      });
+      sheetBtn.disabled = tray.length === 0;
+      trayCount.textContent = tray.length
+        ? `${tray.length} of ${SHEET_CAPACITY} slots used. ` +
+          (tray.length < SHEET_CAPACITY
+            ? 'Empty slots repeat your cards so the page is never half blank.'
+            : 'Sheet is full — more cards would start a second sheet.')
+        : `Empty — add a card above. A US Letter sheet holds ${SHEET_CAPACITY} cards.`;
+    }
+
+    document.getElementById('add-btn')!.addEventListener('click', () => {
+      const s = spec();
+      if (!s.text) {
+        note.textContent = 'Choose a passage first.';
+        return;
+      }
+      const thumbCanvas = renderFace(s, 'front', 262, 150);
+      tray.push({ spec: { ...s }, thumb: thumbCanvas.toDataURL('image/jpeg', 0.7) });
+      renderTray();
+      note.textContent = `Added — ${tray.length} card${tray.length === 1 ? '' : 's'} on the sheet.`;
+    });
+
+    // ——— downloads ———
+    function saveBlob(blob: Blob, name: string) {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = name;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    }
+
+    document.getElementById('png-btn')!.addEventListener('click', async () => {
+      const s = spec();
+      if (!s.text) {
+        note.textContent = 'Choose a passage first.';
+        return;
+      }
+      for (const side of ['front', 'back'] as const) {
+        const canvas = renderFace(s, side, PRINT_W, PRINT_H);
+        const blob: Blob = await new Promise((res) =>
+          canvas.toBlob((b) => res(b!), 'image/png')
+        );
+        saveBlob(blob, `peaceantz-card-${side}.png`);
+      }
+      note.textContent = 'Saved both faces at 300 DPI.';
+    });
+
+    document.getElementById('copy-btn')!.addEventListener('click', async () => {
+      const s = spec();
+      if (!s.text) return;
+      await navigator.clipboard.writeText(
+        `“${s.text}”${s.citation ? ' — ' + s.citation : ''}`
+      );
+      note.textContent = 'Copied to clipboard.';
+    });
+
+    const sheetNote = document.getElementById('sheet-note')!;
+    sheetBtn.addEventListener('click', async () => {
+      if (!tray.length) return;
+      sheetBtn.disabled = true;
+      sheetNote.textContent = 'Building sheet…';
+      try {
+        const { buildPrintSheet } = await import('../scripts/print-sheet');
+        const pairs = tray.map((c) => ({
+          front: renderFace(c.spec, 'front', PRINT_W, PRINT_H),
+          back: renderFace(c.spec, 'back', PRINT_W, PRINT_H),
+        }));
+        const duplex = (document.getElementById('duplex') as HTMLInputElement).checked;
+        const pdf = await buildPrintSheet(pairs, {
+          duplex,
+          onProgress: (f) => {
+            sheetNote.textContent = `Building sheet… ${Math.round(f * 100)}%`;
+          },
+        });
+        saveBlob(pdf, 'peaceantz-print-sheet.pdf');
+        sheetNote.textContent =
+          'Saved. Print at 100% scale (no "fit to page"), then cut anywhere in the patterned gaps.';
+      } catch (err) {
+        console.error(err);
+        sheetNote.textContent = 'Could not build the sheet on this device.';
+      } finally {
+        sheetBtn.disabled = false;
+      }
+    });
+
+    // ——— boot ———
+    syncLanguageUI();
+    syncReflectionInputs();
+    renderTray();
+
+    fetch('/data/library.json')
+      .then((r) => r.json())
+      .then((data: Library) => {
+        library = data;
+        selected = data.items.find((i) => i.f) || data.items[0];
+        renderTagChips();
+        renderList();
+        return document.fonts?.ready;
+      })
+      .then(() => draw())
+      .catch(() => {
+        countEl.textContent = 'The passage library could not be loaded.';
+      });
+  </script>
+
+  <style>
+    .creator {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: 2.2rem;
+      align-items: start;
+    }
+    @media (max-width: 940px) {
+      .creator { grid-template-columns: 1fr; }
+    }
+    .creator__preview { position: sticky; top: 84px; }
+    @media (max-width: 940px) {
+      .creator__preview { position: static; }
+    }
+    .faces { display: grid; gap: 1rem; }
+    .face { margin: 0; }
+    .face canvas {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: var(--shadow-lift);
+      background: #fff;
+    }
+    .face figcaption {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+    .warn {
+      margin: 0.9rem 0 0;
+      font-size: 0.88rem;
+      color: #8a6a1f;
+      background: #f4ead3;
+      border-radius: 8px;
+      padding: 0.55rem 0.8rem;
+    }
+    .warn--soft { margin: 0 0 0.8rem; font-size: 0.82rem; }
+    #translation-box summary { cursor: pointer; font-weight: 600; font-size: 0.9rem; color: var(--gold); }
+    #translation-text { font-size: 1rem; }
+    #lang-chips .chip { font-size: 0.85rem; }
+    .opt { font-weight: 400; color: var(--muted); }
+    .tl-actions { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+    .tl-actions .btn { font-size: 0.86rem; padding: 0.42rem 1rem; }
+    #translate-status { flex: 1; min-width: 12rem; }
+    .creator__actions {
+      display: flex;
+      gap: 0.7rem;
+      justify-content: center;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .ctrl {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      padding: 1.1rem 1.2rem 1.3rem;
+      margin: 0 0 1.2rem;
+    }
+    .ctrl legend { font-weight: 700; font-size: 0.92rem; padding: 0 0.5rem; color: var(--ink); }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.7rem; }
+    .chips--tags { max-height: 108px; overflow-y: auto; }
+    .chip {
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.28rem 0.8rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--line);
+      background: #fff;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .chip:hover { border-color: var(--gold); color: var(--gold); }
+    .chip.active { background: var(--gold); border-color: var(--gold); color: #fff; }
+    .search {
+      width: 100%;
+      font: inherit;
+      font-size: 0.92rem;
+      padding: 0.5rem 0.8rem;
+      border: 1.5px solid var(--line);
+      border-radius: 10px;
+      margin-bottom: 0.7rem;
+    }
+    .search:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,146,62,0.18); }
+    .result-count { font-size: 0.78rem; color: var(--muted); margin: 0 0 0.5rem; }
+    .quote-list {
+      display: grid;
+      gap: 0.45rem;
+      max-height: 330px;
+      overflow-y: auto;
+      padding-right: 0.3rem;
+    }
+    #custom-quote { margin-top: 0.9rem; }
+    #custom-quote summary { cursor: pointer; font-weight: 600; font-size: 0.9rem; color: var(--gold); }
+
+    .art-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+      gap: 0.5rem;
+      margin-bottom: 0.9rem;
+    }
+    .art {
+      padding: 0;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #fff;
+      line-height: 0;
+      transition: transform 0.15s ease;
+    }
+    .art img { width: 100%; height: auto; display: block; }
+    .art:hover { transform: scale(1.04); }
+    .art.active { outline: 3px solid var(--gold); outline-offset: 1px; }
+    .art--none {
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      aspect-ratio: 168 / 96;
+      border: 1.5px dashed var(--line);
+    }
+    .slider-label, .stack-label {
+      display: grid;
+      gap: 0.3rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+    .slider-label input { accent-color: var(--gold); }
+    .slider-label .hint { font-weight: 400; font-size: 0.74rem; color: var(--muted); line-height: 1.35; }
+    .upload { margin-bottom: 1rem; }
+    .upload__btn { display: inline-block; cursor: pointer; font-size: 0.9rem; padding: 0.5rem 1.1rem; }
+    .stack-label input {
+      font: inherit;
+      font-weight: 400;
+      font-size: 0.9rem;
+      padding: 0.45rem 0.7rem;
+      border: 1.5px solid var(--line);
+      border-radius: 8px;
+    }
+    .stack-label input:focus { outline: none; border-color: var(--gold); }
+
+    .tray {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      padding: 1.4rem 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    .tray__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .tray__head h2 { font-size: 1.4rem; margin: 0 0 0.2rem; }
+    .tray__actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .dup { font-size: 0.85rem; color: var(--ink-soft); display: flex; align-items: center; gap: 0.4rem; }
+    .dup input { accent-color: var(--gold); }
+    .tray__items {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      margin-top: 1.1rem;
+    }
+    .tray__card { position: relative; width: 132px; }
+    .tray__card img { width: 100%; border-radius: 6px; box-shadow: var(--shadow); display: block; }
+    .tray__remove {
+      position: absolute;
+      top: -7px;
+      right: -7px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: none;
+      background: var(--ink);
+      color: #fff;
+      font-size: 15px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .tray__remove:hover { background: #b1483c; }
+  </style>
+
+  <!-- These elements are built by the script at runtime, so they never carry
+       Astro's scope attribute — their styles have to be global to apply. -->
+  <style is:global>
+    .quote-item {
+      font: inherit;
+      text-align: left;
+      display: grid;
+      gap: 0.18rem;
+      padding: 0.6rem 0.8rem;
+      border: 1.5px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      cursor: pointer;
+      transition: border-color 0.15s ease;
+    }
+    .quote-item:hover { border-color: var(--gold-soft); }
+    .quote-item.active { border-color: var(--gold); background: #fdfaf2; }
+    .quote-item__text { font-size: 0.87rem; color: var(--ink); line-height: 1.42; }
+    .quote-item__meta { font-size: 0.73rem; color: var(--muted); }
+    #tag-chips .chip {
+      font: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.28rem 0.8rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--line);
+      background: #fff;
+      color: var(--ink-soft);
+      cursor: pointer;
+    }
+    #tag-chips .chip:hover { border-color: var(--gold); color: var(--gold); }
+    #tag-chips .chip.active { background: var(--gold); border-color: var(--gold); color: #fff; }
+    .tray__card { position: relative; width: 132px; }
+    .tray__card img { width: 100%; border-radius: 6px; box-shadow: var(--shadow); display: block; }
+    .tray__remove {
+      position: absolute;
+      top: -7px;
+      right: -7px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: none;
+      background: var(--ink);
+      color: #fff;
+      font-size: 15px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .tray__remove:hover { background: #b1483c; }
+  </style>
+</Base>

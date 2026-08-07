@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.env
+.env.*
+*.local
+
+# Private notes that must never be published (live DNS records, infra details).
+docs/local/

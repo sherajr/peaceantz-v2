@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import raw from '../../data/constitution-v1.txt?raw';
+
+type Block = { kind: 'h2' | 'h3' | 'p' | 'li'; text: string };
+const blocks: Block[] = raw
+  .split('\n')
+  .map((l) => l.trim())
+  .filter(Boolean)
+  .map((line) => {
+    if (/^(Preamble|Article [IVX]+:)/.test(line)) return { kind: 'h2' as const, text: line };
+    if (/^(Section \d|\d+\.\d+\.?\s)/.test(line)) return { kind: 'h3' as const, text: line };
+    if (/^(🛠️|🩺|🍬|🔎|🎨|🛡️|👑|\d[\d,]* ANTZ)/.test(line)) return { kind: 'li' as const, text: line };
+    return { kind: 'p' as const, text: line };
+  });
+---
+
+<Base
+  title="Archive: DAO Constitution v1 — Peace Antz"
+  description="The original Peace Antz DAO Constitution (2023), preserved verbatim as a historical document. Superseded — kept as source material for what comes next."
+>
+  <section class="section--tight" style="padding-top: 2.5rem">
+    <div class="container center">
+      <span class="kicker">Archive</span>
+      <h1 style="font-size: clamp(2rem, 5vw, 2.9rem)">DAO Constitution v1</h1>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container prose">
+      <div
+        class="card"
+        style="border-left: 4px solid var(--gold); margin-bottom: 2rem"
+      >
+        <p style="margin: 0; font-size: 0.95rem; color: var(--ink-soft)">
+          <strong>Historical document — superseded.</strong> This is the
+          constitution of the original Peace Antz DAO, preserved verbatim from
+          the previous website. Its governance mechanics (ANTZ token, elected
+          roles, Snapshot voting) are not currently in operation. It is kept
+          here honestly, as history and as raw material for the renewed
+          community structure described in the <a href="/vision">vision</a>.
+        </p>
+      </div>
+
+      {blocks.map((b) =>
+        b.kind === 'h2' ? (
+          <h2>{b.text}</h2>
+        ) : b.kind === 'h3' ? (
+          <h3>{b.text}</h3>
+        ) : b.kind === 'li' ? (
+          <p style="padding-left: 1.2rem; text-indent: -0.4rem">{b.text}</p>
+        ) : (
+          <p>{b.text}</p>
+        )
+      )}
+    </div>
+  </section>
+</Base>

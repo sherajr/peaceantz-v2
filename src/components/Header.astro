@@ -1,0 +1,42 @@
+---
+interface Props {
+  dark?: boolean;
+}
+const { dark = false } = Astro.props;
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/create', label: 'Create' },
+  { href: '/principles', label: 'Principles' },
+  { href: '/community', label: 'Community' },
+  { href: '/about', label: 'Our Story' },
+  { href: '/vision', label: 'Vision' },
+];
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+---
+
+<header class:list={['site-header', { 'site-header--dark': dark }]}>
+  <div class="site-header__inner">
+    <a class="brand" href="/">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="17.5" fill="none" stroke="#b8923e" stroke-width="3" />
+        <path d="M20 2.5 V37.5 M20 20 L7.6 32.4 M20 20 L32.4 32.4" stroke="#b8923e" stroke-width="3" fill="none" />
+      </svg>
+      Peace Antz
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="site-nav" aria-label="Main">
+      {links.map((l) => (
+        <a href={l.href} aria-current={path === l.href ? 'page' : undefined}>{l.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.site-nav');
+  toggle?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(!!open));
+  });
+</script>

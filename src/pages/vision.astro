@@ -1,0 +1,82 @@
+---
+import Base from '../layouts/Base.astro';
+
+const roadmap = [
+  {
+    status: 'future',
+    label: 'Renewing',
+    title: 'Community structure, rebuilt on consultation',
+    body: 'The original DAO constitution is being rethought from the ground up — this time God-first, centered on consultation and stewardship rather than token mechanics. Transparent tools (shared treasuries, open decision records) may still serve as plumbing, but principles lead and technology follows.',
+  },
+  {
+    status: 'future',
+    label: 'Planned',
+    title: 'Peace Antz Academy',
+    body: 'Learning that develops both practical and spiritual capacity — study circles, maker skills, technology literacy. The Academy exists today only as an aspiration, and we say so; it launches when there is real material to teach.',
+  },
+  {
+    status: 'paused',
+    label: 'Resting',
+    title: '3D printing service',
+    body: 'The workshop that repaired pumps, fridges, and drawers is paused while equipment is idle. When it returns, it returns as it was at its best: useful local production, repair over replacement, education included.',
+  },
+  {
+    status: 'paused',
+    label: 'Resting',
+    title: 'Drone & video work',
+    body: 'Aerial storytelling and community documentation, on pause. Future flights would serve stories worth telling — community events, nature, service projects.',
+  },
+  {
+    status: 'future',
+    label: 'Planned',
+    title: 'Media: podcasts & Beach Jamz',
+    body: 'Meaningful conversations across faiths, cultures, and crafts — plus music by the water. The old site had the section headings; the new one waits until there are actual episodes to put under them.',
+  },
+  {
+    status: 'future',
+    label: 'Someday',
+    title: 'A commons for members’ skills',
+    body: 'The long-range dream: community members offering their own services — printing, music, code, teaching — through Peace Antz, with proceeds sustaining community activities. This needs a real community first, and we’re honest about the order of operations.',
+  },
+];
+---
+
+<Base
+  title="Vision & Roadmap — Peace Antz"
+  description="Where Peace Antz is headed: a renewed community structure, Peace Antz Academy, revived maker services, and media — honestly labeled as plans, not products."
+>
+  <section class="section--tight" style="padding-top: 2.5rem">
+    <div class="container center">
+      <span class="kicker">Ahead</span>
+      <h1 style="font-size: clamp(2rem, 5vw, 2.9rem)">Vision &amp; Roadmap</h1>
+      <p class="lead" style="margin-inline: auto">
+        Nothing on this page can be requested or purchased today — that’s the
+        point of the page. These are the directions we’re working toward,
+        labeled by how close they are.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container roadmap" style="max-width: 54rem">
+      {roadmap.map((r) => (
+        <article class="roadmap__item reveal">
+          <span class={`pill pill--${r.status}`}>{r.label}</span>
+          <div>
+            <h3>{r.title}</h3>
+            <p>{r.body}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container center reveal">
+      <p class="lead" style="margin-inline: auto">
+        Want to help one of these arrive sooner?
+      </p>
+      <a class="btn btn--gold" href="/community">Get involved</a>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,133 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const portfolio = [
+  { img: 'pump-nozzle', caption: '3D-printed nozzle adapter for a mattress air pump' },
+  { img: 'fridge-handle-mount', caption: 'Replacement refrigerator handle mount' },
+  { img: 'beach-jamz-lithophane', caption: 'Lithophane of a Beach Jamz session — light reveals the photo' },
+  { img: 'soap-dish', caption: 'Draining soap dish' },
+  { img: 'extruder-lever', caption: 'Printed extruder lever — the printer repairing itself' },
+  { img: 'logo-plaque', caption: 'Two-color logo plaque for a local business' },
+  { img: 'throwing-knife', caption: 'Practice throwing knife (plastic)' },
+  { img: 'mask-print', caption: 'Mask components mid-print' },
+];
+---
+
+<Base
+  title="Past Work — Peace Antz"
+  description="The honest history of Peace Antz: blockchain validators, an on-demand 3D printing workshop, beach jams, and the original DAO — what we built and what we learned."
+>
+  <section class="section--tight" style="padding-top: 2.5rem">
+    <div class="container center">
+      <span class="kicker">Our history</span>
+      <h1 style="font-size: clamp(2rem, 5vw, 2.9rem)">Past Work</h1>
+      <p class="lead" style="margin-inline: auto">
+        Completed chapters, told truthfully. None of these are active services
+        today — some may return; see the <a href="/vision">roadmap</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container prose reveal">
+      <h2><span class="pill pill--past" style="vertical-align: middle; margin-right: 0.6rem">First chapter</span> The band</h2>
+      <p>
+        Peace Antz started as a band. The most beloved expression of it was
+        <strong>Beach Jamz</strong> — live sessions by the water, drums and
+        amps in the sand. Music is where the name, the spirit, and the
+        friendships came from, and everything that followed grew out of it.
+        One relic bridges two eras below: a 3D-printed lithophane that reveals
+        a photograph of a Beach Jamz session when you hold it up to the light.
+        Music isn’t gone from the vision — it’s resting, like the printer,
+        and it has a place on the <a href="/vision">roadmap</a>.
+      </p>
+
+      <h2><span class="pill pill--past" style="vertical-align: middle; margin-right: 0.6rem">Workshop era</span> The 3D printing workshop</h2>
+      <p>
+        “Antz Designz” was an on-demand printing service: send an STL file,
+        get a part. Most of the joy was in repair — printing the little
+        irreplaceable pieces that keep household things out of the landfill: a
+        pump nozzle, a fridge handle mount, drawer guides, a door latch. It
+        also made art: lithophanes that reveal a photograph when held to the
+        light. The printer is currently idle; the portfolio below is the real
+        record.
+      </p>
+    </div>
+    <div class="container reveal" style="margin-top: 1.5rem">
+      <div class="gallery">
+        {portfolio.map((p) => (
+          <figure>
+            <img src={`/images/past-work/${p.img}.jpg`} alt={p.caption} loading="lazy" />
+            <figcaption>{p.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container prose reveal">
+      <h2><span class="pill pill--past" style="vertical-align: middle; margin-right: 0.6rem">Validator era</span> Running real infrastructure</h2>
+      <p>
+        Peace Antz ran real blockchain infrastructure. A validator on the
+        Findora network proposed over 1,600 blocks with 96% uptime before that
+        network itself wound down. More meaningfully, we operated the
+        <strong>Recovery Validator</strong> on Harmony — a community-DAO node
+        (originally created by Matthew Barrett) that directed rewards toward
+        helping people recover from the Horizon bridge incident, sustained by
+        56 delegators at 99.6% uptime. Running dependable infrastructure for a
+        community-repair effort remains one of the clearest expressions of what
+        Peace Antz values. Both validators are now retired.
+      </p>
+
+      <h2><span class="pill pill--past" style="vertical-align: middle; margin-right: 0.6rem">DAO chapter</span> The constitution</h2>
+      <p>
+        The original Peace Antz DAO had a full written constitution: an ANTZ
+        reputation token, ant-colony roles from Worker to Queen, elections
+        timed to Bitcoin halvings, and a consultation-flavored justice system.
+        The community it imagined never fully materialized, but the document
+        captures real thought about fair governance, and pieces of it will
+        inform whatever community structure comes next. It is preserved
+        verbatim in the <a href="/archive/constitution-v1">archive</a>.
+      </p>
+
+      <h2><span class="pill pill--past" style="vertical-align: middle; margin-right: 0.6rem">The bridge</span> The BahAI Workforce</h2>
+      <p>
+        Our bridge between chapters: a local-first team of AI agents that
+        designs Bahá’í-inspired bookmarks and giveaway quote cards under
+        code-enforced honesty rules — quotes verified against the writings and
+        locked, AI artwork always disclosed, marketing claims scrubbed by code
+        rather than by promise. It has produced dozens of print-ready cards,
+        and it is the direct ancestor of this site’s
+        <a href="/create">Quote Card Creator</a>.
+      </p>
+      <div class="gallery" style="grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); margin-top: 1.4rem">
+        <figure>
+          <img src="/images/cards/card-war-to-peace.jpg" alt="Workforce quote card in English" loading="lazy" />
+          <figcaption>Giveaway card, English</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/cards/card-war-to-peace-zh.jpg" alt="The same quote card, AI-assisted Chinese translation with printed disclaimer" loading="lazy" />
+          <figcaption>Same card — labeled AI-assisted translation</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/cards/bookmark-tabernacle.jpg" alt="Print-ready bookmark with AI artwork" loading="lazy" />
+          <figcaption>Print-ready bookmark face</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/cards/bookmark-2.jpg" alt="A second print-ready bookmark design" loading="lazy" />
+          <figcaption>Bookmark design</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container center reveal">
+      <p class="lead" style="margin-inline: auto">
+        Drone flights, podcasts-in-waiting, and other smaller stories live in
+        the same era. If one matters to you, <a href="/contact">ask us about it</a>.
+      </p>
+    </div>
+  </section>
+</Base>

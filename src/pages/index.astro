@@ -1,0 +1,442 @@
+---
+import Base from '../layouts/Base.astro';
+import quotesData from '../data/quotes.json';
+
+const q = (id: string) => quotesData.quotes.find((x) => x.id === id)!;
+const unity = q('one-country');
+const principleCards = [
+  {
+    title: 'One human family',
+    body: 'Every person is kin. Whatever we make or do begins from the conviction that humanity is one.',
+    quote: q('light-of-unity'),
+  },
+  {
+    title: 'Service as worship',
+    body: 'Work done in the spirit of service — teaching, building, repairing, creating — is itself an act of devotion.',
+    quote: q('science-worship'),
+  },
+  {
+    title: 'Deeds, not words',
+    body: 'We would rather show one honest, finished, useful thing than promise ten. This site only claims what is real.',
+    quote: q('deeds'),
+  },
+];
+const cardUrls = [
+  '/images/cards/card-loving-kindness.jpg',
+  '/images/cards/card-betterment.jpg',
+  '/images/cards/card-war-to-peace.jpg',
+  '/images/cards/card-reckoning.jpg',
+  '/images/cards/card-war-to-peace-zh.jpg',
+];
+const chapters = ['Welcome', 'One family', 'Principles', 'Create', 'Today', 'Join'];
+---
+
+<Base
+  title="Peace Antz — Be Kind. Be Relentless."
+  description="Peace Antz is a God-first creative community inspired by Bahá’í principles and open to all. Create and share beautiful quote cards from the sacred writings."
+  dark
+>
+  <div class="story" id="story">
+    <canvas id="gl" class="story__canvas" aria-hidden="true"></canvas>
+    <div class="story__vignette" aria-hidden="true"></div>
+
+    <nav class="rail" aria-label="Sections">
+      {chapters.map((name, i) => (
+        <a href={`#ch${i}`} data-rail={i}><span></span>{name}</a>
+      ))}
+    </nav>
+
+    <!-- 0 — arrival -->
+    <section class="chapter chapter--center" id="ch0">
+      <div class="chapter__inner">
+        <p class="eyebrow">A God-first creative community · Inspired by Bahá’í principles · Open to all</p>
+        <h1>Peace Antz</h1>
+        <p class="tagline">Be Kind. Be Relentless.</p>
+        <div class="actions">
+          <a class="btn btn--gold" href="/create">Create a Quote Card</a>
+          <a class="btn btn--ghost" href="/about">Our Story</a>
+        </div>
+        <p class="scroll-hint" aria-hidden="true"><span></span>Scroll</p>
+      </div>
+    </section>
+
+    <!-- 1 — unity -->
+    <section class="chapter chapter--center" id="ch1">
+      <div class="chapter__inner narrow">
+        <span class="kicker">One Earth, one family</span>
+        <blockquote class="mega">“{unity.text}”</blockquote>
+        <p class="attrib-lg">— {unity.author}, <em>{unity.source}</em></p>
+        <p class="lead">
+          Ants accomplish the impossible through humble cooperation. Peace Antz
+          began as a band on a beach and grew into a colony of makers, guided by
+          principles older and larger than us.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2 — principles -->
+    <section class="chapter" id="ch2">
+      <div class="chapter__inner side">
+        <span class="kicker">What guides us</span>
+        <h2>Principles before projects</h2>
+        <div class="stack">
+          {principleCards.map((c) => (
+            <article class="glass">
+              <h3>{c.title}</h3>
+              <p class="glass__body">{c.body}</p>
+              <p class="glass__quote">“{c.quote.text}”</p>
+              <p class="glass__attrib">— {c.quote.author}, <em>{c.quote.source}</em></p>
+            </article>
+          ))}
+        </div>
+        <a class="btn btn--outline-light" href="/principles">All principles &amp; quotations</a>
+      </div>
+    </section>
+
+    <!-- 3 — the creator -->
+    <section class="chapter" id="ch3">
+      <div class="chapter__inner side">
+        <span class="kicker">The Quote Card Creator</span>
+        <h2>Carry a beautiful word with you</h2>
+        <p class="lead">
+          Choose a passage from the sacred writings — verified against the
+          original texts and always attributed — style it, and download a card
+          to print, post, or give away. Free, no sign-up.
+        </p>
+        <p class="fine">
+          These cards began life in our BahAI Workforce experiment, where a team
+          of AI agents designed giveaway cards under strict honesty rules. The
+          creator brings that spirit to everyone.
+        </p>
+        <a class="btn btn--gold" href="/create">Open the Creator</a>
+      </div>
+    </section>
+
+    <!-- 4 — honest status -->
+    <section class="chapter chapter--center" id="ch4">
+      <div class="chapter__inner">
+        <span class="kicker">Honest by design</span>
+        <h2>What Peace Antz is today</h2>
+        <p class="lead center-lead">
+          We label everything truthfully: what works now, what rests, what came
+          before, and what we hope to build.
+        </p>
+        <div class="trio">
+          <article class="glass">
+            <span class="pill pill--live">Here now</span>
+            <h3>Create &amp; share</h3>
+            <p class="glass__body">
+              The <a href="/create">Quote Card Creator</a>, our
+              <a href="/principles">principles library</a>, and an open door to
+              <a href="/community">join in</a>.
+            </p>
+          </article>
+          <article class="glass">
+            <span class="pill pill--past">Our history</span>
+            <h3>Built &amp; learned</h3>
+            <p class="glass__body">
+              A beach band, blockchain validators, a 3D-printing workshop, a DAO
+              constitution — the story lives in
+              <a href="/about/past-work">Past Work</a>.
+            </p>
+          </article>
+          <article class="glass">
+            <span class="pill pill--future">Ahead</span>
+            <h3>The vision</h3>
+            <p class="glass__body">
+              A renewed community structure, learning programs, and maker
+              services revived — see the <a href="/vision">roadmap</a>.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 — join -->
+    <section class="chapter chapter--center" id="ch5">
+      <div class="chapter__inner narrow">
+        <h2>Every colony starts small</h2>
+        <p class="lead center-lead">
+          Peace Antz is stewarded by one person right now, and that is said
+          plainly. If the direction resonates — as a creator, a musician, a
+          builder, or a friend — there is room for you.
+        </p>
+        <div class="actions">
+          <a class="btn btn--gold" href="/community">Ways to participate</a>
+          <a class="btn btn--ghost" href="/contact">Say hello</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script define:vars={{ cardUrls }}>
+    window.__PA_CARDS = cardUrls;
+  </script>
+
+  <script>
+    const story = document.getElementById('story');
+    const canvas = document.getElementById('gl');
+    const chapterEls = [...document.querySelectorAll('.chapter')];
+    const railEls = [...document.querySelectorAll('[data-rail]')];
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let progress = 0;
+    // Progress spans the story only, so the choreography completes before the
+    // footer rather than being squeezed by it.
+    function readScroll() {
+      if (!story) return;
+      const max = story.offsetHeight - window.innerHeight;
+      const scrolled = window.scrollY - story.offsetTop;
+      progress = max > 0 ? Math.min(1, Math.max(0, scrolled / max)) : 0;
+    }
+    readScroll();
+    window.addEventListener('scroll', readScroll, { passive: true });
+    window.addEventListener('resize', readScroll, { passive: true });
+
+    // Scroll-linked crossfade of the HTML chapters over the 3D scene.
+    function paint() {
+      const mid = window.innerHeight / 2;
+      let active = 0;
+      let best = Infinity;
+      chapterEls.forEach((el, i) => {
+        const r = el.getBoundingClientRect();
+        const c = r.top + r.height / 2;
+        const dist = Math.abs(c - mid);
+        const norm = dist / (window.innerHeight * 0.72);
+        const o = Math.max(0, 1 - norm * norm);
+        el.style.setProperty('--o', o.toFixed(3));
+        if (dist < best) { best = dist; active = i; }
+      });
+      railEls.forEach((el, i) => el.classList.toggle('is-active', i === active));
+      requestAnimationFrame(paint);
+    }
+
+    if (reduced) {
+      story?.classList.add('no-gl');
+      chapterEls.forEach((el) => el.style.setProperty('--o', '1'));
+      railEls.forEach((el, i) => el.classList.toggle('is-active', i === 0));
+    } else {
+      requestAnimationFrame(paint);
+      // Three.js is ~130 KB gzipped, so it is only fetched for visitors who
+      // will actually see the animation.
+      import('../scripts/globe-scene')
+        .then(({ createScene }) => {
+          createScene({
+            canvas,
+            cardUrls: window.__PA_CARDS,
+            getProgress: () => progress,
+          });
+        })
+        .catch((err) => {
+          console.warn('WebGL scene unavailable, using static backdrop', err);
+          story?.classList.add('no-gl');
+        });
+    }
+  </script>
+
+  <style>
+    .story { position: relative; }
+    .story__canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      display: block;
+      pointer-events: none;
+    }
+    .story.no-gl .story__canvas { display: none; }
+    .story.no-gl {
+      background:
+        radial-gradient(ellipse 90% 60% at 50% 110%, rgba(184, 146, 62, 0.3), transparent 62%),
+        linear-gradient(180deg, #04070f 0%, #0a1020 50%, #131d36 100%);
+    }
+    .story__vignette {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(ellipse 78% 68% at 50% 50%, transparent 42%, rgba(2, 4, 10, 0.72) 100%);
+    }
+
+    .chapter {
+      position: relative;
+      z-index: 2;
+      min-height: 100svh;
+      display: grid;
+      align-items: center;
+      padding: 4rem 1.5rem;
+      /* the text scrim bleeds sideways past the content box; clip only that
+         axis so tall chapters still grow and scroll normally */
+      overflow-x: clip;
+    }
+    .chapter__inner {
+      position: relative;
+      width: min(1080px, 100%);
+      margin: 0 auto;
+      opacity: var(--o, 1);
+      transform: translateY(calc((1 - var(--o, 1)) * 26px));
+      will-change: opacity, transform;
+    }
+    /* soft scrim so copy stays legible wherever the globe drifts */
+    .chapter__inner::before {
+      content: '';
+      position: absolute;
+      inset: -14% -10%;
+      z-index: -1;
+      pointer-events: none;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(3, 6, 14, 0.9) 0%,
+        rgba(3, 6, 14, 0.72) 42%,
+        rgba(3, 6, 14, 0) 76%
+      );
+    }
+    .chapter--center .chapter__inner { text-align: center; }
+    .chapter__inner.narrow { max-width: 44rem; }
+    /* content column offset so the globe sits opposite it */
+    .chapter__inner.side { max-width: 33rem; margin-left: max(1rem, calc(50vw - 540px)); }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 650;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(233, 217, 174, 0.85);
+      margin-bottom: 1.1rem;
+    }
+    .chapter h1 { font-size: clamp(2.8rem, 7vw, 4.6rem); margin-bottom: 0.12em; }
+    .chapter h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); }
+    .tagline {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.2rem, 2.8vw, 1.6rem);
+      color: var(--gold-soft);
+      margin-bottom: 1.8rem;
+    }
+    .actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .chapter__inner.side .actions { justify-content: flex-start; }
+    .lead { font-size: 1.12rem; color: rgba(255, 255, 255, 0.8); }
+    .center-lead { max-width: 42rem; margin-inline: auto; }
+    .fine { font-size: 0.92rem; color: rgba(255, 255, 255, 0.55); }
+
+    .mega {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 4.2vw, 3rem);
+      line-height: 1.28;
+      font-style: italic;
+      color: #fff;
+      margin: 0 0 0.8rem;
+      text-wrap: balance;
+    }
+    .attrib-lg {
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      color: var(--gold-soft);
+      margin-bottom: 2rem;
+    }
+
+    .scroll-hint {
+      margin-top: 3.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .scroll-hint span {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(180deg, rgba(233, 217, 174, 0.9), transparent);
+      animation: drop 2.4s ease-in-out infinite;
+    }
+    @keyframes drop {
+      0%, 100% { transform: scaleY(0.35); opacity: 0.4; transform-origin: top; }
+      50% { transform: scaleY(1); opacity: 1; transform-origin: top; }
+    }
+
+    /* glass cards over the 3D scene */
+    .stack { display: grid; gap: 0.85rem; margin: 1.4rem 0; }
+    .stack .glass { padding: 1.05rem 1.25rem; }
+    .stack .glass h3 { font-size: 1.1rem; margin: 0 0 0.3rem; }
+    .stack .glass__body { font-size: 0.9rem; }
+    .stack .glass__quote { font-size: 0.96rem; margin: 0.6rem 0 0.3rem; }
+    .trio {
+      display: grid;
+      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      margin-top: 2.4rem;
+      text-align: left;
+    }
+    .glass {
+      background: rgba(10, 17, 33, 0.62);
+      border: 1px solid rgba(233, 217, 174, 0.16);
+      border-radius: var(--radius);
+      padding: 1.3rem 1.5rem;
+      backdrop-filter: blur(10px);
+    }
+    .glass h3 { color: #fff; font-size: 1.2rem; margin: 0.5rem 0 0.35rem; }
+    .glass__body { color: rgba(255, 255, 255, 0.74); font-size: 0.95rem; margin: 0; }
+    .glass__quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.02rem;
+      color: rgba(255, 255, 255, 0.88);
+      border-left: 2px solid var(--gold);
+      padding-left: 0.85rem;
+      margin: 0.8rem 0 0.35rem;
+    }
+    .glass__attrib { font-size: 0.78rem; color: rgba(233, 217, 174, 0.7); margin: 0; }
+    .glass a { color: var(--gold-soft); }
+
+    .btn--outline-light { border-color: rgba(233, 217, 174, 0.6); color: var(--gold-soft); }
+    .btn--outline-light:hover { background: rgba(233, 217, 174, 0.12); transform: translateY(-2px); }
+
+    /* chapter rail */
+    .rail {
+      position: fixed;
+      right: max(1.1rem, 2vw);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 4;
+      display: grid;
+      gap: 0.9rem;
+    }
+    .rail a {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.6rem;
+      font-size: 0.66rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: transparent;
+      text-decoration: none !important;
+      transition: color 0.25s ease;
+    }
+    .rail a span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: 1px solid rgba(233, 217, 174, 0.5);
+      transition: all 0.25s ease;
+    }
+    .rail a:hover { color: rgba(233, 217, 174, 0.8); }
+    .rail a.is-active { color: var(--gold-soft); }
+    .rail a.is-active span { background: var(--gold-bright); border-color: var(--gold-bright); transform: scale(1.35); }
+
+    @media (max-width: 900px) {
+      .rail { display: none; }
+      .chapter__inner.side { margin-left: auto; max-width: 100%; }
+      .chapter { padding: 5rem 1.25rem; }
+      .glass { background: rgba(7, 12, 24, 0.8); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .chapter__inner { opacity: 1 !important; transform: none !important; }
+      .scroll-hint span { animation: none; }
+    }
+  </style>
+</Base>

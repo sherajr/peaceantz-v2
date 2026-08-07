@@ -1,0 +1,11 @@
+# Legacy Google Sites paths -> new site (kept working after domain cutover)
+/home                 /                        301
+/what-are-peace-antz  /about                   301
+/dao                  /vision                  301
+/dao/constitution     /archive/constitution-v1 301
+/dao/academy          /vision                  301
+/dao/validator        /about/past-work         301
+/dao/media            /vision                  301
+/dao/design           /about/past-work         301
+/dao/services         /vision                  301
+/free-consultation    /contact                 301

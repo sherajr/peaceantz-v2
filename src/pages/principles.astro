@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro';
+import quotesData from '../data/quotes.json';
+
+const q = (id: string) => quotesData.quotes.find((x) => x.id === id)!;
+
+const sections = [
+  {
+    title: 'Unity',
+    intro:
+      'The foundation of everything: humanity is one family. Peace is not the absence of conflict but the presence of unity — and every project we take on is measured against whether it draws people together.',
+    quotes: [q('one-country'), q('light-of-unity'), q('perfect-chord')],
+  },
+  {
+    title: 'Kindness — “Be Kind”',
+    intro:
+      'The first half of our slogan. Kindness is not a mood but a discipline: friendliness that shows up in conduct, not just words.',
+    quotes: [q('loving-kindness'), q('radiant-heart'), q('generous')],
+  },
+  {
+    title: 'Perseverance — “Be Relentless”',
+    intro:
+      'The second half. Grit, patience, and the refusal to be downhearted — the ant’s virtue. Small faithful steps, repeated, move mountains.',
+    quotes: [q('patience'), q('noble')],
+  },
+  {
+    title: 'Justice',
+    intro:
+      'Seeing with our own eyes, judging fairly, and being trustworthy in small things. Honesty is a design requirement here — on this site, nothing inactive is dressed up as alive.',
+    quotes: [q('justice')],
+  },
+  {
+    title: 'Service',
+    intro:
+      'Work offered in a spirit of service is worship. Whatever practical skills this community develops — printing, media, code, teaching — they exist to be useful to someone.',
+    quotes: [q('orphan'), q('science-worship')],
+  },
+  {
+    title: 'Deeds, not words',
+    intro:
+      'We would rather deliver one real, finished thing than announce ten. Our roadmap is labeled honestly for exactly this reason.',
+    quotes: [q('deeds')],
+  },
+  {
+    title: 'Education',
+    intro:
+      'Every person is a mine rich in gems, and education is what reveals the treasure. Learning together — spiritual and practical — is core to the long-term vision of Peace Antz Academy.',
+    quotes: [q('mine-of-gems')],
+  },
+  {
+    title: 'Vision & reflection',
+    intro:
+      'A world-embracing vision, renewed by daily reflection. We try to look wider than ourselves and to take account of our own steps.',
+    quotes: [q('world-embracing'), q('account'), q('rejoice')],
+  },
+];
+---
+
+<Base
+  title="Principles — Peace Antz"
+  description="The Bahá’í-inspired principles that guide Peace Antz — unity, kindness, perseverance, justice, service, and education — with verified quotations from the writings."
+>
+  <section class="section--tight" style="padding-top: 2.5rem">
+    <div class="container center">
+      <span class="kicker">What guides us</span>
+      <h1 style="font-size: clamp(2rem, 5vw, 2.9rem)">Principles</h1>
+      <p class="lead" style="margin-inline: auto">
+        Peace Antz is inspired by the Bahá’í teachings and open to everyone.
+        These passages are quoted verbatim from the published writings, and each
+        one links to its source. Want to carry one with you?
+        <a href="/create">Turn any of them into a card</a>.
+      </p>
+    </div>
+  </section>
+
+  {sections.map((s) => (
+    <section class="section--tight">
+      <div class="container prose reveal" style="max-width: 52rem">
+        <h2>{s.title}</h2>
+        <p style="color: var(--ink-soft)">{s.intro}</p>
+        {s.quotes.map((quote) => (
+          <blockquote>
+            “{quote.text}”
+            <footer>
+              — {quote.author}, <em>{quote.source}</em>
+              {quote.link && (
+                <>
+                  {' · '}
+                  <a href={quote.link} target="_blank" rel="noopener">source</a>
+                </>
+              )}
+            </footer>
+          </blockquote>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <section class="section">
+    <div class="container center reveal">
+      <a class="btn btn--gold" href="/create">Make a card from a quote</a>
+    </div>
+  </section>
+</Base>
