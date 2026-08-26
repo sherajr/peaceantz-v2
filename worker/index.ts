@@ -28,6 +28,13 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
 
+    // The apex is canonical. www stays attached so old links keep working, but
+    // it redirects rather than serving the same site at two addresses.
+    if (url.hostname.startsWith('www.')) {
+      url.hostname = url.hostname.slice(4);
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (url.pathname === '/api/contact' && request.method === 'POST') {
       return handleContact(request, env);
     }

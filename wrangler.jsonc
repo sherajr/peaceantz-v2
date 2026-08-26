@@ -11,9 +11,14 @@
   // while the API reported the new one at 100%. Toggling this false -> deploy ->
   // true -> deploy re-registers the route and clears it.
   "workers_dev": true,
-  // Live site. Attaching this custom domain replaces the previous www DNS
-  // record; the rollback record is noted in docs/local/ (gitignored).
+  // Live site. The apex is the canonical host (attached via the dashboard);
+  // www is attached here only so existing links keep working — the Worker 301s
+  // it to the apex. Rollback records are noted in docs/local/ (gitignored).
+  // NOTE: this list is declarative — wrangler REMOVES any custom domain not
+  // named here, so the apex must stay listed even though it was first attached
+  // in the dashboard. The apex is canonical; the Worker 301s www to it.
   "routes": [
+    { "pattern": "peaceantz.com", "custom_domain": true },
     { "pattern": "www.peaceantz.com", "custom_domain": true }
   ],
   "compatibility_date": "2025-07-01",
@@ -21,7 +26,7 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "run_worker_first": ["/api/*"]
+    "run_worker_first": true
   },
   // Powers POST /api/translate in the Quote Card Creator. Remove this binding
   // and the creator falls back to letting people paste their own translation.
