@@ -7,6 +7,7 @@ const links = [
   { href: '/', label: 'Home' },
   { href: '/create', label: 'Create' },
   { href: '/principles', label: 'Principles' },
+  { href: '/study/human-reality', label: 'Study', feature: true },
   { href: '/community', label: 'Community' },
   { href: '/about', label: 'Our Story' },
   { href: '/vision', label: 'Vision' },
@@ -26,7 +27,18 @@ const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/'
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
     <nav class="site-nav" aria-label="Main">
       {links.map((l) => (
-        <a href={l.href} aria-current={path === l.href ? 'page' : undefined}>{l.label}</a>
+        <a
+          href={l.href}
+          class:list={{ 'nav-study': l.feature }}
+          aria-current={path === l.href ? 'page' : undefined}
+        >
+          {l.feature && (
+            <svg class="nav-study__star" viewBox="0 0 24 24" aria-hidden="true">
+              <polygon points="12.00,1.00 13.68,7.40 19.07,3.57 16.24,9.55 22.83,10.09 16.83,12.85 21.53,17.50 15.15,15.75 15.76,22.34 12.00,16.90 8.24,22.34 8.85,15.75 2.47,17.50 7.17,12.85 1.17,10.09 7.76,9.55 4.93,3.57 10.32,7.40" />
+            </svg>
+          )}
+          {l.label}
+        </a>
       ))}
     </nav>
   </div>

@@ -1,0 +1,1058 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An individual or collective Bahá’í scroll-study on the noble human reality, spiritual transformation, unity, and service.">
+<title>The Human Reality — A Peace Antz Study</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="The Human Reality — A Peace Antz Study">
+<meta property="og:description" content="An immersive six-unit scroll study on the noble human reality, spiritual transformation, unity, and service — rooted in the Bahá’í writings.">
+<meta property="og:type" content="article">
+<style>
+:root{
+  --night:#061019;
+  --night2:#091923;
+  --cream:#f3efe4;
+  --ink:#12232c;
+  --aqua:#86d9d1;
+  --gold:#e7c877;
+  --rose:#d9a0ad;
+  --muted:#9eb0ba;
+  --white:#edf5f6;
+  --line:rgba(255,255,255,.13);
+  --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--night);color:var(--white);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.65;overflow-x:hidden;transition:background .8s ease;
+}
+body[data-unit="2"]{background:#0b1115}
+body[data-unit="3"]{background:#10130f}
+body[data-unit="4"]{background:#15120d}
+body[data-unit="5"]{background:#071619}
+body[data-unit="6"]{background:#151116}
+a{color:inherit}
+#progress{
+  position:fixed;left:0;top:0;width:0;height:4px;z-index:1000;
+  background:linear-gradient(90deg,var(--aqua),var(--gold),var(--rose));
+  box-shadow:0 0 20px rgba(231,200,119,.5)
+}
+.reading-rail{
+  position:fixed;left:22px;top:12vh;height:76vh;width:2px;
+  background:rgba(255,255,255,.12);z-index:50;border-radius:4px;
+}
+.reading-rail span{
+  position:absolute;left:-4px;top:0;width:10px;height:10px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 18px rgba(231,200,119,.7);
+  transform:translateY(var(--rail,0px));
+}
+.navdots{
+  position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:80;
+  display:flex;flex-direction:column;gap:11px
+}
+.navdots a{width:9px;height:9px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.07);text-indent:-999px;overflow:hidden}
+.navdots a.on{background:var(--gold);border-color:var(--gold);transform:scale(1.4)}
+.hero{
+  min-height:100svh;display:grid;place-items:center;position:relative;overflow:hidden;padding:80px 24px;
+  background:
+    radial-gradient(circle at 50% 28%,rgba(134,217,209,.14),transparent 28%),
+    radial-gradient(circle at 50% 88%,rgba(231,200,119,.13),transparent 32%),
+    linear-gradient(#061019,#091923);
+}
+.cosmos{position:absolute;inset:-12%;pointer-events:none;transform:translateY(calc(var(--heroP,0) * 120px))}
+.cosmos:before,.cosmos:after{
+  content:"";position:absolute;inset:0;background-image:
+  radial-gradient(circle,rgba(255,255,255,.45) 0 1px,transparent 1.5px);
+  background-size:68px 68px;opacity:.17
+}
+.cosmos:after{background-size:113px 113px;opacity:.08;transform:rotate(19deg)}
+.hero-orbit{
+  position:absolute;left:50%;top:48%;width:min(80vw,820px);aspect-ratio:1;transform:translate(-50%,-50%) rotate(calc(var(--heroP,0) * 24deg));
+  border:1px solid rgba(134,217,209,.13);border-radius:50%
+}
+.hero-orbit:before,.hero-orbit:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(231,200,119,.1)}
+.hero-orbit:before{inset:12%}.hero-orbit:after{inset:29%}
+.hero-inner{position:relative;z-index:2;max-width:920px;text-align:center}
+.kicker{font-size:.76rem;text-transform:uppercase;letter-spacing:.19em;color:var(--aqua)}
+h1,h2,h3,.serif{font-family:Georgia,"Times New Roman",serif;font-weight:500}
+h1{font-size:clamp(3.2rem,8.8vw,8rem);line-height:.9;margin:.14em 0 .28em}
+.hero p{max-width:780px;margin:0 auto;color:#c8d4d8;font-size:clamp(1rem,2vw,1.22rem)}
+.hero .begin{display:inline-block;margin-top:30px;padding:12px 18px;border:1px solid rgba(255,255,255,.23);border-radius:999px;text-decoration:none;background:rgba(255,255,255,.045);backdrop-filter:blur(8px)}
+.hero .hint{margin-top:12px;color:#8399a4;font-size:.82rem}
+.gate{
+  min-height:100svh;display:grid;place-items:center;text-align:center;padding:80px 24px;position:relative;overflow:hidden
+}
+.gate,.scene{scroll-margin-top:72px}
+.gate.u1{background:linear-gradient(180deg,#091923,#10303a)}
+.gate.u2{background:linear-gradient(180deg,#0c151c,#30291d 57%,#0b171f)}
+.gate.u3{background:linear-gradient(180deg,#0a1519,#17313a 57%,#0b171f)}
+.gate.u4{background:linear-gradient(180deg,#111417,#342718 57%,#13100c)}
+.gate.u5{background:linear-gradient(180deg,#081518,#123331 57%,#091719)}
+.gate.u6{background:linear-gradient(180deg,#151018,#362331 57%,#130f14)}
+.gate .halo{
+  width:min(55vw,440px);aspect-ratio:1;border-radius:50%;margin:0 auto 26px;position:relative;
+  transform:scale(calc(.74 + var(--gateP,.2)*.3)) rotate(calc((var(--gateP,.2) - .5)*18deg));
+  background:radial-gradient(circle at 43% 40%,#f8ffff 0 3%,rgba(134,217,209,.5) 7%,rgba(134,217,209,.1) 32%,transparent 67%);
+  filter:drop-shadow(0 0 55px rgba(134,217,209,.2))
+}
+.gate.u2 .halo{background:radial-gradient(circle at 47% 45%,#fff9df 0 4%,rgba(231,200,119,.52) 9%,rgba(231,200,119,.11) 34%,transparent 67%)}
+.gate .halo:before,.gate .halo:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.14);border-radius:50%}
+.gate .halo:before{inset:8%;transform:rotate(calc(var(--gateP,.2)*60deg))}.gate .halo:after{inset:25%;transform:rotate(calc(var(--gateP,.2)*-80deg))}
+.gate h2{font-size:clamp(2.6rem,6vw,6rem);line-height:.95;margin:.1em 0 .2em}
+.gate p{max-width:780px;color:#c8d4d8;margin:0 auto}
+.story{max-width:var(--max);margin:0 auto;padding:0 26px}
+.scene{
+  min-height:112vh;display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,430px);gap:7vw;align-items:start;
+  padding:13vh 0;border-top:1px solid var(--line);position:relative;--p:0
+}
+.scene:nth-child(even){grid-template-columns:minmax(300px,430px) minmax(0,1fr)}
+.scene:nth-child(even) .copy{order:2}
+.copy{padding-top:6vh}
+.num{font-size:.78rem;text-transform:uppercase;letter-spacing:.17em;color:var(--gold)}
+.copy h3{font-size:clamp(2.1rem,4.5vw,4.6rem);line-height:1.02;margin:.22em 0 .12em}
+.subtitle{font-family:Georgia,"Times New Roman",serif;color:#a9c0c8;font-size:1.17rem;margin-bottom:20px;font-style:italic}
+.copy>p{font-size:1.04rem;color:#c7d5da}
+.quote-card{
+  margin:30px 0 0;padding:28px 28px 24px;border-radius:2px 24px 24px 2px;
+  background:linear-gradient(120deg,rgba(231,200,119,.1),rgba(255,255,255,.025));
+  border-left:3px solid var(--gold);position:relative;overflow:hidden;
+  transform:translateY(calc((1 - var(--p))*38px)) rotate(calc((.5 - var(--p))*1.2deg));
+  opacity:calc(.4 + var(--p)*.6)
+}
+.quote-card:before{
+  content:"“";position:absolute;right:18px;top:-38px;font-family:Georgia,serif;font-size:9rem;color:rgba(231,200,119,.07)
+}
+.quote-card blockquote{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.16rem,2.1vw,1.48rem);line-height:1.48;color:#f5edd5}
+.quote-card .source{margin-top:15px;color:#9db0b9;font-size:.82rem}
+.quote-card .source a{text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.35)}
+.quote-sweep{height:2px;margin-top:17px;background:linear-gradient(90deg,var(--gold),var(--aqua));transform-origin:left;transform:scaleX(var(--p))}
+.reflection{
+  margin:22px 0;padding:26px;border-radius:24px;background:var(--cream);color:var(--ink);
+  transform:translateY(calc((1 - var(--p))*24px))
+}
+.reflection .label,.practice .label{font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:#6c797f}
+.reflection h4,.practice h4{font-family:Georgia,"Times New Roman",serif;font-size:1.34rem;margin:.35em 0 .55em}
+.reflection ol{padding-left:1.2em;margin:0}.reflection li{margin:.56em 0}
+.practice{margin-top:16px;padding:22px 24px;border:1px solid rgba(134,217,209,.23);border-radius:22px;background:rgba(134,217,209,.045);color:#c9d8dc}
+.stage{
+  position:sticky;top:10vh;height:80vh;min-height:480px;border-radius:30px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  background:
+   radial-gradient(circle at calc(30% + var(--p)*30%) calc(25% + var(--p)*22%),rgba(134,217,209,.11),transparent 30%),
+   linear-gradient(150deg,rgba(255,255,255,.07),rgba(255,255,255,.018));
+  box-shadow:0 28px 90px rgba(0,0,0,.22);
+}
+.stage:before{
+  content:attr(data-word);position:absolute;left:-.04em;bottom:-.17em;font-family:Georgia,serif;font-size:clamp(5rem,11vw,9rem);
+  color:rgba(255,255,255,.035);white-space:nowrap;transform:translateX(calc((.5 - var(--p))*80px))
+}
+.viz{position:absolute;inset:0;display:grid;place-items:center}
+.core-dot{
+  width:64px;height:64px;border-radius:50%;background:radial-gradient(circle,#fff 0 4%,var(--aqua) 7%,rgba(134,217,209,.17) 50%,transparent 70%);
+  box-shadow:0 0 calc(30px + var(--p)*55px) rgba(134,217,209,.35);transform:scale(calc(.8 + var(--p)*.32))
+}
+.ring{position:absolute;border:1px solid rgba(255,255,255,.14);border-radius:50%;transform:rotate(calc(var(--p)*70deg))}
+.r1{width:42%;aspect-ratio:1}.r2{width:67%;aspect-ratio:1;transform:rotate(calc(var(--p)*-55deg))}.r3{width:86%;aspect-ratio:1;transform:rotate(calc(var(--p)*34deg))}
+.node{position:absolute;padding:7px 11px;border-radius:999px;background:rgba(7,16,25,.73);border:1px solid rgba(255,255,255,.16);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:#d6e2e5;backdrop-filter:blur(5px);opacity:calc(.12 + var(--p)*.88)}
+.node.a{left:10%;top:24%;transform:translateX(calc((1 - var(--p))*55px))}
+.node.b{right:8%;top:34%;transform:translateX(calc((var(--p) - 1)*55px))}
+.node.c{left:18%;bottom:20%;transform:translateY(calc((1 - var(--p))*42px))}
+.node.d{right:14%;bottom:17%;transform:translateY(calc((1 - var(--p))*48px))}
+.beam{position:absolute;width:2px;height:39%;top:13%;left:50%;background:linear-gradient(var(--gold),rgba(231,200,119,.08));transform-origin:bottom;transform:scaleY(var(--p));box-shadow:0 0 18px rgba(231,200,119,.35)}
+.sun{position:absolute;top:10%;width:94px;height:94px;border-radius:50%;background:radial-gradient(circle,#fffbe6 0 13%,var(--gold) 17%,rgba(231,200,119,.15) 57%,transparent 70%);filter:drop-shadow(0 0 25px rgba(231,200,119,.4));transform:scale(calc(.7 + var(--p)*.35))}
+.mirror{position:absolute;bottom:18%;width:190px;height:102px;border-radius:50%;border:1px solid rgba(255,255,255,.46);background:linear-gradient(155deg,rgba(134,217,209,.22),rgba(255,255,255,.035));transform:rotate(calc((.5 - var(--p))*18deg));box-shadow:inset 0 0 32px rgba(134,217,209,.12)}
+.arrow{position:absolute;left:50%;top:52%;height:30%;width:2px;background:linear-gradient(var(--aqua),transparent);transform-origin:top;transform:rotate(calc(-42deg + var(--p)*84deg))}
+.split{position:absolute;inset:18%;display:grid;grid-template-columns:1fr 1fr;gap:8%;align-items:center}
+.split>div{height:60%;border-radius:26px;border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;text-align:center;padding:15px;color:#b9c8ce;transform:translateY(calc((1 - var(--p))*30px))}
+.split .hi{background:radial-gradient(circle at 50% 30%,rgba(134,217,209,.18),transparent 65%)}
+.split .lo{background:radial-gradient(circle at 50% 70%,rgba(217,160,173,.14),transparent 65%)}
+.cycle{position:absolute;width:70%;aspect-ratio:1;border:1px dashed rgba(255,255,255,.24);border-radius:50%;transform:rotate(calc(var(--p)*160deg))}
+.cycle:before{content:"";position:absolute;top:-6px;left:50%;width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 22px rgba(231,200,119,.7)}
+.cycle-labels{position:absolute;inset:19%;font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;color:#c5d2d7}
+.cycle-labels span{position:absolute;opacity:calc(.2 + var(--p)*.8)}
+.cycle-labels span:nth-child(1){top:0;left:40%}.cycle-labels span:nth-child(2){top:38%;right:0}.cycle-labels span:nth-child(3){bottom:0;left:41%}.cycle-labels span:nth-child(4){top:40%;left:0}
+.flame{position:absolute;width:84px;height:118px;border-radius:50% 50% 50% 50% / 65% 65% 35% 35%;background:radial-gradient(circle at 50% 68%,#fff7c7 0 7%,var(--gold) 20%,rgba(217,160,173,.42) 52%,transparent 72%);filter:blur(.2px) drop-shadow(0 0 25px rgba(231,200,119,.4));transform:scale(calc(.65 + var(--p)*.55)) rotate(calc((.5 - var(--p))*5deg))}
+.interlude{
+  min-height:100svh;display:grid;place-items:center;text-align:center;padding:90px 24px;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,#07131b,#0c2029)
+}
+.interlude.gold{background:linear-gradient(180deg,#12171b,#2d281d,#0c151b)}
+.interlude .bigword{position:absolute;font-family:Georgia,serif;font-size:clamp(7rem,20vw,18rem);color:rgba(255,255,255,.035);transform:translateY(calc((.5 - var(--interP,.5))*160px));white-space:nowrap}
+.interlude .inner{max-width:850px;z-index:2}
+.interlude h2{font-size:clamp(2.6rem,6vw,6rem);line-height:.98;margin:.15em 0}
+.interlude p{color:#c4d1d6;font-size:1.1rem}
+.interlude .mini-model{margin:38px auto 0;width:min(640px,90vw);min-height:300px;position:relative}
+.mini-model .center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(calc(.75 + var(--interP,.5)*.4));width:86px;height:86px;border-radius:50%;background:radial-gradient(circle,#fff 0 5%,var(--aqua) 9%,rgba(134,217,209,.12) 62%,transparent 72%)}
+.mini-model .sat{position:absolute;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:#0b1a22;color:#d7e1e5;font-size:.76rem;text-transform:uppercase;letter-spacing:.1em;transition:transform .1s linear}
+.mini-model .sat:nth-child(2){left:10%;top:20%;transform:translate(calc(var(--interP,.5)*90px),calc(var(--interP,.5)*55px))}
+.mini-model .sat:nth-child(3){right:10%;top:20%;transform:translate(calc(var(--interP,.5)*-90px),calc(var(--interP,.5)*55px))}
+.mini-model .sat:nth-child(4){left:12%;bottom:18%;transform:translate(calc(var(--interP,.5)*90px),calc(var(--interP,.5)*-55px))}
+.mini-model .sat:nth-child(5){right:12%;bottom:18%;transform:translate(calc(var(--interP,.5)*-90px),calc(var(--interP,.5)*-55px))}
+.final{
+  min-height:100svh;display:grid;place-items:center;text-align:center;background:var(--cream);color:var(--ink);padding:90px 24px
+}
+.final-inner{max-width:900px}
+.final h2{font-size:clamp(2.8rem,6vw,6rem);line-height:.95;margin:.2em 0}
+.final p{font-size:1.1rem;color:#42535b}
+.final .question{font-family:Georgia,serif;font-size:clamp(1.8rem,4vw,3.5rem);line-height:1.12;margin:36px 0}
+.footer{padding:55px 22px;background:#040a0e;text-align:center;color:#8398a3;font-size:.85rem}
+.mode-switch{position:fixed;right:18px;top:18px;z-index:910;display:flex;padding:4px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(5,13,18,.84);backdrop-filter:blur(12px)}
+.mode-switch button{border:0;border-radius:999px;background:transparent;color:#aebfc6;padding:8px 12px;cursor:pointer;font:inherit;font-size:.75rem}.mode-switch button.active{background:var(--gold);color:#172027}
+.mode-note{max-width:760px;margin:24px auto 0;padding:15px 18px;border:1px solid rgba(255,255,255,.14);border-radius:18px;color:#c9d6da;background:rgba(255,255,255,.04)}
+.unit-tabs{position:sticky;top:0;z-index:70;display:flex;gap:8px;overflow-x:auto;padding:10px max(18px,calc((100vw - var(--max))/2));background:rgba(4,10,14,.9);border-block:1px solid rgba(255,255,255,.1);backdrop-filter:blur(16px);scrollbar-width:thin}
+.unit-tabs a{flex:0 0 auto;min-width:128px;padding:9px 12px;border:1px solid rgba(255,255,255,.13);border-radius:14px;text-decoration:none;color:#9eb0ba;font-size:.73rem;line-height:1.25}
+.unit-tabs a strong{display:block;color:#e5edef;font-family:Georgia,serif;font-size:.94rem;font-weight:500}.unit-tabs a.on{border-color:rgba(231,200,119,.65);background:rgba(231,200,119,.12);color:var(--gold)}
+.study-guide{max-width:920px;margin:34px auto 60px;padding:0 24px}.study-guide details{border:1px solid rgba(255,255,255,.14);border-radius:22px;background:rgba(255,255,255,.04);overflow:hidden}.study-guide summary{cursor:pointer;padding:18px 22px;color:#edf5f6;font-family:Georgia,serif;font-size:1.15rem}.study-guide .guide-body{padding:0 22px 22px;color:#bdccd1}.study-guide ul{margin:.5em 0 0;padding-left:1.25em}.study-guide li{margin:.5em 0}.study-guide .independent-note{margin-top:16px;padding:14px 16px;border-left:3px solid var(--gold);background:rgba(231,200,119,.06);font-size:.9rem}
+.study-guide details+details{margin-top:12px}
+.explanatory-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.15em;color:#8fa5ae;margin:22px 0 4px}
+.quote-card.secondary{margin-top:14px;border-left-color:var(--aqua);background:linear-gradient(120deg,rgba(134,217,209,.09),rgba(255,255,255,.025))}.quote-card.secondary .quote-sweep{background:linear-gradient(90deg,var(--aqua),var(--rose))}
+.story-source{display:inline-block;margin-top:9px;color:#9fb1b8;font-size:.76rem;text-decoration:none;border-bottom:1px dotted rgba(255,255,255,.3)}
+.memorize,.story-card,.consult-card{margin-top:16px;padding:20px 22px;border-radius:20px}.memorize{border:1px solid rgba(231,200,119,.28);background:rgba(231,200,119,.055)}
+.memorize p{font-family:Georgia,serif;font-size:1.15rem;color:#f4e8c6;margin:.35em 0 0}.story-card{background:rgba(217,160,173,.07);border:1px solid rgba(217,160,173,.22);color:#d8e1e4}.story-card p,.consult-card p{margin:.4em 0 0}
+.consult-card{background:rgba(134,217,209,.07);border:1px solid rgba(134,217,209,.25);color:#d8e6e8}.mode-label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--aqua)}
+body[data-study-mode="individual"] .collective-only{display:none}body[data-study-mode="collective"] .individual-only{display:none}
+.reveal{opacity:.18;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media(max-width:850px){
+  .reading-rail,.navdots{display:none}
+  .scene,.scene:nth-child(even){grid-template-columns:1fr;min-height:auto;padding:90px 0}
+  .scene:nth-child(even) .copy{order:0}
+  .copy{padding-top:0}
+  .stage{position:relative;top:auto;height:62vh;min-height:380px}
+  .mode-switch{top:auto;bottom:14px;right:14px}
+  .unit-tabs{top:0;padding-inline:12px}.unit-tabs a{min-width:116px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}.reveal{opacity:1;transform:none}
+  *,*:before,*:after{transition:none!important;animation:none!important}
+  .quote-card,.reflection,.stage *{transform:none!important}
+}
+
+/* ---------- Pop-out section navigator ---------- */
+.nav-trigger{
+  position:fixed;left:18px;top:20px;z-index:920;
+  display:flex;align-items:center;gap:10px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:999px;padding:10px 14px;
+  background:rgba(5,13,18,.78);color:#edf5f6;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  cursor:pointer;box-shadow:0 10px 34px rgba(0,0,0,.22);
+  font:inherit;font-size:.82rem;letter-spacing:.04em;
+}
+.nav-trigger:hover{background:rgba(15,31,40,.94)}
+.nav-trigger .bars{display:grid;gap:3px;width:17px}
+.nav-trigger .bars i{display:block;height:1px;background:currentColor;border-radius:2px}
+.nav-trigger .current-label{max-width:190px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#c8d5da}
+
+.side-drawer{
+  position:fixed;left:0;top:0;bottom:0;width:min(390px,88vw);z-index:950;
+  background:rgba(5,13,18,.97);
+  border-right:1px solid rgba(255,255,255,.12);
+  box-shadow:24px 0 80px rgba(0,0,0,.38);
+  transform:translateX(-104%);
+  transition:transform .36s cubic-bezier(.22,.75,.2,1);
+  display:flex;flex-direction:column;
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+}
+.side-drawer.open{transform:translateX(0)}
+.drawer-backdrop{
+  position:fixed;inset:0;z-index:940;background:rgba(0,0,0,.42);
+  opacity:0;pointer-events:none;transition:opacity .3s ease;
+}
+.drawer-backdrop.open{opacity:1;pointer-events:auto}
+
+.drawer-head{
+  padding:20px 20px 14px;border-bottom:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:flex-start;justify-content:space-between;gap:14px
+}
+.drawer-title .eyebrow{font-size:.68rem;text-transform:uppercase;letter-spacing:.17em;color:var(--aqua)}
+.drawer-title strong{display:block;margin-top:3px;font-family:Georgia,"Times New Roman",serif;font-size:1.35rem;font-weight:500}
+.drawer-close{
+  width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.04);color:#fff;cursor:pointer;font-size:1.25rem
+}
+.drawer-body{overflow:auto;padding:14px 12px 30px;scrollbar-width:thin}
+.drawer-quick{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:4px 4px 15px
+}
+.drawer-quick a{
+  text-decoration:none;text-align:center;padding:10px 9px;border-radius:13px;
+  border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.035);
+  color:#c8d5da;font-size:.76rem
+}
+.drawer-quick a:hover{border-color:rgba(231,200,119,.4);color:#fff}
+
+.drawer-unit{
+  margin:8px 4px 16px;border:1px solid rgba(255,255,255,.09);
+  border-radius:18px;overflow:hidden;background:rgba(255,255,255,.02)
+}
+.drawer-unit summary{
+  list-style:none;cursor:pointer;padding:14px 14px 12px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  color:#f0f5f6;background:rgba(255,255,255,.025)
+}
+.drawer-unit summary::-webkit-details-marker{display:none}
+.drawer-unit summary .u-meta{display:flex;flex-direction:column}
+.drawer-unit summary small{font-size:.64rem;text-transform:uppercase;letter-spacing:.14em;color:var(--gold)}
+.drawer-unit summary strong{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:1rem}
+.drawer-unit summary .chev{transition:transform .25s ease;color:#8fa2ab}
+.drawer-unit[open] summary .chev{transform:rotate(90deg)}
+
+.drawer-links{padding:7px}
+.drawer-link{
+  display:grid;grid-template-columns:32px 1fr;gap:9px;align-items:start;
+  padding:9px 10px;border-radius:12px;text-decoration:none;color:#afc0c7;
+  border:1px solid transparent;transition:.18s ease
+}
+.drawer-link:hover{background:rgba(255,255,255,.045);color:#fff}
+.drawer-link.active{
+  background:linear-gradient(90deg,rgba(231,200,119,.13),rgba(134,217,209,.055));
+  border-color:rgba(231,200,119,.22);color:#fff
+}
+.drawer-link .idx{
+  width:25px;height:25px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid rgba(255,255,255,.14);font-size:.64rem;color:#8fa3ad
+}
+.drawer-link.active .idx{background:var(--gold);border-color:var(--gold);color:#15232a}
+.drawer-link .topic{font-size:.82rem;line-height:1.28}
+.drawer-link .topic small{display:block;margin-top:2px;color:#738992;font-size:.69rem}
+
+.drawer-position{
+  padding:10px 16px 13px;border-top:1px solid rgba(255,255,255,.08);
+  color:#7f959e;font-size:.7rem
+}
+.drawer-position strong{color:#d6e1e5;font-weight:500}
+
+@media(max-width:850px){
+  .nav-trigger{left:12px;top:12px;padding:9px 11px}
+  .nav-trigger .current-label{max-width:135px}
+}
+@media(prefers-reduced-motion:reduce){
+  .side-drawer,.drawer-backdrop{transition:none!important}
+}
+
+
+/* --- Generated artwork integration --- */
+.hero:after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(6,16,25,.35),rgba(6,16,25,.75)),
+    linear-gradient(0deg,rgba(6,16,25,.12),rgba(6,16,25,.12)),
+    url("/images/study/human-reality.webp") center/cover no-repeat;
+  opacity:.34;mix-blend-mode:screen;pointer-events:none
+}
+.stage.has-art{padding:0;overflow:hidden}
+.art-card{
+  position:relative;width:100%;height:100%;overflow:hidden;border-radius:30px;
+  background:#061019;
+}
+.art-card img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transform:scale(calc(1.03 + (1 - var(--p))*0.05));
+  filter:saturate(1.03) contrast(1.02) brightness(.96);
+}
+.art-card:after{
+  content:"";position:absolute;inset:0;
+  background:
+   linear-gradient(180deg,rgba(6,16,25,.04) 0%,rgba(6,16,25,.06) 40%,rgba(6,16,25,.68) 100%);
+}
+.art-card .art-glow{
+  position:absolute;inset:auto 7% 14% 7%;height:34%;
+  background:radial-gradient(circle at 50% 40%,rgba(231,200,119,.20),transparent 70%);
+  filter:blur(24px);pointer-events:none;z-index:1
+}
+.art-meta{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;padding:20px 20px 18px;
+}
+.art-meta .eyebrow{
+  display:inline-block;margin-bottom:8px;font-size:.66rem;letter-spacing:.16em;
+  text-transform:uppercase;color:#efdca3
+}
+.art-meta .caption{
+  margin:0;color:#eef3f5;font-size:.88rem;line-height:1.42;
+  text-wrap:pretty
+}
+.stage.has-art:before{display:none}
+
+.home-link{
+  position:fixed;right:18px;top:20px;z-index:920;
+  display:flex;align-items:center;gap:8px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:999px;padding:10px 15px;
+  background:rgba(5,13,18,.78);color:#edf5f6;text-decoration:none;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 10px 34px rgba(0,0,0,.22);
+  font-size:.82rem;letter-spacing:.04em;
+}
+.home-link:hover{background:rgba(15,31,40,.94)}
+.home-link svg{width:15px;height:15px;flex:none}
+@media(max-width:720px){
+  .home-link{padding:8px 11px;font-size:.75rem}
+  .home-link .home-label{display:none}
+}
+</style>
+</head>
+<body data-unit="1" data-study-mode="individual">
+<div id="progress"></div>
+
+<a class="home-link" href="/" aria-label="Back to Peace Antz">
+  <svg viewBox="0 0 40 40" aria-hidden="true" fill="none" stroke="#e7c877" stroke-width="3">
+    <circle cx="20" cy="20" r="17.5"/>
+    <path d="M20 2.5 V37.5 M20 20 L7.6 32.4 M20 20 L32.4 32.4"/>
+  </svg>
+  <span class="home-label">Peace Antz</span>
+</a>
+
+<button class="nav-trigger" id="navTrigger" type="button" aria-expanded="false" aria-controls="sectionDrawer">
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+  <span class="current-label" id="currentSectionLabel">Explore sections</span>
+</button>
+
+<div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+
+<aside class="side-drawer" id="sectionDrawer" aria-label="Study section navigation" aria-hidden="true" inert>
+  <div class="drawer-head">
+    <div class="drawer-title">
+      <div class="eyebrow">Study navigator</div>
+      <strong>The Human Reality</strong>
+    </div>
+    <button class="drawer-close" id="drawerClose" type="button" aria-label="Close navigation">×</button>
+  </div>
+
+  <div class="drawer-body">
+    <div class="drawer-quick">
+      <a href="#top">Beginning</a>
+      <a href="#finish">Final reflection</a>
+      <a href="#unit1">Unit One</a>
+      <a href="#unit2">Unit Two</a>
+      <a href="#unit3">Unit Three</a>
+      <a href="#unit4">Unit Four</a>
+      <a href="#unit5">Unit Five</a>
+      <a href="#unit6">Unit Six</a>
+    </div>
+
+    <details class="drawer-unit" id="drawerUnit1" open>
+      <summary>
+        <span class="u-meta"><small>Unit One</small><strong>The Noble Human Reality</strong></span>
+        <span class="chev">›</span>
+      </summary>
+      <div class="drawer-links" id="drawerLinks1"></div>
+    </details>
+
+    <details class="drawer-unit" id="drawerUnit2">
+      <summary>
+        <span class="u-meta"><small>Unit Two</small><strong>The Soul in This World</strong></span>
+        <span class="chev">›</span>
+      </summary>
+      <div class="drawer-links" id="drawerLinks2"></div>
+    </details>
+
+    <details class="drawer-unit" id="drawerUnit3">
+      <summary>
+        <span class="u-meta"><small>Unit Three</small><strong>Receiving Divine Light</strong></span>
+        <span class="chev">›</span>
+      </summary>
+      <div class="drawer-links" id="drawerLinks3"></div>
+    </details>
+
+    <details class="drawer-unit" id="drawerUnit4">
+      <summary>
+        <span class="u-meta"><small>Unit Four</small><strong>Freedom and Spiritual Growth</strong></span>
+        <span class="chev">›</span>
+      </summary>
+      <div class="drawer-links" id="drawerLinks4"></div>
+    </details>
+
+    <details class="drawer-unit" id="drawerUnit5">
+      <summary>
+        <span class="u-meta"><small>Unit Five</small><strong>Becoming a Source of Light</strong></span>
+        <span class="chev">›</span>
+      </summary>
+      <div class="drawer-links" id="drawerLinks5"></div>
+    </details>
+
+    <details class="drawer-unit" id="drawerUnit6">
+      <summary>
+        <span class="u-meta"><small>Unit Six</small><strong>Advancing Civilization</strong></span>
+        <span class="chev">›</span>
+      </summary>
+      <div class="drawer-links" id="drawerLinks6"></div>
+    </details>
+  </div>
+
+  <div class="drawer-position">
+    Reading: <strong id="drawerCurrent">Introduction</strong>
+  </div>
+</aside>
+
+<div class="reading-rail" aria-hidden="true"><span id="railDot"></span></div>
+<nav class="navdots" aria-label="Major chapters">
+ <a href="#top" data-id="top">Start</a>
+ <a href="#unit1" data-id="unit1">Unit 1</a>
+ <a href="#unit2" data-id="unit2">Unit 2</a>
+ <a href="#unit3" data-id="unit3">Unit 3</a>
+ <a href="#unit4" data-id="unit4">Unit 4</a>
+ <a href="#unit5" data-id="unit5">Unit 5</a>
+ <a href="#unit6" data-id="unit6">Unit 6</a>
+ <a href="#finish" data-id="finish">Finish</a>
+</nav>
+
+<div class="mode-switch" role="group" aria-label="Study mode">
+ <button type="button" id="individualMode" class="active" aria-pressed="true">Individual</button>
+ <button type="button" id="collectiveMode" aria-pressed="false">Collective</button>
+</div>
+
+<header class="hero" id="top">
+  <div class="cosmos"></div><div class="hero-orbit"></div>
+  <div class="hero-inner reveal">
+    <div class="kicker">An immersive Bahá’í scroll study</div>
+    <h1>The Human Reality</h1>
+    <p>What is the human being capable of becoming—and how can the light received by one soul contribute to the unity and betterment of the world? Enter a six-unit study rooted in the Bahá’í writings.</p>
+    <a class="begin" href="#unit1">Enter Unit One ↓</a>
+    <div class="hint">Scroll slowly: the diagrams develop as you move.</div>
+    <div class="mode-note"><span class="individual-only">Individual mode offers private reflection and a personal practice.</span><span class="collective-only">Collective mode offers reading aloud, consultation, paired explanation, and a shared act of service.</span></div>
+  </div>
+</header>
+
+<nav class="unit-tabs" aria-label="Course units">
+ <a href="#unit1" data-unit-tab="1"><span>Unit 1</span><strong>Noble Reality</strong></a>
+ <a href="#unit2" data-unit-tab="2"><span>Unit 2</span><strong>Soul in This World</strong></a>
+ <a href="#unit3" data-unit-tab="3"><span>Unit 3</span><strong>Divine Light</strong></a>
+ <a href="#unit4" data-unit-tab="4"><span>Unit 4</span><strong>Spiritual Growth</strong></a>
+ <a href="#unit5" data-unit-tab="5"><span>Unit 5</span><strong>Source of Light</strong></a>
+ <a href="#unit6" data-unit-tab="6"><span>Unit 6</span><strong>Civilization</strong></a>
+</nav>
+
+<section class="study-guide" aria-label="How to use this study">
+ <details>
+  <summary>How to use this study individually or with a group</summary>
+  <div class="guide-body">
+   <ul>
+    <li><strong>Suggested rhythm:</strong> study one unit per gathering, allowing roughly 60–90 minutes. Depth matters more than completing every question.</li>
+    <li><strong>Collective study:</strong> begin with prayer, read each quotation aloud, allow silence, hear every willing voice, and choose a modest act of service before the next gathering.</li>
+    <li><strong>Learning through action:</strong> begin the following gathering by reflecting on what happened, what was learned, whose perspective was absent, and what should change.</li>
+    <li><strong>Invitational atmosphere:</strong> no prior Bahá’í knowledge is assumed, and no participant should feel pressured to disclose private experiences or speak before they are ready.</li>
+   </ul>
+   <div class="independent-note"><strong>About this material:</strong> This is an independently prepared supplementary study aid, not an official Bahá’í or institute course. The quotations carry the authority of their respective sources; the explanatory text, diagrams, questions, and biographical reflections represent the author’s understanding and are offered for study and consultation.</div>
+  </div>
+ </details>
+ <details>
+  <summary>Pilot-group reflection guide</summary>
+  <div class="guide-body">
+   <p>After each gathering, record brief observations rather than trying to judge whether participants gave “correct” answers:</p>
+   <ul>
+    <li>Which passage generated genuine insight, prayerful attention, or purposeful consultation?</li>
+    <li>Which explanation, question, visual, or term was confusing—or seemed to carry more authority than it should?</li>
+    <li>Did the pace allow silence and participation, or did the group feel pressure to finish?</li>
+    <li>Did the proposed action arise from a real relationship and expressed need? Was it completed?</li>
+    <li>Whose voice was missing, and what could make the next gathering more hospitable?</li>
+   </ul>
+  </div>
+ </details>
+</section>
+
+<section class="gate u1 track" id="unit1">
+ <div class="reveal">
+  <div class="halo"></div>
+  <div class="kicker">Unit One</div>
+  <h2>The Noble Reality of the Human Being</h2>
+  <p><strong>Purpose:</strong> to recognize every person as a noble spiritual reality endowed with powers that can know, love, choose, serve, and reflect the attributes of God.</p>
+ </div>
+</section>
+
+<main class="story" id="story1"></main>
+
+<section class="interlude track" id="interlude1">
+ <div class="bigword">ONE</div>
+ <div class="inner reveal">
+   <div class="kicker">Integration</div>
+   <h2>One noble reality.<br>Many powers.</h2>
+   <p>We distinguish the soul’s powers not to construct a mechanical diagram of the person, but to recognize the capacities entrusted to every human being and the divine qualities they can reflect.</p>
+   <div class="mini-model">
+    <div class="center"></div><div class="sat">Mind</div><div class="sat">Heart</div><div class="sat">Will</div><div class="sat">Perception</div>
+   </div>
+ </div>
+</section>
+
+<section class="gate u2 track" id="unit2">
+ <div class="reveal">
+  <div class="halo"></div>
+  <div class="kicker">Unit Two</div>
+  <h2>The Soul in This World</h2>
+  <p><strong>Purpose:</strong> to explore the soul’s relationship with body, heart, moral orientation, and choice without reducing the person to matter or imagining several competing inner selves.</p>
+ </div>
+</section>
+
+<main class="story" id="story2"></main>
+
+<section class="interlude gold track" id="interlude2">
+ <div class="bigword">CHOOSE</div>
+ <div class="inner reveal">
+   <div class="kicker" style="color:var(--gold)">The decisive question</div>
+   <h2>What direction<br>is the soul facing?</h2>
+   <p>The same human powers can be drawn into the atmosphere of self and passion or increasingly ordered toward truth, love, justice, service, and God.</p>
+   <div class="mini-model">
+    <div class="center"></div><div class="sat">Godward</div><div class="sat">Selfward</div><div class="sat">Choice</div><div class="sat">Habit</div>
+   </div>
+ </div>
+</section>
+
+<section class="gate u3 track" id="unit3">
+ <div class="reveal">
+  <div class="halo"></div>
+  <div class="kicker">Unit Three</div>
+  <h2>Receiving Divine Light</h2>
+  <p><strong>Purpose:</strong> to encounter Revelation, nearness to God, prayer, and meditation as powers that awaken, orient, and illuminate the human soul.</p>
+ </div>
+</section>
+
+<main class="story" id="story3"></main>
+
+<section class="gate u4 track" id="unit4">
+ <div class="reveal">
+  <div class="halo"></div>
+  <div class="kicker">Unit Four</div>
+  <h2>Freedom and Spiritual Growth</h2>
+  <p><strong>Purpose:</strong> to understand how love, divine law, will, effort, confirmation, tests, reflection, repentance, and renewed action transform capacity into character.</p>
+ </div>
+</section>
+
+<main class="story" id="story4"></main>
+
+<section class="interlude track" id="interlude-service">
+ <div class="bigword">ARISE</div>
+ <div class="inner reveal">
+   <div class="kicker">Learning through action</div>
+   <h2>Guidance is encountered<br>on the path of effort.</h2>
+   <p>Pray. Study. Choose. Act. Reflect. Repair. Try again. Confirmation does not remove human responsibility; it meets sincere souls as they arise and learn.</p>
+ </div>
+</section>
+
+<section class="gate u5 track" id="unit5">
+ <div class="reveal">
+  <div class="halo"></div>
+  <div class="kicker">Unit Five</div>
+  <h2>Becoming a Source of Light</h2>
+  <p><strong>Purpose:</strong> to develop spiritual qualities through service, consultation, relationships, hospitality, and the patient work of building unity in diversity.</p>
+ </div>
+</section>
+
+<main class="story" id="story5"></main>
+
+<section class="gate u6 track" id="unit6">
+ <div class="reveal">
+  <div class="halo"></div>
+  <div class="kicker">Unit Six</div>
+  <h2>Advancing Civilization</h2>
+  <p><strong>Purpose:</strong> to connect the transformation of the soul with justice, the harmony of science and religion, spiritual and material progress, and sustained contribution to the betterment of the world.</p>
+ </div>
+</section>
+
+<main class="story" id="story6"></main>
+
+<section class="interlude gold track" id="interlude3">
+ <div class="bigword">BECOME</div>
+ <div class="inner reveal">
+   <div class="kicker" style="color:var(--gold)">The recurring movement</div>
+   <h2>Revelation becomes life<br>through a cycle.</h2>
+   <p>Study. Prayer. Meditation. Choice. Action. Tests. Reflection. Repentance. Confirmation. Better action. The cycle repeats—and character slowly takes form.</p>
+   <div class="mini-model">
+    <div class="center"></div><div class="sat">Prayer</div><div class="sat">Action</div><div class="sat">Reflection</div><div class="sat">Service</div>
+   </div>
+ </div>
+</section>
+
+<section class="final" id="finish">
+ <div class="final-inner reveal">
+   <div class="kicker" style="color:#87692c">The mirror and the Sun</div>
+   <h2>Six units.<br>One movement.</h2>
+   <p>Recognize the mirror. Turn it toward the Sun. Let the light it receives become love, unity, justice, and service in the world.</p>
+   <div class="question">What kind of soul am I becoming? Who is being warmed by the light I have received? What will I do now?</div>
+   <p><strong>Study note:</strong> This independent study aid distinguishes quoted passages from explanatory interpretation. Its diagrams, questions, practices, and biographical reflections are offered for learning and consultation; they do not constitute an official doctrinal schematic.</p>
+ </div>
+</section>
+
+<footer class="footer">Designed for slow reading, consultation, reflection, and action.</footer>
+
+<script>
+const DATA = [{"unit": 1, "n": 1, "title": "What Is the Human Being?", "subtitle": "More than the visible organism", "body": "The Bahá’í writings take the body, brain, heredity, environment, and experience seriously, but they do not reduce the human being to them. ‘Abdu’l‑Bahá identifies the distinctive human reality with the rational soul—the human spirit.", "quote": "The human spirit, which distinguishes man from the animal, is the rational soul, and these two terms…designate one and the same thing.", "author": "‘Abdu’l‑Bahá", "source": "Some Answered Questions, ch. 55", "url": "https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/10", "questions": ["What distinguishes man from the animal?", "What two terms designate one and the same thing?", "Which words in the passage establish identity rather than merely a close relationship between “human spirit” and “rational soul”?", "What does the phrase “distinguishes man from the animal” suggest is distinctive about the human reality?", "How would this passage challenge the statement, “A human being is nothing more than a biological organism”?"], "practice": "During one ordinary activity today, notice body sensation, thought, emotion, and moral choice without assuming they are all the same phenomenon.", "visual": "core"}, {"unit": 1, "n": 2, "title": "The Soul", "subtitle": "A sign of God whose essence exceeds our grasp", "body": "Bahá’u’lláh speaks confidently about the soul’s powers, development, relationship to God, and destiny, while placing a boundary around claims about its essence. We can investigate its effects without pretending to reduce it to an object we can fully describe.", "quote": "Know, verily, that the soul is a sign of God, a heavenly gem whose reality the most learned of men hath failed to grasp.", "author": "Bahá’u’lláh", "source": "Gleanings from the Writings of Bahá’u’lláh, LXXXII", "url": "https://www.bahai.org/library/authoritative-texts/bahaullah/gleanings-writings-bahaullah/4", "questions": ["What does Bahá’u’lláh call the soul?", "Who has failed to grasp the reality of the soul?", "What three expressions does Bahá’u’lláh use here to describe the soul?", "What attitude toward our own theories of consciousness is encouraged by “failed to grasp”?", "What is the difference between saying the soul is unknowable in essence and saying we can know nothing about it?"], "practice": "Write two columns: “what the writings tell us about the soul” and “what remains mysterious.”", "visual": "gem"}, {"unit": 1, "n": 3, "title": "Human Spirit and Rational Soul", "subtitle": "One identity; many powers", "body": "The rational soul is not portrayed as passive. It discovers, compares, reasons, and becomes conscious of the properties and relations of things. This helps clarify why the soul is called rational without reducing it to the brain.", "quote": "This spirit…encompasses all things and, as far as human capacity permits, discovers their realities and becomes aware of their properties and effects.", "author": "‘Abdu’l‑Bahá", "source": "Some Answered Questions, ch. 55", "url": "https://reference.bahai.org/en/t/ab/SAQ/saq-55.html", "questions": ["What does the human spirit encompass?", "What does the human spirit discover, as far as human capacity permits?", "Which verbs in the quotation describe powers of the rational soul?", "Why is the qualification “as far as human capacity permits” important?", "Does the passage portray rationality as merely storing information, or as discovering relations and realities?"], "practice": "Choose something you understand well. Trace how observation, comparison, abstraction, and memory contributed to that understanding.", "visual": "radar", "artKey": "art_human_reality", "artCaption": "One human reality expressing multiple powers while remaining oriented toward the light."}, {"unit": 1, "n": 4, "title": "One Reality, Many Expressions", "subtitle": "Not a committee inside the body", "body": "Bahá’u’lláh gives a crucial interpretive key: terms such as spirit, mind, soul, sight, and hearing can refer to different expressions of a single human reality through different instruments. This guards against imagining several invisible beings inside us.", "quote": "Spirit, mind, soul, and the powers of sight and hearing are but one single reality which hath manifold expressions…", "author": "Bahá’u’lláh", "source": "The Summons of the Lord of Hosts", "url": "https://www.bahai.org/library/authoritative-texts/bahaullah/summons-lord-hosts/8", "questions": ["What does Bahá’u’lláh say are one single reality?", "Why does this one reality have manifold expressions?", "What is said to be single? What is said to be manifold?", "What role does the word “instruments” play in explaining the diversity of experience?", "Which common model of the person—several separate inner entities—does this passage make less plausible?"], "practice": "As you scroll to the next section, notice how one center in the diagram gives rise to several expressions without dividing into several centers.", "visual": "many"}, {"unit": 1, "n": 5, "title": "The Soul and the Body", "subtitle": "Connection without spatial containment", "body": "‘Abdu’l‑Bahá says the human spirit is immaterial and placeless yet connected with the body. The sun-and-mirror image helps us avoid picturing the soul as a tiny object stored somewhere inside the skull or chest.", "quote": "The spirit is absolutely placeless and immaterial, but it has a connection with the body, even as the sun has a connection with this mirror.", "author": "‘Abdu’l‑Bahá", "source": "Some Answered Questions, ch. 67", "url": "https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/11", "questions": ["How does ‘Abdu’l‑Bahá describe the spirit?", "What is the spirit connected with?", "Which two claims are held together in the same sentence: what the spirit is not, and what relationship it nevertheless has?", "What does the sun-and-mirror analogy help us understand about connection without containment?", "Where would it be unsafe to push the analogy beyond what the passage actually says?"], "practice": "Draw the sun-and-mirror analogy yourself, then label clearly which element represents the body and which represents the human spirit.", "visual": "mirror", "artKey": "art_soul_body", "artCaption": "A symbolic rendering of spirit and body: connection without containment, light without material confinement."}, {"unit": 1, "n": 6, "title": "The Body as Instrument", "subtitle": "Neither the whole self nor an enemy", "body": "The body is the means through which embodied perception and action occur. Its condition can profoundly affect how spiritual and mental powers are expressed in earthly life, yet the writings distinguish the enduring soul from the temporary physical instrument.", "quote": "This perfect body can be compared to a mirror, and the human spirit to the sun…", "author": "‘Abdu’l‑Bahá", "source": "Bahá’í Sacred Writings — Mind, Spirit, and Soul", "url": "https://bahaicanada.bahai.ca/wp-content/uploads/2025/07/S143362-%E2%80%93-Bahai-Sacred-Writings.pdf", "questions": ["What is the body compared to?", "What is the human spirit compared to?", "What does the analogy affirm about the value of the body as an instrument?", "What happens to the mirror in the image, and what does not happen to the sun?", "How does the quotation avoid both “the body is all I am” and “the body does not matter”?"], "practice": "Name three ways caring for the body can strengthen your capacity to study, pray, work, love, or serve.", "visual": "instrument"}, {"unit": 1, "n": 7, "title": "The Mind", "subtitle": "A power of the human spirit", "body": "The mind is not presented as a second soul. ‘Abdu’l‑Bahá calls it a power of the human spirit and uses two analogies—the lamp and its light, the tree and its fruit—to distinguish faculty from possessor without separating them.", "quote": "As for the mind, it is the power of the human spirit. The spirit is as the lamp, and the mind as the light…", "author": "‘Abdu’l‑Bahá", "source": "Some Answered Questions, ch. 55", "url": "https://www.bahai.org/library/authoritative-texts/bahaullah/bahai-sacred-writings/4", "questions": ["What is the mind?", "What are the spirit and mind compared to?", "What relationship is established by the words “power of”?", "What does the lamp/light analogy communicate that would be lost if mind and soul were treated as independent beings?", "How might the alternative tree/fruit analogy add another shade of meaning?"], "practice": "When you notice a strong train of thought today, ask: “What faculty is being exercised here, and toward what is it directed?”", "visual": "lamp"}, {"unit": 1, "n": 8, "title": "The Powers of Perception", "subtitle": "From sensation toward understanding", "body": "‘Abdu’l‑Bahá distinguishes outward senses from inward powers including the common faculty, imagination, thought, comprehension, and memory. The account is best read as a functional map of experience rather than a modern neurological diagram.", "quote": "The common faculty…communicates the outward powers to the inward. Among the inward powers are the imagination, thought, comprehension, and memory.", "author": "‘Abdu’l‑Bahá", "source": "Some Answered Questions — The Outward and Inward Powers of Man", "url": "https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/10", "questions": ["What does the common faculty communicate?", "Which inward powers are named in the quotation?", "Which distinction does the passage draw between outward and inward powers?", "Why might “communicates” be an important word in the description of the common faculty?", "Which of the named inward powers do you most easily notice operating in your own experience?"], "practice": "Look at an unfamiliar object for thirty seconds. Notice sensation, image, thought, inference, comprehension, and memory as distinct moments if you can.", "visual": "pipeline", "artKey": "art_perception", "artCaption": "The outward senses and inward powers receiving impressions, transforming them into awareness and meaning."}, {"unit": 1, "n": 9, "title": "Brain, Mind, Heart and Love", "subtitle": "Connection is not identity", "body": "‘Abdu’l‑Bahá states that the mind has no spatial location although it is connected with the brain, and gives love and the heart as a parallel. The relationship is intimate without being reduced to simple physical identity.", "quote": "The mind…has no place, although it is connected with the brain… Likewise, love has no place, but it is connected with the heart.", "author": "‘Abdu’l‑Bahá", "source": "Some Answered Questions, ch. 67", "url": "https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/11", "questions": ["What is the mind connected with?", "What is love connected with?", "What distinction does the word “connected” preserve?", "Why might ‘Abdu’l‑Bahá place the brain/mind and heart/love examples next to one another?", "What does the quotation say—and what does it not say—about the physical brain?"], "practice": "When using words like “mind” and “heart,” practice specifying whether you mean a physical organ, a faculty, or a spiritual metaphor.", "visual": "bridge"}, {"unit": 1, "n": 10, "title": "The Heart", "subtitle": "A center of receptivity and attraction", "body": "The spiritual heart appears throughout the writings as a locus of love, attraction, purification, receptivity, remembrance, and spiritual perception. It is not best understood as another independent substance beside the soul.", "quote": "Thy heart is My home; sanctify it for My descent. Thy spirit is My place of revelation; cleanse it for My manifestation.", "author": "Bahá’u’lláh", "source": "The Hidden Words, Arabic no. 59", "url": "https://reference.bahai.org/en/t/b/HW/hw-60.html", "questions": ["What does Bahá’u’lláh call the heart?", "What does He call the spirit?", "Which two verbs describe what the human being is asked to do?", "What do “home” and “place of revelation” suggest about receptivity rather than mere intellectual knowledge?", "What kinds of inner attachments might “sanctify” and “cleanse” ask us to examine?"], "practice": "Before reading a sacred passage, spend one minute consciously releasing a prejudice, resentment, or preoccupation that may distort your reception of it.", "visual": "heart"}, {"unit": 1, "n": 11, "title": "Five Meanings of Spirit", "subtitle": "One word; several levels of reality", "body": "The word “spirit” does not always identify the same thing. ‘Abdu’l‑Bahá distinguishes vegetable spirit, animal spirit, human spirit, the spirit of faith, and the Holy Spirit. Careful reading requires asking which meaning is intended.", "quote": "Spirit is universally divided into five categories: the vegetable spirit, the animal spirit, the human spirit, the spirit of faith, and the Holy Spirit.", "author": "‘Abdu’l‑Bahá", "source": "Some Answered Questions, ch. 55", "url": "https://www.ibiblio.org/Bahai/Texts/EN/SAQ/SAQ-55.html", "questions": ["Into how many categories is spirit divided?", "What five categories of spirit are named?", "How many distinct usages are named, and which one corresponds to the rational soul?", "Why could the statement “spirit dies with the body” be true in one usage but false in another?", "What interpretive habit should this passage teach us whenever we encounter the word “spirit”?"], "practice": "Create five cards—one for each usage—and add one sentence explaining what each term does and does not mean.", "visual": "levels", "artKey": "art_spirit_levels", "artCaption": "A poetic study image for the several meanings of “spirit,” moving from life to faith and divine influence."}, {"unit": 1, "n": 12, "title": "The Two Natures", "subtitle": "Two orientations, not two souls", "body": "‘Abdu’l‑Bahá describes a higher or spiritual nature and a lower or material nature. The point is moral orientation: love, mercy, kindness, truth, and justice express one direction; cruelty, falsehood, and injustice express another.", "quote": "In man there are two natures; his spiritual or higher nature and his material or lower nature. In one he approaches God.", "author": "‘Abdu’l‑Bahá", "source": "Paris Talks — The Two Natures in Man", "url": "https://www.bahai.org/library/authoritative-texts/abdul-baha/paris-talks/3", "questions": ["How many natures does ‘Abdu’l‑Bahá say man has?", "What are the two natures called?", "Does the passage say there are two souls, or two natures?", "What directional language appears in the phrase “approaches God”?", "Which qualities in your own life most clearly reveal the difference between these two orientations?"], "practice": "At one choice point today, pause and ask: “Which direction does this response move me—toward a divine quality or toward self-centered reaction?”", "visual": "fork"}, {"unit": 1, "n": 13, "title": "Lower Self, Higher Nature and Free Will", "subtitle": "The battleground is orientation", "body": "Bahá’u’lláh describes the same soul becoming luminous when faithful to God or becoming captive to self and passion when it turns away. ‘Abdu’l‑Bahá then places moral responsibility in our capacity to choose between good and evil actions.", "quote": "If it be faithful to God, it will reflect His light… If it fail… it will become a victim to self and passion.", "author": "Bahá’u’lláh", "source": "Gleanings from the Writings of Bahá’u’lláh, LXXXII", "url": "https://www.bahai.org/beliefs/life-spirit/human-soul/quotations", "questions": ["What will the soul reflect if it is faithful to God?", "What will the soul become a victim to if it fails?", "What two possible conditions of the same soul are contrasted?", "Notice the verbs “reflect” and “become a victim.” What do they imply about freedom and bondage?", "How does this passage complicate the idea that the lower self is a separate evil entity inside us?"], "practice": "Separate one difficult situation into two columns: “circumstances I did not choose” and “responses still available to me.”", "visual": "compass", "artKey": "art_crossroads", "artCaption": "The same human soul facing two directions: captivity to self and passion or movement toward God."}, {"unit": 1, "n": 14, "title": "Why We Are Here", "subtitle": "A world of formation", "body": "Earthly life is presented as an environment in which spiritual capacities are formed. ‘Abdu’l‑Bahá compares it with life in the womb: capacities needed in the next stage must be developed before entering it.", "quote": "It followeth that in this world too he must prepare for the world beyond. That which he needeth in the world of the Kingdom…", "author": "‘Abdu’l‑Bahá", "source": "Bahá’í Sacred Writings — Acquiring Divine Virtues", "url": "https://www.bahai.org/library/authoritative-texts/bahaullah/bahai-sacred-writings/4", "questions": ["What must man prepare for in this world?", "Where must he obtain what he needs for the world of the Kingdom?", "What does the phrase “must prepare” imply about the purpose of earthly life?", "What does the passage say must be obtained “here,” rather than postponed?", "If the next world requires spiritual capacities, how might ordinary relationships and difficulties function as part of our education?"], "practice": "Choose one quality you would want to carry into eternity. Identify one concrete way to exercise it this week.", "visual": "womb"}, {"unit": 2, "n": 1, "title": "Nearness to God", "subtitle": "Nearness as likeness", "body": "The goal of transformation is not spatial travel toward God. ‘Abdu’l‑Bahá frames nearness in terms of devotion, service, virtues, sanctification, sacrifice, and likeness. To draw near is to become increasingly able to reflect divine qualities.", "quote": "Nearness to God necessitates sacrifice of self, severance and the giving up of all to Him. Nearness is likeness.", "author": "‘Abdu’l‑Bahá", "source": "The Promulgation of Universal Peace", "url": "https://www.bahai.org/library/authoritative-texts/abdul-baha/promulgation-universal-peace/11", "questions": ["What does nearness to God necessitate?", "What is nearness?", "Which practices immediately precede the short statement “Nearness is likeness”?", "If nearness is likeness, how does this change the way we think about “getting closer” to God?", "Which divine quality would make your relationships visibly different if it were more fully reflected?"], "practice": "Choose one attribute—truthfulness, mercy, justice, generosity, patience—and define what one degree more of it would look like today.", "visual": "near"}, {"unit": 2, "n": 2, "title": "Revelation", "subtitle": "Not only information—creative power", "body": "The Word of God does more than convey propositions. Bahá’u’lláh attributes life-giving potency to divine utterance. Study therefore involves opening mind and heart to a formative influence, not merely accumulating religious information.", "quote": "Every word that proceedeth out of the mouth of God is endowed with such potency as can instill new life into every human frame.", "author": "Bahá’u’lláh", "source": "Prayer and Devotional Life, selection 2", "url": "https://www.bahai.org/library/authoritative-texts/compilations/prayer-devotional-life/2", "questions": ["What is every word that proceeds from the mouth of God endowed with?", "What can the Word of God instill into every human frame?", "What stronger claim is being made than “the Word of God contains useful ideas”?", "Why might the metaphor of “new life” matter for understanding spiritual education?", "How would your manner of reading change if you expected Revelation to act upon you, not merely inform you?"], "practice": "Read one short passage twice: first for content, then again asking, “What quality or movement is this Word trying to awaken in me?”", "visual": "word"}, {"unit": 2, "n": 3, "title": "Prayer", "subtitle": "Turning the face toward God", "body": "Prayer repeatedly reorients consciousness. It can express humility, devotion, longing, dependence, gratitude, praise, repentance, and love. Its aim is deeper than obtaining desired outcomes: it establishes communion with the Beloved.", "quote": "The obligatory prayers are…conducive to humility and submissiveness, to setting one's face towards God and expressing devotion to Him.", "author": "Bahá’u’lláh / Bahá’í authoritative text", "source": "Devotion — Quotations", "url": "https://www.bahai.org/beliefs/life-spirit/devotion/quotations", "questions": ["What are the obligatory prayers conducive to?", "Toward whom should one set one’s face in prayer?", "Which inner attitudes does the passage connect with prayer?", "What might “setting one’s face towards God” mean psychologically and spiritually?", "How is prayer different when its purpose is communion rather than simply requesting outcomes?"], "practice": "Before prayer, name where your attention is facing. After prayer, notice whether its direction, emotional tone, or priorities have shifted.", "visual": "turn"}, {"unit": 2, "n": 4, "title": "Meditation", "subtitle": "From words to insight", "body": "‘Abdu’l‑Bahá describes meditation as an exercise of the human spirit in which questions are placed before it and deeper realities may become clear. Bahá’í teaching does not prescribe one universal technique; the faculty itself is emphasized.", "quote": "While you meditate you are speaking with your own spirit… the light breaks forth and the reality is revealed.", "author": "‘Abdu’l‑Bahá", "source": "Paris Talks — The Power and Value of True Thought", "url": "https://www.bahai.org/library/authoritative-texts/abdul-baha/paris-talks/7", "questions": ["With whom are you speaking while you meditate?", "What breaks forth when reality is revealed?", "What is the subject with which one is said to be “speaking” in meditation?", "What does the imagery of light suggest about the movement from confusion toward insight?", "How does this quotation differ from the idea that meditation is merely emptying the mind?"], "practice": "Take one quotation from this page. Sit with it silently and ask: What does it say? What does it assume? What would it require in action?", "visual": "meditate"}, {"unit": 2, "n": 5, "title": "Purifying the Mirror", "subtitle": "Freedom from distortions of self", "body": "Purification does not mean suppressing every emotion. It means becoming less governed by egotism, prejudice, attachment, and self-interest—forces capable of distorting both perception and action.", "quote": "This test…removeth the rust of egotism from the mirror of the heart until the Sun of Truth may shine therein.", "author": "‘Abdu’l‑Bahá", "source": "Tablets of ‘Abdu’l‑Bahá, pp. 722–723", "url": "https://reference.bahai.org/en/t/ab/TAB/tab-787.html", "questions": ["What does the test remove from the mirror of the heart?", "What may shine in the mirror of the heart after the rust is removed?", "What is the “rust” in the image, and what faculty is represented by the mirror?", "Does the passage say the Sun must be created by the mirror, or that an obstruction must be removed?", "How can egotism distort what we believe to be objective judgment?"], "practice": "In a disagreement, ask: What do I want to be true? What am I afraid might be true? What evidence would genuinely change my mind?", "visual": "polish"}, {"unit": 2, "n": 6, "title": "Love of God", "subtitle": "From compliance to attraction", "body": "A rule can restrain behavior from outside. Love can transform motive from within. Bahá’u’lláh repeatedly places obedience within a relationship of love, so that spiritual maturity increasingly asks what pleases the Beloved rather than merely what is permitted.", "quote": "Walk in My statutes for love of Me and deny thyself that which thou desirest if thou seekest My pleasure.", "author": "Bahá’u’lláh", "source": "The Hidden Words, Arabic no. 38", "url": "https://www.bahai.org/library/authoritative-texts/bahaullah/hidden-words/2", "questions": ["Why are we told to walk in God’s statutes?", "What are we told to deny ourselves if we seek God’s pleasure?", "What motive for obedience is explicitly named?", "What relationship is drawn between love and the ability to deny a desire?", "How is behavior different when it flows from attraction to God rather than fear of punishment?"], "practice": "Choose one teaching you normally experience as a rule. Reframe it for a day as an act of love toward God.", "visual": "love"}, {"unit": 2, "n": 7, "title": "The Spirit of Faith", "subtitle": "Illumination of human capacity", "body": "The rational soul possesses real powers of discovery, yet ‘Abdu’l‑Bahá says spiritual realities require another form of assistance. The mirror may be clear and polished, but it still needs light.", "quote": "The human spirit, unless it be assisted by the spirit of faith, cannot become acquainted with the divine mysteries and the heavenly realities.", "author": "‘Abdu’l‑Bahá", "source": "Bahá’í World Faith — Soul, Mind and Spirit", "url": "https://reference.bahai.org/en/t/c/BWF/bwf-28.html", "questions": ["What assistance does the human spirit need to know divine mysteries?", "What can the human spirit become acquainted with through this assistance?", "What limit is placed on the unaided human spirit?", "What does the word “assisted” imply about the relationship between natural capacity and divine illumination?", "Why does intellectual brilliance not automatically imply spiritual perception?"], "practice": "Before studying a spiritual question, explicitly ask for assistance—not merely sharper reasoning, but purity, detachment, and illumination.", "visual": "faith"}, {"unit": 2, "n": 8, "title": "Will, Effort and Divine Assistance", "subtitle": "The rudder and the power that moves the ship", "body": "Free will in the writings is neither absolute independence nor helpless determinism. ‘Abdu’l‑Bahá says our actions depend on divine assistance, while moral direction remains genuinely ours to choose.", "quote": "All the doings of man are sustained by the power of divine assistance, but the choice of good or evil belongs to him alone.", "author": "‘Abdu’l‑Bahá", "source": "Some Answered Questions — Free Will and its Limits", "url": "https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/11", "questions": ["What sustains all the doings of man?", "What choice belongs to man alone?", "Which part of action is said to depend on divine assistance?", "Which part is said to “belong” to the human being?", "How does this sentence reject both “everything depends on me” and “my choices do not matter”?"], "practice": "For one virtue, write two lines: “What I ask God for” and “What I must actually choose and do.”", "visual": "rudder"}, {"unit": 2, "n": 9, "title": "Prayer, Meditation and Action", "subtitle": "Insight must become movement", "body": "The devotional life is incomplete when it stops at inner experience. Guidance is tested and made fruitful through action. Reflection on action can then lead to deeper prayer, better understanding, and wiser subsequent action.", "quote": "Prayer and meditation are very important factors… but with them must go also action and example, as these are the tangible results of the former.", "author": "Written on behalf of Shoghi Effendi", "source": "Prayer and Devotional Life, selection 50", "url": "https://www.bahai.org/library/authoritative-texts/compilations/prayer-devotional-life/6", "questions": ["What must accompany prayer and meditation?", "What are described as the tangible results of prayer and meditation?", "Which two things are called “tangible results” of prayer and meditation?", "What does the word “results” imply about the purpose of inner spiritual practice?", "How could a devotional practice become distorted if it never changes conduct?"], "practice": "Complete one full cycle this week: pray → meditate → choose one small action → act → reflect → adjust.", "visual": "cycle", "artKey": "art_cycle", "artCaption": "An interpretive mandala of the recurring cycle: prayer, meditation, insight, action, reflection, and renewed service."}, {"unit": 2, "n": 10, "title": "Confirmation", "subtitle": "Guidance can meet us while walking", "body": "Divine confirmation is not a promise that every sincere plan succeeds. The writings repeatedly connect confirmation with arising, effort, service, remembrance, and dependence on God. Assistance may come as strength, opportunity, correction, unity, insight, or endurance.", "quote": "Verily, this is the Magnet of divine confirmations. This is the mighty Force which will surely attract heavenly assistance.", "author": "‘Abdu’l‑Bahá", "source": "Additional Tablets, Extracts and Talks", "url": "https://www.bahai.org/library/authoritative-texts/abdul-baha/additional-tablets-extracts-talks/261595095/1", "questions": ["What is described as the Magnet of divine confirmations?", "What does this Magnet attract?", "What is called a “Magnet” in the passage surrounding these words—what attitudes and actions precede this statement?", "What does the image of attraction suggest about confirmation and human effort?", "How can we remain open to confirmation without treating every coincidence as a private supernatural message?"], "practice": "When acting on a sincere intention, look for confirmation in forms such as increased capacity, clearer learning, unexpected collaboration, or needed correction—not only immediate success.", "visual": "magnet"}, {"unit": 2, "n": 11, "title": "Divine Law", "subtitle": "Training desire and enlarging freedom", "body": "Divine law can function as spiritual formation. Fasting offers a clear example: appetite remains real, yet the human being practices not treating every desire as a command. Freedom grows as compulsion loses its absolute authority.", "quote": "Verily, I say, fasting is the supreme remedy and the most great healing for the disease of self and passion.", "author": "Bahá’u’lláh", "source": "Bahá’í Sacred Writings — Fasting", "url": "https://www.bahai.org/library/authoritative-texts/bahaullah/bahai-sacred-writings/3", "questions": ["What does Bahá’u’lláh call fasting?", "What disease is fasting said to heal?", "What is fasting called: punishment, rule, or remedy?", "What “disease” is named, and why might the language of healing matter?", "How can voluntarily refusing an immediate desire increase rather than decrease freedom?"], "practice": "Notice one recurring impulse today—food, irritation, attention, approval, comfort—and practice experiencing it without automatically obeying it.", "visual": "discipline"}, {"unit": 2, "n": 12, "title": "Tests and Difficulties", "subtitle": "Where latent virtues become exercised capacities", "body": "Tests do not automatically make a person better. They create conditions in which hidden attachments and undeveloped capacities become visible. What matters is the response: difficulty can expose ego and call forth qualities that comfort never demanded.", "quote": "Likewise, the pure gold shineth radiantly in the fire of test… trials are as the gift of God, the Exalted.", "author": "‘Abdu’l‑Bahá", "source": "Bahá’í World Faith — Trials a Gift from God", "url": "https://www.ibiblio.org/Bahai/Texts/English/BWF/BWF-69.html", "questions": ["What shines radiantly in the fire of test?", "What are trials compared to?", "What two images are used in the larger passage—an examination and gold in fire?", "Why is a test different from the virtue that may be developed through it?", "What quality is your present difficulty asking you to exercise rather than merely admire?"], "practice": "Take one current difficulty and complete: “This circumstance is giving me repeated opportunities to practice ______.”", "visual": "fire"}, {"unit": 2, "n": 13, "title": "Daily Accounting and Character", "subtitle": "Spiritual feedback without self-condemnation", "body": "Daily self-accounting makes growth observable. Its purpose is not obsessive shame but truthful calibration: Where did a divine quality appear? Where did ego dominate? What needs repentance, gratitude, repair, or a new attempt tomorrow?", "quote": "Bring thyself to account each day ere thou art summoned to a reckoning… thou shalt be called to give account for thy deeds.", "author": "Bahá’u’lláh", "source": "The Hidden Words, Arabic no. 31", "url": "https://reference.bahai.org/en/t/b/HW/hw-32.html", "questions": ["When should a person bring himself to account?", "For what will a person be called to give account?", "What frequency of self-examination is prescribed?", "What object of accounting is named at the end of the quotation?", "How might “account” differ from vague guilt—what does an account require us actually to notice?"], "practice": "Tonight review one act of love, one act influenced by self, one thing to repair, one thing to thank God for, and one next step.", "visual": "account"}, {"unit": 2, "n": 14, "title": "Service", "subtitle": "Where transformation becomes visible", "body": "The spiritual life reaches outward. Qualities become real in relationships and deeds: generosity by giving, patience by enduring, justice by acting justly, compassion by serving. Service is not merely an application after spiritual development; it is one of the environments in which development occurs.", "quote": "Strive that your actions day by day may be beautiful prayers. Turn towards God, and seek always to do that which is right and noble.", "author": "‘Abdu’l‑Bahá", "source": "Paris Talks, no. 26", "url": "https://www.bahai.org/library/authoritative-texts/abdul-baha/paris-talks/3", "questions": ["What should our actions become day by day?", "Toward whom should we turn?", "What surprising relationship is made between “actions” and “prayers”?", "Which two movements occur together: turning toward God and turning toward noble action?", "If actions can become prayers, how might service change the boundary between devotional life and ordinary life?"], "practice": "Choose one person or need you can serve concretely within the next 24 hours. Make the action small enough that you will actually do it.", "visual": "service", "artKey": "art_service", "artCaption": "Transformation made visible as light received from above is offered outward in deeds, endurance, and service."}];
+
+const ART = {"art_human_reality": {"src": "/images/study/human-reality.webp", "alt": "A luminous human figure aligned with heart, mind, and soul under a descending beam of divine light."}, "art_soul_body": {"src": "/images/study/soul-body.webp", "alt": "A translucent human figure beneath a radiant sun, showing connection between spirit and body through a mirror-like image."}, "art_perception": {"src": "/images/study/perception.webp", "alt": "A side profile human figure receiving impressions through symbols of sight, hearing, and other faculties."}, "art_spirit_levels": {"src": "/images/study/spirit-levels.webp", "alt": "A vertical mandala showing dove, human, animal, and plant levels of spirit in one luminous composition."}, "art_crossroads": {"src": "/images/study/crossroads.webp", "alt": "A solitary figure standing at a split between a shadowed path and a radiant Godward path."}, "art_cycle": {"src": "/images/study/cycle.webp", "alt": "A cyclical mandala showing prayer, meditation, seeking, transformation, and service."}, "art_service": {"src": "/images/study/service.webp", "alt": "A meditative figure transmitting light outward through service, refinement, and healing."}};
+
+const COURSE_DATA = [
+ {unit:1,n:1,title:"Created to Radiate Light",subtitle:"The dignity and purpose of the human being",body:"We begin not with a diagram but with a calling. Every person possesses a noble spiritual capacity. The purpose of studying the human reality is to learn how that capacity can be awakened and offered to the world.",quote:"The All-Loving God created man to radiate the Divine light and to illumine the world by his words, action and life. If he is without virtue he becomes no better than a mere animal.",author:"‘Abdu’l‑Bahá",source:"Paris Talks, no. 36",url:"https://www.bahai.org/library/authoritative-texts/abdul-baha/paris-talks/4",questions:["Why did God create the human being?","By what three means can a person illumine the world?","What does “radiate” suggest about the source and transmission of spiritual qualities?","How does this passage connect personal character with the condition of the world?","What light might your life be especially capable of offering?"],memorize:"Created man to radiate the Divine light.",individual:"Identify one capacity God has placed within you and one person who could benefit from it this week.",collective:"Each person names a capacity they see in another member. Consult on one way the group can bring hope or comfort to someone this week.",story:"‘Abdu’l‑Bahá did not speak of human nobility abstractly. He sought out the poor, the ill, the lonely, and those whom society ignored—treating each as a soul worthy of love and honor.",visual:"core"},
+ {unit:1,n:2,title:"The Rational Soul",subtitle:"A sign of God beyond material reduction",body:"The body, brain, heredity, and environment profoundly affect earthly experience, but the Bahá’í writings do not reduce the human being to them. They identify the distinctive human reality with the rational soul or human spirit.",quote:"The human spirit, which distinguishes man from the animal, is the rational soul, and these two terms—the human spirit and the rational soul—designate one and the same thing. This spirit…encompasses all things and, as far as human capacity permits, discovers their realities.",author:"‘Abdu’l‑Bahá",source:"Some Answered Questions, ch. 55",url:"https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/10",questions:["What distinguishes the human being from the animal?","What two terms designate one reality?","What does the human spirit discover?","Why is “as far as human capacity permits” important?","How does this passage challenge both material reductionism and intellectual pride?"],memorize:"The human spirit…is the rational soul.",individual:"Notice sensation, thought, emotion, and moral choice during one activity without assuming they are identical.",collective:"In pairs, explain the distinction between brain, mind, and rational soul using only claims supported by the passage; then compare explanations.",story:"When answering philosophical questions, ‘Abdu’l‑Bahá joined intellectual clarity with humility. He explained the soul’s powers while repeatedly warning that its essential reality cannot be fully grasped.",visual:"radar"},
+ {unit:1,n:3,title:"One Reality, Many Powers",subtitle:"Mind, heart, will, and perception",body:"The writings do not require us to imagine a committee of invisible entities inside the body. Mind, heart, perception, and will can be understood as powers, expressions, or orientations of one human reality.",quote:"Spirit, mind, soul, and the powers of sight and hearing are but one single reality which hath manifold expressions owing to the diversity of its instruments. As thou dost observe, man’s power to comprehend, move, speak, hear, and see all derive from this sign of his Lord within him.",author:"Bahá’u’lláh",source:"The Summons of the Lord of Hosts",url:"https://www.bahai.org/library/authoritative-texts/bahaullah/summons-lord-hosts/8",questions:["What is described as one single reality?","Why does it have manifold expressions?","Which powers are said to derive from the sign of God within the human being?","What is single and what is diverse?","How does this protect us from treating every inner faculty as a separate soul?"],memorize:"One single reality which hath manifold expressions.",individual:"Choose one experience and distinguish the roles of perception, thought, feeling, and choice within it.",collective:"Draw one shared model of the passage. Label what comes directly from the text and what is only the group’s interpretation.",story:"‘Abdu’l‑Bahá often used several analogies for one truth—a lamp and its light, a tree and its fruit, the sun and a mirror—allowing each image to clarify without becoming a rigid creed.",visual:"many"},
+ {unit:1,n:4,title:"Soul and Body",subtitle:"Connection without containment",body:"The body is neither the whole self nor an enemy. It is the indispensable instrument of earthly learning and service, while the soul is described as immaterial and placeless.",quote:"The spirit is absolutely placeless and immaterial, but it has a connection with the body, even as the sun has a connection with this mirror. The sun does not enter the mirror, but its light is reflected therein.",author:"‘Abdu’l‑Bahá",source:"Some Answered Questions, ch. 67",url:"https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/11",questions:["How is the spirit described?","What relationship does it have with the body?","What is reflected in the mirror?","What does the analogy illuminate about connection without containment?","Where would it be unsafe to push the analogy beyond the passage?"],memorize:"The sun does not enter the mirror, but its light is reflected therein.",individual:"Name three ways caring for your body can strengthen your ability to pray, study, work, love, or serve.",collective:"One person draws the analogy while others identify its exact correspondences and limits. Consult on how a group can honor bodily needs without materialism.",story:"Despite decades of imprisonment and physical hardship, ‘Abdu’l‑Bahá cared attentively for human bodies—bringing food, medicine, and comfort—while directing hearts toward their eternal reality.",visual:"mirror"},
+ {unit:1,n:5,title:"The Spiritual Heart",subtitle:"A center of receptivity, love, and remembrance",body:"The heart is presented as a locus of attraction, purification, spiritual perception, and love. Its condition influences how truth is received and how knowledge is translated into motive.",quote:"Thy heart is My home; sanctify it for My descent. Thy spirit is My place of revelation; cleanse it for My manifestation.",author:"Bahá’u’lláh",source:"The Hidden Words, Arabic no. 59",url:"https://www.bahai.org/library/authoritative-texts/bahaullah/hidden-words/2",questions:["What does Bahá’u’lláh call the heart?","What does He call the spirit?","Which two actions are requested?","What do “home” and “place of revelation” suggest about receptivity?","Which attachments can prevent the heart from receiving truth fairly?"],memorize:"Thy heart is My home; sanctify it.",individual:"Before reading a sacred passage, release one prejudice, resentment, or preoccupation that may distort your reception.",collective:"Read the passage aloud twice, followed by silence. Without exposing private matters, consult on qualities that make a gathering spiritually receptive.",story:"Visitors often recalled that ‘Abdu’l‑Bahá listened with complete attention. His presence made people feel seen, suggesting that a purified heart is revealed in the quality of attention given to another soul.",visual:"heart"},
+ {unit:1,n:6,title:"Two Natures and Free Will",subtitle:"Two orientations—not two souls",body:"Higher and lower nature describe moral directions within human life. The same soul may turn toward divine qualities or become captive to self and passion. Choice is real, though never independent of God’s sustaining power.",quote:"In man there are two natures; his spiritual or higher nature and his material or lower nature. In one he approaches God, in the other he lives for the world alone.",author:"‘Abdu’l‑Bahá",source:"Paris Talks — The Two Natures in Man",url:"https://www.bahai.org/library/authoritative-texts/abdul-baha/paris-talks/3",questions:["How many natures are named?","What are they called?","In which nature does one approach God?","Does the passage describe two souls or two orientations?","How can a repeated choice gradually form character?"],memorize:"In one he approaches God.",individual:"At one choice point, pause and ask which direction your response moves you.",collective:"Consider a realistic moral situation. List circumstances no one chose, choices still available, and qualities needed to respond together.",story:"When opposed, insulted, or deserted, ‘Abdu’l‑Bahá counseled gentleness, firmness, prayer, and renewed kindness—demonstrating that freedom is most visible in the response we choose under pressure.",visual:"fork"},
+
+ {unit:2,n:1,title:"The Word That Gives Life",subtitle:"Revelation before explanation",body:"The Word of God is not merely information about spiritual life. It is described as a creative power capable of awakening capacities. Study therefore begins by encountering the passage itself.",quote:"Every word that proceedeth out of the mouth of God is endowed with such potency as can instill new life into every human frame, if ye be of them that comprehend this truth.",author:"Bahá’u’lláh",source:"Gleanings from the Writings of Bahá’u’lláh, LXXIV",url:"https://www.bahai.org/library/authoritative-texts/bahaullah/gleanings-writings-bahaullah/4",questions:["What is every word from God endowed with?","What can it instill?","What stronger claim is made than “the Word contains helpful ideas”?","What might prevent a reader from receiving its formative influence?","How should this change the manner in which sacred text is studied?"],memorize:"Every word…is endowed with such potency.",individual:"Read the passage aloud twice: first for meaning, then asking what movement it seeks to awaken in you.",collective:"One person reads slowly; all observe silence; a second reads. Each shares one phrase that stood out before discussion begins.",story:"‘Abdu’l‑Bahá’s gatherings often revolved around prayer, sacred utterance, lucid explanation, and loving fellowship—the Word was experienced within a spiritual atmosphere, not treated as detached data.",visual:"word"},
+ {unit:2,n:2,title:"Nearness Is Likeness",subtitle:"Drawing near through divine qualities",body:"Nearness to God is not spatial travel. It appears as likeness: increasing truthfulness, mercy, justice, generosity, purity, and love, joined with detachment from the tyranny of self.",quote:"In a word, nearness to God necessitates sacrifice of self, severance and the giving up of all to Him. Nearness is likeness. Behold how the sun shines upon all creation, but only surfaces capable of reflection reveal its light.",author:"‘Abdu’l‑Bahá",source:"The Promulgation of Universal Peace",url:"https://www.bahai.org/library/authoritative-texts/abdul-baha/promulgation-universal-peace/12",questions:["What does nearness necessitate?","What is nearness?","What does likeness mean in this context?","Why is knowledge of a virtue different from possessing it?","Which divine quality would visibly alter your relationships?"],memorize:"Nearness is likeness.",individual:"Choose one attribute and define what one degree more of it looks like in a concrete relationship today.",collective:"Choose one quality the group needs. Describe observable behaviors, then make one shared commitment for the next gathering.",story:"‘Abdu’l‑Bahá taught likeness through life: His generosity, forgiveness, hospitality, courage, and tireless service made divine attributes perceptible in ordinary human relationships.",visual:"near"},
+ {unit:2,n:3,title:"Prayer and Meditation",subtitle:"Turning the face and listening deeply",body:"Prayer reorients the heart toward God; meditation allows words and questions to penetrate beneath first impressions. Neither is complete if it remains detached from conduct.",quote:"The obligatory prayers are conducive to humility and submissiveness, to setting one’s face towards God and expressing devotion to Him. While you meditate you are speaking with your own spirit… the light breaks forth and the reality is revealed.",author:"Bahá’u’lláh and ‘Abdu’l‑Bahá",source:"Prayer and Devotional Life; Paris Talks",url:"https://www.bahai.org/library/authoritative-texts/compilations/prayer-devotional-life/2",questions:["Toward whom is the face set in prayer?","What qualities can prayer foster?","With what are we said to speak in meditation?","What does the image of light breaking forth suggest?","Why must an inward insight eventually be tested in action?"],memorize:"Setting one’s face towards God.",individual:"Pray, sit silently with one phrase, write one insight, and identify one action it suggests.",collective:"Pray together, keep two minutes of silence, then share insights without debate. Consult only after each person has been heard.",story:"‘Abdu’l‑Bahá united constant prayer with unceasing action. Even in prison, He described turning to God as His greatest joy, while spending His days meeting the needs of others.",visual:"meditate"},
+ {unit:2,n:4,title:"Love, Law, and Freedom",subtitle:"From external restraint to inner attraction",body:"Divine law trains desire and enlarges freedom. Love gradually changes the central question from “What may I do?” to “What pleases the Beloved and contributes to human flourishing?”",quote:"Walk in My statutes for love of Me and deny thyself that which thou desirest if thou seekest My pleasure. Observe My commandments, for the love of My beauty.",author:"Bahá’u’lláh",source:"The Hidden Words; The Kitáb-i-Aqdas",url:"https://www.bahai.org/library/authoritative-texts/bahaullah/hidden-words/2",questions:["Why are we told to walk in God’s statutes?","What may love enable a person to deny?","What motive for obedience is named?","How can refusing an impulse enlarge freedom?","How does obedience change when it grows from love rather than fear?"],memorize:"Walk in My statutes for love of Me.",individual:"Choose one teaching you normally experience as a rule and practice it today as an act of love.",collective:"Discuss the difference between compulsion, conformity, and loving obedience. Avoid discussing or judging anyone’s private shortcomings.",story:"‘Abdu’l‑Bahá’s disciplined life did not appear cold or severe. His obedience expressed itself as joy, humor, tenderness, generosity, and freedom from preoccupation with personal comfort.",visual:"love"},
+ {unit:2,n:5,title:"Will, Effort, and Confirmation",subtitle:"Arising while depending upon God",body:"Human action is neither absolute self-sufficiency nor helpless determinism. Moral direction belongs to us; the power to act and the confirmations that meet sincere service come through God.",quote:"All the doings of man are sustained by the power of divine assistance, but the choice of good or evil belongs to him alone.",author:"‘Abdu’l‑Bahá",source:"Some Answered Questions — Free Will and Its Limits",url:"https://www.bahai.org/library/authoritative-texts/abdul-baha/some-answered-questions/11",questions:["What sustains human action?","What choice belongs to the human being?","What depends upon divine assistance?","What remains our moral responsibility?","How does this reject both pride and passivity?"],memorize:"The choice of good or evil belongs to him.",individual:"For one virtue, write: what I ask God for; what I must choose; what action I will take.",collective:"Select one modest service action. Separate what the group can choose and do from the results it must entrust to God.",story:"‘Abdu’l‑Bahá repeatedly encouraged people to arise with courage while relying wholly on God. Confirmation was not an excuse to wait; it was assistance encountered on the path of sincere action.",visual:"rudder"},
+ {unit:2,n:6,title:"Tests, Reflection, and Growth",subtitle:"Where latent qualities are exercised",body:"Tests do not automatically improve us. They reveal attachments and create opportunities to exercise capacities that comfort may leave dormant. Reflection, repentance, repair, and renewed effort turn experience into learning.",quote:"The more difficulties one sees in the world the more perfect one becomes. The more you plough and dig the ground the more fertile it becomes. The more you cut the branches of a tree the higher and stronger it grows.",author:"‘Abdu’l‑Bahá",source:"Star of the West, quoted in Bahá’í compilations",url:"https://www.bahai.org/library/authoritative-texts/compilations/crisis-victory/2",questions:["What happens as the ground is ploughed?","What happens as branches are cut?","Do difficulties themselves guarantee growth?","What response allows a test to cultivate rather than embitter?","What capacity is a present difficulty asking you to exercise?"],memorize:"The more you plough and dig the ground the more fertile it becomes.",individual:"Complete: this circumstance gives me repeated opportunities to practice ____. Choose one repair or next attempt.",collective:"Reflect on a shared difficulty without blame: facts, feelings, spiritual principle, lesson, and next action. End by naming signs of progress to observe.",story:"During forty years of exile and imprisonment, ‘Abdu’l‑Bahá did not romanticize suffering; He transformed its conditions into occasions for worship, service, courage, and consolation.",visual:"fire"},
+
+ {unit:3,n:1,title:"Actions as Beautiful Prayers",subtitle:"Service as a school of the soul",body:"Service is not merely an application added after spiritual growth. It is an environment in which qualities become real: generosity by giving, patience by accompanying, courage by acting, and love by attending to another’s need.",quote:"Therefore strive that your actions day by day may be beautiful prayers. Turn towards God, and seek always to do that which is right and noble. Enrich the poor, raise the fallen, comfort the sorrowful, bring healing to the sick, reassure the fearful, rescue the oppressed, bring hope to the hopeless, shelter the destitute!",author:"‘Abdu’l‑Bahá",source:"Paris Talks, no. 26",url:"https://www.bahai.org/library/authoritative-texts/abdul-baha/paris-talks/4",questions:["What should our actions become?","Toward whom should we turn?","Which people are named as needing service?","How does the passage unite devotion and social action?","Which need can you realistically address now?"],memorize:"Strive that your actions day by day may be beautiful prayers.",individual:"Choose one person or need and complete a small, specific act of service within twenty-four hours.",collective:"Consult on a need within reach of the group. Choose an action small enough to complete, assign responsibilities, and set a time to reflect afterward.",story:"‘Abdu’l‑Bahá personally visited the sick and poor, arranged food and clothing, and remembered people’s circumstances. His station never placed Him above ordinary acts of care.",visual:"service"},
+ {unit:3,n:2,title:"The Art of Consultation",subtitle:"Searching for truth without contention",body:"Spiritual perception matures in relationship. Consultation asks participants to detach ideas from ego, listen for truth, welcome diverse insight, and preserve love even when understanding differs.",quote:"They must then proceed with the utmost devotion, courtesy, dignity, care and moderation to express their views. They must in every matter search out the truth and not insist upon their own opinion.",author:"‘Abdu’l‑Bahá",source:"Selections from the Writings of ‘Abdu’l‑Bahá, no. 43",url:"https://www.bahai.org/library/authoritative-texts/abdul-baha/selections-writings-abdul-baha/2",questions:["How should views be expressed?","What must participants search out?","Upon what must they not insist?","Why must an idea be detached from the person offering it?","Which quality of consultation is hardest to maintain under disagreement?"],memorize:"Search out the truth and not insist upon their own opinion.",individual:"In your next disagreement ask: What do I want to be true? What evidence or spiritual principle could change my view?",collective:"Use the passage as a covenant: pray, establish the facts, hear each voice, identify principles, generate options, decide, support the decision, and later reflect.",story:"‘Abdu’l‑Bahá welcomed sincere questions and differing viewpoints, but redirected contention toward courtesy, truth-seeking, and love—making the relationship part of the answer.",visual:"cycle"},
+ {unit:3,n:3,title:"Unity in Diversity",subtitle:"Many notes making one chord",body:"Unity does not demand sameness. Human diversity can reveal new capacities and perspectives when prejudice and suspicion give way to fellowship and a shared search for truth.",quote:"The diversity in the human family should be the cause of love and harmony, as it is in music where many different notes blend together in the making of a perfect chord. If you meet those of different race and color from yourself, do not mistrust them…but rather be glad and show them kindness.",author:"‘Abdu’l‑Bahá",source:"Paris Talks, no. 15",url:"https://www.bahai.org/library/authoritative-texts/abdul-baha/paris-talks/2",questions:["What should diversity cause?","To what is diversity compared?","What response replaces mistrust?","Why is a chord a better image of unity than a single repeated note?","Whose perspective is missing from your usual circle?"],memorize:"Many different notes blend together in the making of a perfect chord.",individual:"Initiate a sincere conversation with someone whose background or viewpoint differs from yours; practice curiosity without trying to win.",collective:"Identify who is absent from the group or underserved by its activities. Choose one hospitable step that removes a real barrier to participation.",story:"At His gatherings, ‘Abdu’l‑Bahá deliberately crossed boundaries of race, class, nationality, and religion. He treated fellowship itself as a spiritual and social act.",visual:"many"},
+ {unit:3,n:4,title:"Justice and the Life of Humanity",subtitle:"Spirituality confronting suffering",body:"A polished mirror cannot remain indifferent to injustice. The oneness of humanity requires that another person’s injury, exclusion, or deprivation be felt as a concern of the whole.",quote:"The injury of one shall be considered the injury of all; the comfort of each, the comfort of all; the honor of one, the honor of all.",author:"‘Abdu’l‑Bahá",source:"The Promulgation of Universal Peace",url:"https://www.bahai.org/library/authoritative-texts/abdul-baha/promulgation-universal-peace/12",questions:["Whose injury concerns the whole?","Whose comfort and honor concern the whole?","What conception of human interdependence does this establish?","How is justice more than private kindness?","Which pattern of suffering calls for both immediate care and a change of conditions?"],memorize:"The injury of one shall be considered the injury of all.",individual:"Examine one convenience you enjoy. Ask whether another person bears a hidden cost and identify one responsible change.",collective:"Choose one local concern. Distinguish relief, accompaniment, education, and structural action; select a constructive contribution suited to the group’s capacity.",story:"‘Abdu’l‑Bahá combined direct aid with teachings aimed at transforming social relations: eliminating prejudice, advancing women, educating all, reconciling science and religion, and establishing peace.",visual:"bridge"},
+ {unit:3,n:5,title:"Science, Religion, and Human Progress",subtitle:"Two powers needed for civilization",body:"Spiritual transformation is not an escape from reason or material progress. Humanity needs the disciplined investigation of reality and the moral, unifying power of religion, freed from superstition and fanaticism.",quote:"Religion and science are the two wings upon which man’s intelligence can soar into the heights, with which the human soul can progress. It is not possible to fly with one wing alone!",author:"‘Abdu’l‑Bahá",source:"Paris Talks, no. 44",url:"https://www.bahai.org/library/authoritative-texts/abdul-baha/paris-talks/5",questions:["What are the two wings?","What progresses through them?","What happens with one wing alone?","Which distortions arise when material power lacks moral purpose?","How can spiritual principle guide the use of knowledge without suppressing inquiry?"],memorize:"It is not possible to fly with one wing alone.",individual:"Take one claim important to you and examine both its evidence and its moral implications.",collective:"For the chosen service project, identify what reliable knowledge is needed and which spiritual principles should govern its use.",story:"‘Abdu’l‑Bahá praised scientific discovery and reason while warning that material civilization without divine virtues could magnify destruction rather than secure human happiness.",visual:"levels"},
+ {unit:3,n:6,title:"A Life That Gives Light",subtitle:"Reflection, commitment, and continued service",body:"The course ends where practice begins. Character slowly takes form through recurring cycles of sacred study, prayer, consultation, action, tests, reflection, repentance, and renewed service.",quote:"Your hearts are full of the Love of God… You live to do good and to bring happiness to others. Your greatest longing is to comfort those who mourn, to strengthen the weak, and to be the cause of hope to the despairing soul.",author:"‘Abdu’l‑Bahá",source:"Paris Talks, no. 36",url:"https://www.bahai.org/library/authoritative-texts/abdul-baha/paris-talks/4",questions:["What fills the heart?","What do such people live to do?","Who are they moved to comfort and strengthen?","How does love of God become visible in the direction of one’s longing?","What kind of soul—and what kind of community—are you helping to form?"],memorize:"Be the cause of hope to the despairing soul.",individual:"Write one commitment for the next seven days: a person, an action, a time, and the quality you will practice. Return afterward and reflect without self-condemnation.",collective:"Complete the group’s service action. At the next gathering reflect: What happened? What did we learn? Whose voice is missing? What should we preserve, change, or attempt next?",story:"‘Abdu’l‑Bahá’s life joined contemplation and action so completely that His words, deeds, relationships, endurance, and service formed one coherent invitation: receive the light of God and become a source of light to others.",visual:"flame"}
+];
+
+const UNIT_META = {
+  1:{title:"The Noble Human Reality",short:"Noble Reality"},
+  2:{title:"The Soul in This World",short:"Soul in This World"},
+  3:{title:"Receiving Divine Light",short:"Divine Light"},
+  4:{title:"Freedom and Spiritual Growth",short:"Spiritual Growth"},
+  5:{title:"Becoming a Source of Light",short:"Source of Light"},
+  6:{title:"Advancing Civilization",short:"Civilization"}
+};
+
+// Preserve the eighteen-section arc while arranging it into six group-sized units.
+// The overrides below also keep composite passages visibly separate and correct
+// the attribution or source issues identified during editorial review.
+const STUDY_DATA = COURSE_DATA.map((item,index)=>{
+  const unit=Math.floor(index/3)+1;
+  const revised={...item,unit,n:(index%3)+1};
+
+  if(index===7){
+    revised.quote="In a word, nearness to God necessitates sacrifice of self, severance and the giving up of all to Him. Nearness is likeness. Behold how the sun shines upon all creation, but only surfaces that are pure and polished can reflect its glory and light.";
+  }
+
+  if(index===8){
+    revised.quote="The obligatory prayers are binding inasmuch as they are conducive to humility and submissiveness, to setting one’s face towards God and expressing devotion to Him.";
+    revised.author="‘Abdu’l‑Bahá";
+    revised.source="Additional Tablets, Extracts and Talks — Obligatory Prayer";
+    revised.url="https://www.bahai.org/library/authoritative-texts/abdul-baha/additional-tablets-extracts-talks/628388372/1";
+    revised.quote2="It is an axiomatic fact that while you meditate you are speaking with your own spirit. In that state of mind you put certain questions to your spirit and the spirit answers: the light breaks forth and the reality is revealed.";
+    revised.author2="‘Abdu’l‑Bahá";
+    revised.source2="Paris Talks — The Power and Value of True Thought";
+    revised.url2="https://www.bahai.org/library/authoritative-texts/abdul-baha/paris-talks/8";
+  }
+
+  if(index===9){
+    revised.quote="Walk in My statutes for love of Me and deny thyself that which thou desirest if thou seekest My pleasure.";
+    revised.source="The Hidden Words, Arabic no. 38";
+    revised.url="https://www.bahai.org/library/authoritative-texts/bahaullah/hidden-words/2";
+    revised.quote2="Observe My commandments, for the love of My beauty.";
+    revised.author2="Bahá’u’lláh";
+    revised.source2="The Kitáb-i-Aqdas, paragraph 4";
+    revised.url2="https://www.bahai.org/library/authoritative-texts/bahaullah/kitab-i-aqdas/2";
+  }
+
+  if(index===11){
+    revised.body="Tests do not automatically improve us. They reveal attachments and create opportunities to exercise capacities that comfort may leave dormant. Reflection, repentance, repair, and renewed effort can turn experience into learning; suffering itself should never be romanticized or imposed upon another person.";
+    revised.quote="Not until man is tried doth the pure gold distinctly separate from the dross. Torment is the fire of test wherein the pure gold shineth resplendently and the impurity is burned and blackened.";
+    revised.author="‘Abdu’l‑Bahá";
+    revised.source="Selections from the Writings of ‘Abdu’l‑Bahá, no. 89";
+    revised.url="https://www.bahai.org/library/authoritative-texts/abdul-baha/selections-writings-abdul-baha/5";
+    revised.questions=["When does pure gold become distinctly separated from dross?","What shines resplendently in the fire of test?","What does the image distinguish between the test itself and the qualities revealed through our response?","Why must this metaphor never be used to minimize another person’s pain or excuse preventable suffering?","What capacity is a present difficulty giving you an opportunity to exercise?"];
+    revised.memorize="The pure gold distinctly separate from the dross.";
+  }
+
+  if(index===15){
+    revised.collective="Begin by listening to people closest to one local concern. Distinguish relief, accompaniment, education, and structural action; then select a constructive contribution suited to the group’s capacity and free from partisan contention.";
+  }
+
+  if(index===16){
+    revised.quote2="Science and religion are two complementary systems of knowledge and practice by which human beings come to understand the world around them and through which civilization advances.";
+    revised.author2="The Universal House of Justice";
+    revised.source2="Message dated 2 March 2013";
+    revised.url2="https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/20130302_001/1";
+    revised.questions=["What are the two wings named by ‘Abdu’l‑Bahá?","What does the Universal House of Justice call science and religion?","What is said to advance through these systems of knowledge and practice?","What evidence, experience, and reliable knowledge are needed to understand the issue under consideration?","Which spiritual principles should guide the purposes, methods, and use of that knowledge?"];
+    revised.collective="For the group’s service effort, make two columns: reliable knowledge and experience needed; spiritual principles governing purpose and method. Identify what remains unknown and whom the group should consult before acting.";
+  }
+
+  if(index===17){
+    revised.collective="Complete the group’s service action. At the next gathering reflect before planning again: What happened? What did we learn? Whose voice was missing? What should we preserve, repair, change, or attempt next?";
+  }
+
+  return revised;
+});
+
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+
+const labels={
+ core:["Body","Soul","Thought","Choice"], gem:["Mystery","Sign","Capacity","Destiny"],
+ radar:["Observe","Discover","Reason","Know"], many:["Mind","Heart","Sight","Hearing"],
+ mirror:["Body","Soul","Connection","Expression"], instrument:["Sense","Move","Speak","Serve"],
+ lamp:["Spirit","Mind","Light","Fruit"], pipeline:["Sense","Imagine","Think","Remember"],
+ bridge:["Brain","Mind","Heart","Love"], heart:["Love","Receptivity","Purity","Insight"],
+ levels:["Vegetable","Animal","Human","Faith"], fork:["Higher","Lower","Choice","Direction"],
+ compass:["Godward","Selfward","Will","Habit"], womb:["Womb","Earth","Kingdom","Capacity"],
+ near:["Likeness","Virtue","Nearness","God"], word:["Word","Life","Meaning","Response"],
+ turn:["World","Prayer","God","Devotion"], meditate:["Question","Silence","Insight","Light"],
+ polish:["Ego","Mirror","Truth","Purity"], love:["Love","Desire","Will","Beloved"],
+ faith:["Mirror","Faith","Light","Mystery"], rudder:["Power","Rudder","Choice","Direction"],
+ cycle:["Pray","Act","Reflect","Repeat"], magnet:["Effort","Service","Aid","Confirm"],
+ discipline:["Desire","Freedom","Law","Choice"], fire:["Test","Gold","Response","Capacity"],
+ account:["Action","Account","Repair","Growth"], service:["Prayer","Deed","Person","World"]
+};
+
+
+function artHTML(s){
+  const a = ART[s.artKey];
+  if(!a) return "";
+  return `<div class="art-card">
+    <img src="${a.src}" alt="${esc(a.alt || s.title)}" loading="lazy">
+    <div class="art-glow"></div>
+    <div class="art-meta">
+      <div class="eyebrow">Visual meditation</div>
+      <p class="caption">${esc(s.artCaption || "")}</p>
+    </div>
+  </div>`;
+}
+
+function visualHTML(type){
+  const labs=labels[type]||["Soul","Mind","Heart","Will"];
+  if(["mirror","polish","faith"].includes(type)){
+    return `<div class="viz"><div class="sun"></div><div class="beam"></div><div class="mirror"></div>
+      <span class="node a">${esc(labs[0])}</span><span class="node b">${esc(labs[1])}</span>
+      <span class="node c">${esc(labs[2])}</span><span class="node d">${esc(labs[3])}</span></div>`;
+  }
+  if(["fork","compass","turn","rudder","discipline"].includes(type)){
+    return `<div class="viz"><div class="core-dot"></div><div class="arrow"></div><div class="split">
+      <div class="hi">${esc(labs[0])}<br>↑</div><div class="lo">${esc(labs[1])}<br>↓</div></div>
+      <span class="node c">${esc(labs[2])}</span><span class="node d">${esc(labs[3])}</span></div>`;
+  }
+  if(["cycle","account","service"].includes(type)){
+    return `<div class="viz"><div class="cycle"></div><div class="core-dot"></div><div class="cycle-labels">
+      <span>${esc(labs[0])}</span><span>${esc(labs[1])}</span><span>${esc(labs[2])}</span><span>${esc(labs[3])}</span></div></div>`;
+  }
+  if(["fire","love"].includes(type)){
+    return `<div class="viz"><div class="flame"></div><div class="r1 ring"></div><div class="r2 ring"></div>
+      <span class="node a">${esc(labs[0])}</span><span class="node b">${esc(labs[1])}</span>
+      <span class="node c">${esc(labs[2])}</span><span class="node d">${esc(labs[3])}</span></div>`;
+  }
+  return `<div class="viz"><div class="r1 ring"></div><div class="r2 ring"></div><div class="r3 ring"></div><div class="core-dot"></div>
+    <span class="node a">${esc(labs[0])}</span><span class="node b">${esc(labs[1])}</span>
+    <span class="node c">${esc(labs[2])}</span><span class="node d">${esc(labs[3])}</span></div>`;
+}
+
+function sectionHTML(s){
+ const qs=s.questions.map(q=>`<li>${esc(q)}</li>`).join("");
+ const secondQuote=s.quote2?`<div class="quote-card secondary">
+      <blockquote>${esc(s.quote2)}</blockquote>
+      <div class="source">${esc(s.author2)} · <a href="${esc(s.url2)}" target="_blank" rel="noopener">${esc(s.source2)}</a></div>
+      <div class="quote-sweep"></div>
+    </div>`:"";
+ return `<section class="scene track" id="u${s.unit}s${s.n}" data-unit="${s.unit}">
+   <div class="copy reveal">
+    <div class="num">${String(s.n).padStart(2,"0")} · ${esc(UNIT_META[s.unit].title)}</div>
+    <h3>${esc(s.title)}</h3>
+    <div class="subtitle">${esc(s.subtitle)}</div>
+    <div class="explanatory-label">Explanatory study note · author’s interpretation</div>
+    <p>${esc(s.body)}</p>
+    <div class="quote-card">
+      <blockquote>${esc(s.quote)}</blockquote>
+      <div class="source">${esc(s.author)} · <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.source)}</a></div>
+      <div class="quote-sweep"></div>
+    </div>
+    ${secondQuote}
+    <div class="reflection">
+      <div class="label">Study the quotation</div>
+      <h4>Understand, interpret, and reflect</h4>
+      <ol>${qs}</ol>
+    </div>
+    <div class="memorize"><div class="mode-label">Commit to memory</div><p>${esc(s.memorize)}</p></div>
+    <div class="story-card"><div class="mode-label">Biographical reflection · author’s summary</div><p>${esc(s.story)}</p><a class="story-source" href="https://www.bahai.org/abdul-baha/life-abdul-baha" target="_blank" rel="noopener">Explore the life of ‘Abdu’l‑Bahá ↗</a></div>
+    <div class="practice individual-only"><div class="label">Individual practice</div><h4>Carry it into life</h4>${esc(s.individual)}</div>
+    <div class="consult-card collective-only"><div class="mode-label">Read aloud · consult · act together</div><p>${esc(s.collective)}</p></div>
+   </div>
+   <aside class="stage${s.artKey ? ' has-art' : ''}" data-word="${esc(s.title.split(" ")[0].toUpperCase())}">
+      ${s.artKey ? artHTML(s) : visualHTML(s.visual)}
+   </aside>
+ </section>`;
+}
+
+[1,2,3,4,5,6].forEach(unit=>{
+  document.getElementById("story"+unit).innerHTML=STUDY_DATA.filter(x=>x.unit===unit).map(sectionHTML).join("");
+});
+
+const progress=document.getElementById("progress"),railDot=document.getElementById("railDot");
+const revealEls=[...document.querySelectorAll(".reveal")];
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.12});
+revealEls.forEach(x=>io.observe(x));
+
+const navLinks=[...document.querySelectorAll(".navdots a")];
+const majors=["top","unit1","unit2","unit3","unit4","unit5","unit6","finish"].map(id=>document.getElementById(id));
+const mio=new IntersectionObserver(entries=>{
+  const best=entries.filter(x=>x.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+  if(!best)return;
+  navLinks.forEach(a=>a.classList.toggle("on",a.dataset.id===best.target.id));
+},{threshold:[.2,.45,.7]});
+majors.forEach(x=>mio.observe(x));
+
+let ticking=false;
+function clamp(v,a=0,b=1){return Math.max(a,Math.min(b,v))}
+function frame(){
+  ticking=false;
+  const doc=document.documentElement;
+  const max=doc.scrollHeight-innerHeight;
+  const y=scrollY||doc.scrollTop;
+  const pg=max?y/max:0;
+  progress.style.width=(pg*100)+"%";
+  const railH=innerHeight*.76-10;
+  railDot.style.setProperty("--rail",(pg*railH)+"px");
+  document.documentElement.style.setProperty("--heroP",clamp(y/innerHeight));
+  document.querySelectorAll(".scene").forEach(el=>{
+    const r=el.getBoundingClientRect();
+    const p=clamp((innerHeight-r.top)/(innerHeight+r.height*.55));
+    el.style.setProperty("--p",p.toFixed(3));
+  });
+  document.querySelectorAll(".gate").forEach(el=>{
+    const r=el.getBoundingClientRect();
+    const p=clamp((innerHeight-r.top)/(innerHeight+r.height));
+    el.style.setProperty("--gateP",p.toFixed(3));
+  });
+  document.querySelectorAll(".interlude").forEach(el=>{
+    const r=el.getBoundingClientRect();
+    const p=clamp((innerHeight-r.top)/(innerHeight+r.height));
+    el.style.setProperty("--interP",p.toFixed(3));
+  });
+  let activeUnit=1;
+  for(let unit=2;unit<=6;unit++){
+    if(document.getElementById("unit"+unit).getBoundingClientRect().top < innerHeight*.55) activeUnit=unit;
+  }
+  document.body.dataset.unit=String(activeUnit);
+  document.querySelectorAll("[data-unit-tab]").forEach(tab=>{
+    const on=Number(tab.dataset.unitTab)===activeUnit;
+    tab.classList.toggle("on",on);
+    if(on) tab.setAttribute("aria-current","true"); else tab.removeAttribute("aria-current");
+  });
+}
+function requestFrame(){if(!ticking){ticking=true;requestAnimationFrame(frame)}}
+addEventListener("scroll",requestFrame,{passive:true});addEventListener("resize",requestFrame);frame();
+
+// ---------- Individual / collective study mode ----------
+const individualMode=document.getElementById("individualMode");
+const collectiveMode=document.getElementById("collectiveMode");
+function setStudyMode(mode){
+  document.body.dataset.studyMode=mode;
+  const individual=mode==="individual";
+  individualMode.classList.toggle("active",individual);
+  collectiveMode.classList.toggle("active",!individual);
+  individualMode.setAttribute("aria-pressed",String(individual));
+  collectiveMode.setAttribute("aria-pressed",String(!individual));
+  try{localStorage.setItem("humanRealityStudyMode",mode)}catch(e){}
+}
+individualMode.addEventListener("click",()=>setStudyMode("individual"));
+collectiveMode.addEventListener("click",()=>setStudyMode("collective"));
+try{setStudyMode(localStorage.getItem("humanRealityStudyMode")==="collective"?"collective":"individual")}catch(e){setStudyMode("individual")}
+
+// ---------- Pop-out section navigator ----------
+const navTrigger = document.getElementById("navTrigger");
+const sectionDrawer = document.getElementById("sectionDrawer");
+const drawerBackdrop = document.getElementById("drawerBackdrop");
+const drawerClose = document.getElementById("drawerClose");
+const currentSectionLabel = document.getElementById("currentSectionLabel");
+const drawerCurrent = document.getElementById("drawerCurrent");
+const drawerUnits=[1,2,3,4,5,6].map(unit=>document.getElementById("drawerUnit"+unit));
+
+function buildDrawer(){
+  [1,2,3,4,5,6].forEach(unit=>{
+    const host=document.getElementById("drawerLinks"+unit);
+    host.innerHTML=STUDY_DATA.filter(s=>s.unit===unit).map(s=>`
+      <a class="drawer-link" href="#u${s.unit}s${s.n}" data-section="u${s.unit}s${s.n}" data-unit="${unit}">
+        <span class="idx">${String(s.n).padStart(2,"0")}</span>
+        <span class="topic">${esc(s.title)}<small>${esc(s.subtitle)}</small></span>
+      </a>
+    `).join("");
+  });
+}
+buildDrawer();
+
+function openDrawer(){
+  lastDrawerFocus=document.activeElement;
+  sectionDrawer.classList.add("open");
+  drawerBackdrop.classList.add("open");
+  sectionDrawer.inert=false;
+  sectionDrawer.setAttribute("aria-hidden","false");
+  navTrigger.setAttribute("aria-expanded","true");
+  document.body.style.overflow="hidden";
+  drawerClose.focus();
+}
+function closeDrawer(){
+  sectionDrawer.classList.remove("open");
+  drawerBackdrop.classList.remove("open");
+  sectionDrawer.inert=true;
+  sectionDrawer.setAttribute("aria-hidden","true");
+  navTrigger.setAttribute("aria-expanded","false");
+  document.body.style.overflow="";
+  if(lastDrawerFocus) lastDrawerFocus.focus();
+}
+navTrigger.addEventListener("click",()=>sectionDrawer.classList.contains("open")?closeDrawer():openDrawer());
+drawerClose.addEventListener("click",closeDrawer);
+drawerBackdrop.addEventListener("click",closeDrawer);
+let lastDrawerFocus=null;
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape" && sectionDrawer.classList.contains("open")) closeDrawer();
+  if(e.key==="Tab" && sectionDrawer.classList.contains("open")){
+    const focusable=[...sectionDrawer.querySelectorAll('a[href],button,summary')].filter(el=>!el.hasAttribute("disabled"));
+    const first=focusable[0],last=focusable[focusable.length-1];
+    if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus()}
+    else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus()}
+  }
+});
+sectionDrawer.addEventListener("click",e=>{
+  const a=e.target.closest("a[href^='#']");
+  if(a) closeDrawer();
+});
+
+const drawerLinks=[...document.querySelectorAll(".drawer-link")];
+
+function setActiveDrawerSection(id){
+  drawerLinks.forEach(a=>a.classList.toggle("active",a.dataset.section===id));
+  const s=STUDY_DATA.find(x=>`u${x.unit}s${x.n}`===id);
+  if(!s) return;
+  currentSectionLabel.textContent=`${s.n}. ${s.title}`;
+  drawerCurrent.textContent=`Unit ${s.unit} · ${s.title}`;
+
+  drawerUnits[s.unit-1].open=true;
+
+  const active=document.querySelector(`.drawer-link[data-section="${id}"]`);
+  if(active && sectionDrawer.classList.contains("open")){
+    active.scrollIntoView({block:"nearest"});
+  }
+}
+
+// Track the section whose midpoint is closest to the viewport reading line.
+function updateDrawerActive(){
+  const scenes=[...document.querySelectorAll(".scene")];
+  const line=innerHeight*.42;
+  let best=null,dist=Infinity;
+  scenes.forEach(s=>{
+    const r=s.getBoundingClientRect();
+    if(r.bottom<0 || r.top>innerHeight) return;
+    const d=Math.abs((r.top+Math.min(r.height,innerHeight)*.25)-line);
+    if(d<dist){dist=d;best=s}
+  });
+  if(best) setActiveDrawerSection(best.id);
+  else{
+    let activeUnit=0;
+    for(let unit=1;unit<=6;unit++){
+      if(document.getElementById("unit"+unit).getBoundingClientRect().top < innerHeight*.6) activeUnit=unit;
+    }
+    if(activeUnit){
+      currentSectionLabel.textContent=`Unit ${activeUnit}`;
+      drawerCurrent.textContent=`Unit ${activeUnit} · ${UNIT_META[activeUnit].title}`;
+    }else{
+      currentSectionLabel.textContent="Explore sections";
+      drawerCurrent.textContent="Introduction";
+    }
+  }
+}
+addEventListener("scroll",updateDrawerActive,{passive:true});
+addEventListener("resize",updateDrawerActive);
+setTimeout(updateDrawerActive,0);
+
+</script>
+</body>
+</html>

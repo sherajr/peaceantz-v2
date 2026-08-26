@@ -7,6 +7,15 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "peaceantz",
   "main": "worker/index.ts",
+  // Kept explicit: the workers.dev route once pinned itself to a stale version
+  // while the API reported the new one at 100%. Toggling this false -> deploy ->
+  // true -> deploy re-registers the route and clears it.
+  "workers_dev": true,
+  // Live site. Attaching this custom domain replaces the previous www DNS
+  // record; the rollback record is noted in docs/local/ (gitignored).
+  "routes": [
+    { "pattern": "www.peaceantz.com", "custom_domain": true }
+  ],
   "compatibility_date": "2025-07-01",
   "assets": {
     "directory": "./dist",

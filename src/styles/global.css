@@ -120,6 +120,7 @@ p { margin: 0 0 1em; }
 .site-nav a:hover::after, .site-nav a[aria-current='page']::after { right: 0; }
 .site-nav a[aria-current='page'] { color: var(--ink); }
 .nav-toggle { display: none; }
+
 .site-header--dark {
   background: rgba(5, 9, 17, 0.72);
   border-bottom-color: rgba(255, 255, 255, 0.08);
@@ -128,6 +129,75 @@ p { margin: 0 0 1em; }
 .site-header--dark .site-nav a { color: rgba(245, 241, 230, 0.72); }
 .site-header--dark .site-nav a[aria-current='page'] { color: #fff; }
 .site-header--dark .nav-toggle { color: #f5f1e6; border-color: rgba(255, 255, 255, 0.2); }
+
+/* ————— Featured nav item (Study) —————
+   Reads as a destination rather than another text link: a gold pill carrying a
+   nine-pointed star. Opts out of the shared underline sweep. */
+.site-nav a.nav-study {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  padding: 0.34rem 0.82rem 0.34rem 0.6rem;
+  border-radius: 999px;
+  color: #6b5320;
+  font-weight: 650;
+  border: 1px solid rgba(184, 146, 62, 0.42);
+  background: linear-gradient(135deg, rgba(233, 217, 174, 0.55), rgba(212, 175, 94, 0.16));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 2px 10px rgba(184, 146, 62, 0.14);
+  transition: color 0.22s ease, border-color 0.22s ease, background 0.22s ease,
+    box-shadow 0.22s ease, transform 0.22s ease;
+}
+.site-nav a.nav-study::after { display: none; }
+.site-nav a.nav-study:hover {
+  color: #4a3a12;
+  border-color: var(--gold-bright);
+  background: linear-gradient(135deg, rgba(233, 217, 174, 0.82), rgba(212, 175, 94, 0.3));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75), 0 5px 18px rgba(184, 146, 62, 0.3);
+  transform: translateY(-1px);
+}
+.site-nav a.nav-study[aria-current='page'] {
+  color: #46360f;
+  border-color: var(--gold);
+  background: linear-gradient(135deg, rgba(212, 175, 94, 0.44), rgba(184, 146, 62, 0.24));
+}
+.nav-study__star {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  fill: var(--gold);
+  animation: nav-study-glow 4.5s ease-in-out infinite;
+  transition: fill 0.22s ease, transform 0.5s cubic-bezier(0.2, 0.9, 0.25, 1);
+}
+.site-nav a.nav-study:hover .nav-study__star {
+  fill: var(--gold-bright);
+  transform: rotate(40deg) scale(1.12);
+}
+@keyframes nav-study-glow {
+  0%, 100% { filter: drop-shadow(0 0 1px rgba(212, 175, 94, 0.35)); }
+  50%      { filter: drop-shadow(0 0 4px rgba(212, 175, 94, 0.85)); }
+}
+
+/* dark-header variant */
+.site-header--dark .site-nav a.nav-study {
+  color: var(--gold-soft);
+  border-color: rgba(212, 175, 94, 0.45);
+  background: linear-gradient(135deg, rgba(212, 175, 94, 0.2), rgba(212, 175, 94, 0.05));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 2px 14px rgba(0, 0, 0, 0.25);
+}
+.site-header--dark .site-nav a.nav-study:hover,
+.site-header--dark .site-nav a.nav-study[aria-current='page'] {
+  color: #fff8e6;
+  border-color: var(--gold-bright);
+  background: linear-gradient(135deg, rgba(212, 175, 94, 0.36), rgba(212, 175, 94, 0.12));
+}
+.site-header--dark .nav-study__star { fill: var(--gold-bright); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-study__star { animation: none; transition: none; }
+  .site-nav a.nav-study { transition: none; }
+  .site-nav a.nav-study:hover { transform: none; }
+  .site-nav a.nav-study:hover .nav-study__star { transform: none; }
+}
 @media (max-width: 780px) {
   .site-header--dark .site-nav { background: #0a1120; border-bottom-color: rgba(255, 255, 255, 0.08); }
 }
