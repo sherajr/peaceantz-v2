@@ -379,7 +379,10 @@ body[data-study-mode="individual"] .collective-only{display:none}body[data-study
 .stage.has-art:before{display:none}
 
 .home-link{
-  position:fixed;right:18px;top:20px;z-index:920;
+  /* bottom-left is the only corner free at both breakpoints: the mode switch
+     owns top-right (and bottom-right under 850px), the section trigger owns
+     top-left, and the reading rail stops at 88vh. */
+  position:fixed;left:18px;bottom:18px;z-index:920;
   display:flex;align-items:center;gap:8px;
   border:1px solid rgba(255,255,255,.18);
   border-radius:999px;padding:10px 15px;
@@ -390,6 +393,9 @@ body[data-study-mode="individual"] .collective-only{display:none}body[data-study
 }
 .home-link:hover{background:rgba(15,31,40,.94)}
 .home-link svg{width:15px;height:15px;flex:none}
+@media(max-width:850px){
+  .home-link{left:12px;bottom:12px}
+}
 @media(max-width:720px){
   .home-link{padding:8px 11px;font-size:.75rem}
   .home-link .home-label{display:none}
